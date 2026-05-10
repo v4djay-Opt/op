@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* --- LIGHT SAGE PALETTE --- */
+  --color-background: #F0F4EE;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #E8F0E4;
+  --color-surface-glass: rgba(255, 255, 255, 0.75);
+
+  /* Text */
+  --color-text: #1A2E1E;
+  --color-text-secondary: #3D5444;
+  --color-muted: #7A9282;
+
+  /* Brand Accent — deep forest green */
+  --color-accent: #2D6A4F;
+  --color-accent-hover: #235A41;
+  --color-accent-light: #D8E8D4;
+  --color-accent-muted: #A8C5B0;
+
+  /* Secondary accent — warm amber */
+  --color-highlight: #E8A838;
+  --color-highlight-light: #FFF7E6;
+
+  /* Borders */
+  --color-border: #E2EDE0;
+  --color-border-light: #EBF2E7;
+
+  /* Nature gradient stops */
+  --color-nature-sky: #DCE9D5;
+  --color-nature-grass: #B5CFA8;
+  --color-nature-field: #C8DAB8;
+
+  /* Fonts */
+  --font-display: var(--font-playfair);
+  --font-body: var(--font-dm-sans);
+
+  /* Radii */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 32px -8px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 24px 48px -12px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 2px 16px -4px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 8px 32px -8px rgba(45, 106, 79, 0.15);
+  --shadow-glow: 0 0 40px -10px rgba(45, 106, 79, 0.25);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-secondary);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Organic blob shape utility (CSS-only, no SVG needed) */
+.blob-1 {
+  border-radius: 62% 38% 54% 46% / 44% 56% 44% 56%;
+}
+.blob-2 {
+  border-radius: 38% 62% 46% 54% / 56% 44% 56% 44%;
+}
+.blob-3 {
+  border-radius: 50% 50% 35% 65% / 55% 45% 55% 45%;
+}
+
+::selection {
+  background-color: rgba(45, 140, 110, 0.2);
+  color: var(--color-text);
+}
+
+/* Mesh animation for background blobs */
+@keyframes mesh {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(2%, 3%) scale(1.02);
+  }
+  66% {
+    transform: translate(-1%, 1%) scale(0.98);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.animate-mesh {
+  animation: mesh 20s ease-in-out infinite;
+}
+
+/* Float animation for mockup cards */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 6s ease-in-out 2s infinite;
+}
+
+/* Prose styles for blog/CMS content */
+.prose h2 {
+  color: var(--color-text);
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+.prose h3 {
+  color: var(--color-text);
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.prose p {
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+
+.prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.prose strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.prose li {
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 1rem;
+  font-style: italic;
+  color: var(--color-muted);
+  margin: 1.5rem 0;
+}
+
+.prose img {
+  border-radius: 1rem;
+  margin: 1.5rem 0;
+}
+
+.prose-none {
+  max-width: none;
+}
+
+/* ── GSAP Stacking Cards ── */
+/* Desktop: all cards in same grid cell, stacked on top of each other */
+@media (min-width: 1024px) {
+  .services-stack-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: hidden;
+  }
+  .stack-reveal-card {
+    grid-area: 1 / 1;
+    transform-origin: top center;
+    will-change: transform;
+  }
+  /* CSS sets initial off-screen state — prevents flash before GSAP loads */
+  .stack-reveal-card:not(:first-child) {
+    transform: translateY(100%);
+  }
+}
+/* Mobile: normal vertical list */
+@media (max-width: 1023px) {
+  .services-stack-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
