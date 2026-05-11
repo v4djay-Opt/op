@@ -102,9 +102,8 @@ const services = [
 ];
 
 export const ServicesStrip = memo(function ServicesStrip() {
-  // Prevent React from reconciling DOM after GSAP ScrollTrigger pin modifies it
-  const sectionRef = useRef<HTMLElement>(null);
-  const stackRef   = useRef<HTMLDivElement>(null);
+  const pinRef   = useRef<HTMLDivElement>(null);
+  const stackRef = useRef<HTMLDivElement>(null);
 
   useIsomorphicLayoutEffect(() => {
     // Mobile: skip GSAP, CSS already shows normal list
@@ -117,9 +116,9 @@ export const ServicesStrip = memo(function ServicesStrip() {
       const { ScrollTrigger }  = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
 
-      const section = sectionRef.current;
-      const stack   = stackRef.current;
-      if (!section || !stack) return;
+      const pin = pinRef.current;
+      const stack = stackRef.current;
+      if (!pin || !stack) return;
 
       const cards = gsap.utils.toArray<HTMLElement>(".stack-reveal-card", stack);
       if (cards.length < 2) return;
@@ -133,7 +132,7 @@ export const ServicesStrip = memo(function ServicesStrip() {
         // After the last card lands, the pin releases and scroll resumes.
         const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: section,
+            trigger: pin,
             pin: true,
             anticipatePin: 1,
             start: "top top+=80",
@@ -156,14 +155,14 @@ export const ServicesStrip = memo(function ServicesStrip() {
             tl.to(cards[j], { scale, ease: "none", duration: 1 }, pos);
           }
         }
-      }, section);
+      }, pin);
     })();
 
     return () => ctx?.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative pt-20 lg:pt-28 pb-20 px-4">
+    <section className="relative pt-20 lg:pt-28 pb-20 px-4">
       <div className="mx-auto max-w-5xl">
         <SectionHeading
           label="What We Do"
@@ -176,7 +175,8 @@ export const ServicesStrip = memo(function ServicesStrip() {
           .stack-reveal-card    → grid-area: 1/1 on desktop (all in same cell)
                                   non-first cards start at translateY(100%) via CSS
         */}
-        <div ref={stackRef} className="services-stack-grid">
+        <div ref={pinRef}>
+          <div ref={stackRef} className="services-stack-grid">
           {services.map((service, i) => (
             <div
               key={service.title}
@@ -254,6 +254,7 @@ export const ServicesStrip = memo(function ServicesStrip() {
               </div>
             </div>
           ))}
+          </div>
         </div>
       </div>
     </section>

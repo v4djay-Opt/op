@@ -2,7 +2,10 @@ export interface Product {
   slug: string;
   name: string;
   tagline: string;
+  featureLine: string;
   description: string;
+  icon: string;
+  images: { src: string; alt: string; caption: string }[];
   features: { title: string; description: string }[];
   pricing: { plan: string; price: string; features: string[]; cta: string }[];
   faqs: { question: string; answer: string }[];
@@ -13,6 +16,13 @@ export const products: Product[] = [
     slug: "school-management-system",
     name: "School Management System",
     tagline: "Run Your School from One Dashboard",
+    featureLine: "Attendance, fees, timetable & parent portal in one place.",
+    icon: "GraduationCap",
+    images: [
+      { src: "/images/products/school-dashboard.png", alt: "School Management System dashboard showing attendance and fees overview", caption: "Central dashboard — attendance, fees, and announcements at a glance" },
+      { src: "/images/products/school-fees.png", alt: "Fee management module with invoice generation and payment tracking", caption: "Fee management — generate invoices and collect payments online" },
+      { src: "/images/products/school-parent-app.png", alt: "Parent mobile app showing real-time attendance and result notifications", caption: "Parent app — real-time updates on attendance, fees, and results" },
+    ],
     description:
       "A complete digital campus solution for admissions, fees, attendance, exams, and parent communication. Built for schools that want to go paperless.",
     features: [
@@ -102,12 +112,29 @@ export const products: Product[] = [
         answer:
           "Yes, we handle bulk data migration from Excel or any existing system.",
       },
+      {
+        question: "What happens if we need a custom module?",
+        answer:
+          "We build custom modules on request. Most additions are scoped and delivered within 1–2 weeks depending on complexity.",
+      },
+      {
+        question: "Is the data stored securely?",
+        answer:
+          "Yes. All data is encrypted, stored on secure cloud servers, and backed up daily. We follow standard data protection practices.",
+      },
     ],
   },
   {
     slug: "hospital-management-system",
     name: "Hospital Management System",
     tagline: "Patient Care, Simplified and Digitized",
+    featureLine: "OPD scheduling, billing, and patient records — all digital.",
+    icon: "Heart",
+    images: [
+      { src: "/images/products/hospital-dashboard.png", alt: "Hospital Management System dashboard with patient overview", caption: "Hospital dashboard — patient flow, appointments, and revenue at a glance" },
+      { src: "/images/products/hospital-opd.png", alt: "OPD scheduling screen with doctor availability", caption: "OPD scheduling — patients book online, doctors see real-time availability" },
+      { src: "/images/products/hospital-patient-portal.png", alt: "Patient portal showing lab reports and prescriptions", caption: "Patient portal — download reports, view prescriptions, and book follow-ups" },
+    ],
     description:
       "An integrated hospital management platform covering appointments, patient records, billing, pharmacy, and lab reports.",
     features: [
@@ -197,12 +224,29 @@ export const products: Product[] = [
         answer:
           "Yes, the system handles both outpatient and inpatient workflows.",
       },
+      {
+        question: "What happens if we need a custom module?",
+        answer:
+          "We build custom modules on request. Most additions are scoped and delivered within 1–2 weeks depending on complexity.",
+      },
+      {
+        question: "Is the data stored securely?",
+        answer:
+          "Yes. All data is encrypted, stored on secure cloud servers, and backed up daily. We follow standard data protection practices.",
+      },
     ],
   },
   {
     slug: "gym-management-system",
     name: "Gym Management System",
     tagline: "Retain Members, Automate Operations",
+    featureLine: "Membership renewals, class bookings, and payment tracking.",
+    icon: "Dumbbell",
+    images: [
+      { src: "/images/products/gym-dashboard.png", alt: "Gym Management System dashboard showing member analytics", caption: "Gym dashboard — members, revenue, and class bookings at a glance" },
+      { src: "/images/products/gym-classes.png", alt: "Class booking screen with capacity and trainer schedules", caption: "Class booking — members book yoga, Zumba, or PT sessions online" },
+      { src: "/images/products/gym-member-app.png", alt: "Member mobile app showing workout plans and schedules", caption: "Member app — track workouts, book classes, and renew memberships" },
+    ],
     description:
       "A complete gym and fitness studio platform for memberships, class bookings, trainer scheduling, and member engagement.",
     features: [
@@ -292,12 +336,29 @@ export const products: Product[] = [
         answer:
           "Yes, we can integrate Zoom or custom video streaming for online sessions.",
       },
+      {
+        question: "What happens if we need a custom module?",
+        answer:
+          "We build custom modules on request. Most additions are scoped and delivered within 1–2 weeks depending on complexity.",
+      },
+      {
+        question: "Is the data stored securely?",
+        answer:
+          "Yes. All data is encrypted, stored on secure cloud servers, and backed up daily. We follow standard data protection practices.",
+      },
     ],
   },
   {
     slug: "real-estate-crm",
     name: "Real Estate CRM",
     tagline: "Never Lose a Lead Again",
+    featureLine: "Lead pipeline, site visits, follow-ups, and deal tracking.",
+    icon: "Building2",
+    images: [
+      { src: "/images/products/realestate-dashboard.png", alt: "Real Estate CRM dashboard with lead pipeline", caption: "CRM dashboard — leads, properties, and deals in one pipeline" },
+      { src: "/images/products/realestate-properties.png", alt: "Property catalog with advanced filters and map view", caption: "Property catalog — upload listings with photos, floor plans, and virtual tours" },
+      { src: "/images/products/realestate-whatsapp.png", alt: "WhatsApp automation screen for instant lead replies", caption: "WhatsApp automation — instant replies, follow-ups, and broadcast messages" },
+    ],
     description:
       "A purpose-built CRM for real estate agents and developers. Track leads, manage properties, automate follow-ups, and close faster.",
     features: [
@@ -388,12 +449,29 @@ export const products: Product[] = [
         answer:
           "Yes, the public property portal is fully searchable. Login is only required for agents.",
       },
+      {
+        question: "What happens if we need a custom module?",
+        answer:
+          "We build custom modules on request. Most additions are scoped and delivered within 1–2 weeks depending on complexity.",
+      },
+      {
+        question: "Is the data stored securely?",
+        answer:
+          "Yes. All data is encrypted, stored on secure cloud servers, and backed up daily. We follow standard data protection practices.",
+      },
     ],
   },
   {
     slug: "interior-design-crm",
     name: "Interior Design CRM",
     tagline: "Deliver Stunning Projects On Time",
+    featureLine: "Project timelines, client approvals, and vendor management.",
+    icon: "Sofa",
+    images: [
+      { src: "/images/products/interior-dashboard.png", alt: "Interior Design CRM dashboard with project timeline", caption: "Project dashboard — timelines, budgets, and approvals in one view" },
+      { src: "/images/products/interior-moodboard.png", alt: "Digital mood board with 3D renders and material samples", caption: "Digital mood board — share 3D renders and material samples with clients" },
+      { src: "/images/products/interior-vendor.png", alt: "Vendor management screen with orders and payments", caption: "Vendor management — track orders, deliveries, and payments in real time" },
+    ],
     description:
       "A project management and CRM platform built for interior designers. Manage clients, vendors, materials, approvals, and timelines effortlessly.",
     features: [
@@ -483,6 +561,16 @@ export const products: Product[] = [
         question: "Can I track vendor payments?",
         answer:
           "Yes, all vendor invoices, advances, and balances are tracked.",
+      },
+      {
+        question: "What happens if we need a custom module?",
+        answer:
+          "We build custom modules on request. Most additions are scoped and delivered within 1–2 weeks depending on complexity.",
+      },
+      {
+        question: "Is the data stored securely?",
+        answer:
+          "Yes. All data is encrypted, stored on secure cloud servers, and backed up daily. We follow standard data protection practices.",
       },
     ],
   },

@@ -22,9 +22,18 @@ const productItems = [
   { label: "Interior Design CRM", href: "/products/interior-design-crm", description: "Manage projects, vendors & approvals" },
 ];
 
+const industryItems = [
+  { label: "Real Estate", href: "/industries/real-estate", description: "CRM, lead tracking, and automated follow-ups" },
+  { label: "Schools & Education", href: "/industries/schools-education", description: "Admissions, fees, attendance & parent communication" },
+  { label: "Healthcare", href: "/industries/healthcare", description: "Appointments, records, billing & prescriptions" },
+  { label: "Fitness & Gym", href: "/industries/fitness-gym", description: "Memberships, schedules, payments & progress tracking" },
+  { label: "Interior Design", href: "/industries/interior-design", description: "Client approvals, vendor tracking & timelines" },
+  { label: "Retail & E-commerce", href: "/industries/retail-ecommerce", description: "High-converting stores with inventory sync" },
+  { label: "Corporate", href: "/industries/corporate", description: "Internal portals, workflows & executive dashboards" },
+];
+
 const plainLinks = [
   { label: "Home", href: "/" },
-  { label: "Industries", href: "/industries" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
@@ -94,6 +103,11 @@ export function Header() {
                 label="Products"
                 href="/products"
                 items={productItems}
+              />
+              <NavDropdown
+                label="Industries"
+                href="/industries"
+                items={industryItems}
               />
 
               {plainLinks.slice(1).map((link) => (
@@ -218,6 +232,46 @@ export function Header() {
                     >
                       <div className="flex flex-col items-center gap-3 py-3">
                         {productItems.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={() => setMobileOpen(false)}
+                            className="text-base text-text-secondary hover:text-text transition-colors"
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Industries accordion */}
+              <div className="w-full max-w-xs">
+                <button
+                  onClick={() =>
+                    setMobileSubmenu(mobileSubmenu === "industries" ? null : "industries")
+                  }
+                  className="flex w-full items-center justify-center gap-2 text-2xl font-semibold text-text hover:text-accent transition-colors font-display py-2"
+                >
+                  Industries
+                  <ChevronDown
+                    className={`h-5 w-5 transition-transform ${
+                      mobileSubmenu === "industries" ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                <AnimatePresence>
+                  {mobileSubmenu === "industries" && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="flex flex-col items-center gap-3 py-3">
+                        {industryItems.map((item) => (
                           <Link
                             key={item.href}
                             href={item.href}
