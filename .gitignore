@@ -73,6 +73,10 @@ Thumbs.db
 # coverage reports
 coverage/
 
-# planning / scratch files
+# planning / scratch / agent files
 seo-content-brief.md
 seo-keywords-strategy.md
+optimax-dev-plan.md
+designplan.md
+CLAUDE.md
+AGENTS.md
