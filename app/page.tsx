@@ -54,8 +54,10 @@ export default function Home() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+        suppressHydrationWarning
+      >
+        {JSON.stringify(jsonLd)}
+      </script>
       <Hero />
       <LogoStrip />
       <ServicesStrip />

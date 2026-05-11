@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useEffect, useRef, memo } from "react";
 import Link from "next/link";
 import {
   Monitor,
@@ -12,6 +12,8 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 /** px of extra scroll allocated to each card reveal step */
 const STEP = 450;
@@ -99,11 +101,12 @@ const services = [
   },
 ];
 
-export function ServicesStrip() {
+export const ServicesStrip = memo(function ServicesStrip() {
+  // Prevent React from reconciling DOM after GSAP ScrollTrigger pin modifies it
   const sectionRef = useRef<HTMLElement>(null);
   const stackRef   = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     // Mobile: skip GSAP, CSS already shows normal list
     if (window.matchMedia("(max-width: 1023px)").matches) return;
 
@@ -255,4 +258,4 @@ export function ServicesStrip() {
       </div>
     </section>
   );
-}
+});

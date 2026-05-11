@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactNode, useState, useEffect } from "react";
 
 interface FadeInProps {
   children: ReactNode;
@@ -19,6 +19,11 @@ export function FadeIn({
   className = "",
 }: FadeInProps) {
   const shouldReduceMotion = useReducedMotion();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const directions = {
     up: { y: 24 },
@@ -28,7 +33,7 @@ export function FadeIn({
     none: {},
   };
 
-  if (shouldReduceMotion) {
+  if (shouldReduceMotion || !isClient) {
     return <div className={className}>{children}</div>;
   }
 

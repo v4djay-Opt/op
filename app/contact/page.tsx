@@ -71,7 +71,10 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Form */}
             <FadeIn>
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-5 rounded-2xl border border-border bg-surface-alt p-6 sm:p-8"
+              >
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-text mb-1.5">
                     Full Name
@@ -83,7 +86,7 @@ export default function ContactPage() {
                     required
                     value={form.name}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-white/10 bg-navy-800/40 px-4 py-3 text-sm text-text placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/50 transition-colors"
+                    className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-text placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/50 transition-colors"
                     placeholder="John Doe"
                   />
                 </div>
@@ -100,7 +103,7 @@ export default function ContactPage() {
                       required
                       value={form.email}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-white/10 bg-navy-800/40 px-4 py-3 text-sm text-text placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/50 transition-colors"
+                      className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-text placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/50 transition-colors"
                       placeholder="john@company.com"
                     />
                   </div>
@@ -114,7 +117,7 @@ export default function ContactPage() {
                       type="tel"
                       value={form.phone}
                       onChange={handleChange}
-                      className="w-full rounded-xl border border-white/10 bg-navy-800/40 px-4 py-3 text-sm text-text placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/50 transition-colors"
+                      className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-text placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/50 transition-colors"
                       placeholder="+91 99999 99999"
                     />
                   </div>
@@ -129,11 +132,11 @@ export default function ContactPage() {
                     name="service"
                     value={form.service}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-white/10 bg-navy-800/40 px-4 py-3 text-sm text-text focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/50 transition-colors appearance-none"
+                    className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-text focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/50 transition-colors appearance-none"
                   >
-                    <option value="" className="bg-navy-900">Select a service</option>
+                    <option value="">Select a service</option>
                     {servicesList.map((s) => (
-                      <option key={s} value={s} className="bg-navy-900">
+                      <option key={s} value={s}>
                         {s}
                       </option>
                     ))}
@@ -151,19 +154,19 @@ export default function ContactPage() {
                     required
                     value={form.message}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-white/10 bg-navy-800/40 px-4 py-3 text-sm text-text placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/50 transition-colors resize-none"
+                    className="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-text placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/50 transition-colors resize-none"
                     placeholder="Tell us about your project..."
                   />
                 </div>
 
                 {status === "success" && (
-                  <div className="rounded-xl border border-green-500/20 bg-green-500/10 px-4 py-3 text-sm text-green-400">
+                  <div className="rounded-xl border border-green-500/20 bg-green-500/10 px-4 py-3 text-sm text-green-600">
                     Thanks for reaching out! We will get back to you within 24 hours.
                   </div>
                 )}
 
                 {status === "error" && (
-                  <div className="rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+                  <div className="rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-500">
                     {errorMsg}
                   </div>
                 )}
@@ -182,7 +185,7 @@ export default function ContactPage() {
             {/* Info */}
             <FadeIn delay={0.15}>
               <div className="space-y-8">
-                <div className="rounded-2xl border border-white/5 bg-navy-800/40 p-6">
+                <div className="rounded-2xl border border-border bg-surface p-6">
                   <h3 className="text-lg font-semibold text-text font-display mb-4">
                     Contact Information
                   </h3>
@@ -202,7 +205,7 @@ export default function ContactPage() {
                     <li className="flex items-start gap-3">
                       <MapPin className="h-5 w-5 shrink-0 text-accent mt-0.5" />
                       <span className="text-sm text-muted">
-                        Mumbai, India
+                        F104, Crown Avenue, Sector 92, Gurgaon — 122505
                       </span>
                     </li>
                   </ul>
@@ -213,23 +216,23 @@ export default function ContactPage() {
                   href="https://wa.me/918957079052"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 rounded-2xl border border-green-600/20 bg-green-600/10 p-6 transition-all hover:bg-green-600/20"
+                  className="flex items-center gap-3 rounded-2xl border border-green-200 bg-green-50 p-6 transition-all hover:bg-green-100"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-600/20 text-green-400">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-100 text-green-700">
                     <MessageCircle className="h-6 w-6" />
                   </div>
                   <div>
-                    <div className="text-base font-semibold text-green-400">
+                    <div className="text-base font-semibold text-green-700">
                       Chat on WhatsApp
                     </div>
-                    <div className="text-sm text-green-400/70">
+                    <div className="text-sm text-green-600">
                       Usually replies within minutes
                     </div>
                   </div>
                 </a>
 
                 {/* Cal.com embed */}
-                <div className="rounded-2xl border border-white/5 bg-navy-800/40 p-6">
+                <div className="rounded-2xl border border-border bg-surface p-6">
                   <h3 className="text-lg font-semibold text-text font-display mb-3">
                     Book a Free Strategy Call
                   </h3>
@@ -247,22 +250,25 @@ export default function ContactPage() {
                   </a>
                 </div>
 
-                {/* Google Maps */}
-                <div className="rounded-2xl border border-white/5 bg-navy-800/40 overflow-hidden">
-                  <iframe
-                    title="Optimax Studio Office Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609849077!2d72.74109846717188!3d19.08217750923714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                    width="100%"
-                    height="250"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-                </div>
               </div>
             </FadeIn>
           </div>
+
+          {/* Google Maps — full width */}
+          <FadeIn delay={0.2}>
+            <div className="rounded-2xl border border-border bg-surface overflow-hidden mt-12">
+              <iframe
+                title="Optimax Studio Office Location"
+                src="https://maps.google.com/maps?q=F104+Crown+Avenue+Sector+92+Gurgaon+122505&z=15&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="350"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </FadeIn>
         </div>
       </section>
     </>
