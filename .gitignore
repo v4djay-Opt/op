@@ -30,8 +30,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files — keep .env.example committed, ignore everything else
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -43,3 +44,35 @@ next-env.d.ts
 # build/dev logs
 *-log.txt
 init-log.txt
+
+# additional build output
+dist/
+
+# editor files
+.vscode/
+.idea/
+*.suo
+.ntvs_analysis.dat
+*.njsproj
+*.sln
+
+# os files
+Thumbs.db
+
+# temp / backup files
+*.bak
+*.backup
+*.tmp
+
+# sanity local cache
+.sanity/
+
+# turbo cache
+.turbo/
+
+# coverage reports
+coverage/
+
+# planning / scratch files
+seo-content-brief.md
+seo-keywords-strategy.md

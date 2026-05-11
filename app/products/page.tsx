@@ -57,10 +57,9 @@ export default function ProductsPage() {
   return (
     <>
       {/* JSON-LD ItemList schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json" suppressHydrationWarning>
+        {JSON.stringify(jsonLd)}
+      </script>
 
       <PageHero
         label="Products"
@@ -107,21 +106,23 @@ export default function ProductsPage() {
                 <FadeIn key={product.slug} delay={i * 0.08}>
                   <Link
                     href={`/products/${product.slug}`}
-                    className="group flex flex-col rounded-2xl border border-white/5 bg-navy-800/40 p-7 backdrop-blur-sm transition-all hover:border-accent/20 hover:bg-navy-800/60 hover:-translate-y-1.5 hover:shadow-lg h-full"
+                    className="group flex flex-col rounded-2xl border border-border bg-white p-7 shadow-card transition-all hover:border-accent/20 hover:shadow-lg hover:-translate-y-1.5 h-full"
                   >
                     {Icon && (
-                      <Icon className="h-6 w-6 text-accent mb-3" />
+                      <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent mb-4">
+                        <Icon className="h-6 w-6" />
+                      </div>
                     )}
-                    <h3 className="text-xl font-semibold text-text font-display mb-1 group-hover:text-accent transition-colors">
+                    <h3 className="text-xl font-semibold text-text font-display mb-2 group-hover:text-accent transition-colors group-hover:underline underline-offset-4 decoration-accent/40">
                       {product.name}
                     </h3>
                     <p className="text-sm text-muted leading-relaxed">
                       {product.tagline}
                     </p>
-                    <p className="text-sm text-text-secondary leading-relaxed mt-1">
+                    <p className="text-sm text-muted leading-relaxed mt-1">
                       {product.featureLine}
                     </p>
-                    <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent opacity-0 transition-opacity group-hover:opacity-100">
+                    <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent group-hover:gap-2 transition-all">
                       Learn More
                       <ArrowRight className="h-4 w-4" />
                     </div>
@@ -132,9 +133,11 @@ export default function ProductsPage() {
 
             {/* Coming Soon card */}
             <FadeIn delay={products.length * 0.08}>
-              <div className="flex flex-col rounded-2xl border border-white/5 bg-navy-800/40 p-7 backdrop-blur-sm opacity-50 h-full">
-                <div className="h-6 w-6 rounded-full border-2 border-dashed border-muted mb-3" />
-                <h3 className="text-xl font-semibold text-text font-display mb-1">
+              <div className="flex flex-col rounded-2xl border border-border bg-white/70 p-7 shadow-sm opacity-60 h-full">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-muted/20 text-muted mb-4">
+                  <div className="h-6 w-6 rounded-full border-2 border-dashed border-muted" />
+                </div>
+                <h3 className="text-xl font-semibold text-text font-display mb-2">
                   More Coming Soon
                 </h3>
                 <p className="text-sm text-muted leading-relaxed flex-1">

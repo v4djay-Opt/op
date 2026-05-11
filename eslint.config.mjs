@@ -13,6 +13,14 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    rules: {
+      // Apostrophes in JSX prose are intentional — disable cosmetic rule
+      "react/no-unescaped-entities": "off",
+      // Unused vars are warnings, not hard errors
+      "@typescript-eslint/no-unused-vars": "warn",
+    },
+  },
 ]);
 
 export default eslintConfig;

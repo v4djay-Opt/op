@@ -3,6 +3,7 @@ export interface Service {
   name: string;
   tagline: string;
   description: string;
+  icon: string;
   whatWeDo: string[];
   process: { step: number; title: string; description: string }[];
   stats: { value: string; label: string };
@@ -15,6 +16,7 @@ export const services: Service[] = [
     slug: "web-design-development",
     name: "Web Design & Development",
     tagline: "Websites That Convert Visitors Into Customers",
+    icon: "Globe",
     description:
       "Custom, high-performance websites built with modern frameworks. From landing pages to full-scale web applications, we design experiences that drive revenue.",
     whatWeDo: [
@@ -73,6 +75,7 @@ export const services: Service[] = [
     slug: "digital-marketing",
     name: "Digital Marketing",
     tagline: "Data-Driven Campaigns That Maximize ROI",
+    icon: "TrendingUp",
     description:
       "Strategic digital marketing across search, social, and display networks. We target the right audience at the right time with the right message.",
     whatWeDo: [
@@ -130,6 +133,7 @@ export const services: Service[] = [
     slug: "social-media-management",
     name: "Social Media Management",
     tagline: "Build a Brand People Love and Remember",
+    icon: "Share2",
     description:
       "End-to-end social media management from content creation to community engagement. We grow your following and turn fans into customers.",
     whatWeDo: [
@@ -187,6 +191,7 @@ export const services: Service[] = [
     slug: "crm-custom-portals",
     name: "CRM & Custom Portals",
     tagline: "Software That Works Exactly How Your Business Does",
+    icon: "Database",
     description:
       "Tailored CRMs and business portals that automate workflows, track leads, and give you real-time visibility into operations.",
     whatWeDo: [
@@ -245,6 +250,7 @@ export const services: Service[] = [
     slug: "seo",
     name: "SEO",
     tagline: "Rank Higher, Get Found, Drive Organic Revenue",
+    icon: "Search",
     description:
       "Technical SEO, content strategy, and link building that puts your business on page one. Sustainable organic growth without ad spend.",
     whatWeDo: [

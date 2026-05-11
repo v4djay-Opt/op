@@ -127,7 +127,7 @@ export function Footer() {
         </div>
 
         {/* Middle section: Links + Contact */}
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4 py-12">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 py-12">
           {/* Services */}
           <div className="space-y-5">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-text font-display">

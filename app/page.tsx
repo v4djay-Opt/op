@@ -12,6 +12,24 @@ import { PricingCards } from "@/components/sections/PricingCards";
 import { IntegrationsGrid } from "@/components/sections/IntegrationsGrid";
 import { BlogPreview } from "@/components/sections/BlogPreview";
 import { CTABanner } from "@/components/sections/CTABanner";
+import { sanityFetch } from "@/lib/sanity/client";
+import { postsQuery } from "@/lib/sanity/queries";
+import { fallbackPosts } from "@/lib/data/blog-fallback";
+
+interface Post {
+  _id: string;
+  title: string;
+  slug: { current: string } | string;
+  excerpt: string;
+  category?: string;
+  publishedAt: string;
+  estimatedReadTime?: number;
+  image?: string;
+}
+
+function normalizeSlug(slug: { current: string } | string): string {
+  return typeof slug === "string" ? slug : slug.current;
+}
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -49,7 +67,13 @@ const jsonLd = {
   ],
 };
 
-export default function Home() {
+export default async function Home() {
+  const sanityPosts = await sanityFetch<Post[]>(postsQuery);
+  const rawPosts: Post[] = sanityPosts || fallbackPosts;
+  const posts = rawPosts.map((p) => ({
+    ...p,
+    slug: normalizeSlug(p.slug),
+  }));
   return (
     <>
       <script
@@ -70,7 +94,7 @@ export default function Home() {
       <Testimonials />
       <PricingCards />
       <IntegrationsGrid />
-      <BlogPreview />
+      <BlogPreview posts={posts} />
       <CTABanner />
     </>
   );

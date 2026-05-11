@@ -71,6 +71,21 @@ export function ProductsShowcase() {
               </Link>
             </FadeIn>
           ))}
+
+          {/* Coming soon placeholder */}
+          <FadeIn delay={products.length * 0.1}>
+            <div className="group flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-accent p-6 h-full min-h-[240px] transition-all duration-300 hover:bg-accent-hover">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-white/70">
+                <span className="text-xl font-light">+</span>
+              </div>
+              <h3 className="text-base font-semibold text-white font-display mb-2">
+                More coming soon
+              </h3>
+              <p className="text-xs text-white/70 text-center leading-relaxed max-w-[200px]">
+                Custom solutions for your industry. Get in touch to learn more.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </div>
     </section>

@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 const stats = [
-  { value: "5+", label: "Years of Experience" },
-  { value: "50+", label: "Projects Delivered" },
-  { value: "7", label: "Industries Served" },
+  { value: "7+", label: "Years of Experience" },
+  { value: "250+", label: "Projects Delivered" },
+  { value: "8", label: "Industries Served" },
   { value: "3x", label: "Avg Revenue Growth" },
 ];
 

@@ -7,13 +7,15 @@ interface PageHeroProps {
   label?: string;
   title: string;
   subtitle?: string;
+  subtitleClassName?: string;
   centered?: boolean;
 }
 
-export function PageHero({ label, title, subtitle, centered = true }: PageHeroProps) {
+export function PageHero({ label, title, subtitle, subtitleClassName, centered = true }: PageHeroProps) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsClient(true);
   }, []);
 
@@ -45,7 +47,10 @@ export function PageHero({ label, title, subtitle, centered = true }: PageHeroPr
             initial={isClient ? { opacity: 0, y: 20 } : false}
             animate={isClient ? { opacity: 1, y: 0 } : false}
             transition={{ delay: 0.2 }}
-            className="mt-4 md:mt-6 text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed"
+            className={
+              subtitleClassName ??
+              "mt-4 md:mt-6 text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed"
+            }
           >
             {subtitle}
           </motion.p>

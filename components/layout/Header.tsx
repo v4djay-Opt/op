@@ -3,7 +3,19 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
+import {
+  Menu,
+  X,
+  ArrowRight,
+  ChevronDown,
+  Building2,
+  GraduationCap,
+  Heart,
+  Dumbbell,
+  Sofa,
+  ShoppingBag,
+  Briefcase,
+} from "lucide-react";
 import { NavDropdown } from "@/components/ui/NavDropdown";
 
 const serviceItems = [
@@ -23,13 +35,13 @@ const productItems = [
 ];
 
 const industryItems = [
-  { label: "Real Estate", href: "/industries/real-estate", description: "CRM, lead tracking, and automated follow-ups" },
-  { label: "Schools & Education", href: "/industries/schools-education", description: "Admissions, fees, attendance & parent communication" },
-  { label: "Healthcare", href: "/industries/healthcare", description: "Appointments, records, billing & prescriptions" },
-  { label: "Fitness & Gym", href: "/industries/fitness-gym", description: "Memberships, schedules, payments & progress tracking" },
-  { label: "Interior Design", href: "/industries/interior-design", description: "Client approvals, vendor tracking & timelines" },
-  { label: "Retail & E-commerce", href: "/industries/retail-ecommerce", description: "High-converting stores with inventory sync" },
-  { label: "Corporate", href: "/industries/corporate", description: "Internal portals, workflows & executive dashboards" },
+  { label: "Real Estate", href: "/industries/real-estate", description: "CRM, lead tracking, and automated follow-ups", icon: Building2 },
+  { label: "Schools & Education", href: "/industries/schools-education", description: "Admissions, fees, attendance & parent communication", icon: GraduationCap },
+  { label: "Healthcare", href: "/industries/healthcare", description: "Appointments, records, billing & prescriptions", icon: Heart },
+  { label: "Fitness & Gym", href: "/industries/fitness-gym", description: "Memberships, schedules, payments & progress tracking", icon: Dumbbell },
+  { label: "Interior Design", href: "/industries/interior-design", description: "Client approvals, vendor tracking & timelines", icon: Sofa },
+  { label: "Retail & E-commerce", href: "/industries/retail-ecommerce", description: "High-converting stores with inventory sync", icon: ShoppingBag },
+  { label: "Corporate", href: "/industries/corporate", description: "Internal portals, workflows & executive dashboards", icon: Briefcase },
 ];
 
 const plainLinks = [
@@ -51,13 +63,13 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const closeMenu = () => {
+    setMobileOpen(false);
+    setMobileSubmenu(null);
+  };
+
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-      setMobileSubmenu(null);
-    }
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -108,6 +120,7 @@ export function Header() {
                 label="Industries"
                 href="/industries"
                 items={industryItems}
+                columns={2}
               />
 
               {plainLinks.slice(1).map((link) => (
@@ -161,7 +174,7 @@ export function Header() {
             <nav className="flex flex-col items-center gap-4 py-10 px-6">
               <Link
                 href="/"
-                onClick={() => setMobileOpen(false)}
+                onClick={closeMenu}
                 className="text-2xl font-semibold text-text hover:text-accent transition-colors font-display"
               >
                 Home
@@ -195,7 +208,7 @@ export function Header() {
                           <Link
                             key={item.href}
                             href={item.href}
-                            onClick={() => setMobileOpen(false)}
+                            onClick={closeMenu}
                             className="text-base text-text-secondary hover:text-text transition-colors"
                           >
                             {item.label}
@@ -235,7 +248,7 @@ export function Header() {
                           <Link
                             key={item.href}
                             href={item.href}
-                            onClick={() => setMobileOpen(false)}
+                            onClick={closeMenu}
                             className="text-base text-text-secondary hover:text-text transition-colors"
                           >
                             {item.label}
@@ -275,7 +288,7 @@ export function Header() {
                           <Link
                             key={item.href}
                             href={item.href}
-                            onClick={() => setMobileOpen(false)}
+                            onClick={closeMenu}
                             className="text-base text-text-secondary hover:text-text transition-colors"
                           >
                             {item.label}
@@ -291,7 +304,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={closeMenu}
                   className="text-2xl font-semibold text-text hover:text-accent transition-colors font-display"
                 >
                   {link.label}
@@ -300,7 +313,7 @@ export function Header() {
 
               <Link
                 href="/contact"
-                onClick={() => setMobileOpen(false)}
+                onClick={closeMenu}
                 className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-base font-semibold text-white transition-all hover:bg-accent-hover hover:shadow-glow mt-4"
               >
                 Book Free Call
