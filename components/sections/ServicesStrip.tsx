@@ -164,8 +164,8 @@ export const ServicesStrip = memo(function ServicesStrip() {
   }, []);
 
   return (
-    <section className="relative pt-20 lg:pt-28 pb-20 px-4">
-      <div ref={pinRef} className="mx-auto max-w-5xl">
+    <section className="relative py-20 lg:py-28 px-4">
+      <div ref={pinRef} className="mx-auto max-w-5xl py-10 lg:py-16">
         <SectionHeading
           label="What We Do"
           title={<>Services Built for <em className="italic text-accent">Growth</em></>}
