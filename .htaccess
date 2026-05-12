@@ -1,4 +1,16 @@
-# ── MIME Types (critical for Next.js static assets) ──
+# ── Passenger / Node.js (cPanel auto-generated — do not remove) ──
+PassengerAppRoot /home/u838799593/domains/optimaxstudio.com/nodejs
+PassengerAppType node
+PassengerNodejs /opt/alt/alt-nodejs22/root/bin/node
+PassengerStartupFile server.js
+PassengerBaseURI /
+PassengerRestartDir /home/u838799593/domains/optimaxstudio.com/nodejs/tmp
+SetEnv NODE_OPTIONS "--require /home/u838799593/domains/optimaxstudio.com/public_html/.builds/config/preload-timestamp.js"
+SetEnv LSNODE_CONSOLE_LOG console.log
+SetEnv TOKIO_WORKER_THREADS 2
+RewriteRule ^\.builds - [F,L]
+
+# ── MIME Types (fixes CSS served as text/plain by Apache) ──
 AddType text/css .css
 AddType application/javascript .js
 AddType application/javascript .mjs
@@ -10,7 +22,7 @@ AddType image/webp .webp
 AddType image/jpeg .jpg .jpeg
 AddType application/json .json
 
-# ── Serve Next.js static chunks correctly ──
+# ── Force correct Content-Type headers for static assets ──
 <IfModule mod_headers.c>
   <FilesMatch "\.(css)$">
     Header set Content-Type "text/css; charset=utf-8"
@@ -18,11 +30,14 @@ AddType application/json .json
   <FilesMatch "\.(js|mjs)$">
     Header set Content-Type "application/javascript; charset=utf-8"
   </FilesMatch>
-  # Cache static Next.js assets aggressively (they're hashed)
+  <FilesMatch "\.(woff2)$">
+    Header set Content-Type "font/woff2"
+  </FilesMatch>
+  # Cache hashed Next.js static assets for 1 year
   <FilesMatch "\.(css|js|woff2|woff|png|webp|jpg|jpeg|svg)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 </IfModule>
 
-# ── Security: prevent directory listing ──
+# ── Security ──
 Options -Indexes
