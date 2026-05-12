@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useEffect, useRef, memo } from "react";
+import { useLayoutEffect, useEffect, useRef, useState, memo } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -107,6 +107,15 @@ export const ServicesStrip = memo(function ServicesStrip() {
   const pinRef   = useRef<HTMLDivElement>(null);
   const stackRef = useRef<HTMLDivElement>(null);
   const initedRef = useRef(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   useIsomorphicLayoutEffect(() => {
     // Mobile: skip GSAP, CSS shows normal list
@@ -164,12 +173,29 @@ export const ServicesStrip = memo(function ServicesStrip() {
         />
 
         <div ref={pinRef}>
-          <div ref={stackRef} className="services-stack-grid">
+          <div
+            ref={stackRef}
+            className="services-stack-grid"
+            style={
+              isDesktop
+                ? { display: "grid", gridTemplateColumns: "1fr", overflow: "hidden" }
+                : undefined
+            }
+          >
           {services.map((service, i) => (
             <div
               key={service.title}
               className="stack-reveal-card rounded-3xl bg-white border border-border shadow-card overflow-hidden"
-              style={{ zIndex: i + 1 }}
+              style={{
+                zIndex: i + 1,
+                ...(isDesktop
+                  ? {
+                      gridArea: "1 / 1",
+                      transformOrigin: "top center",
+                      transform: i === 0 ? undefined : "translateY(100%)",
+                    }
+                  : {}),
+              }}
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[440px]">
 
