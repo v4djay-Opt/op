@@ -60,7 +60,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-surface-alt border-t border-border overflow-hidden max-md:bg-[#1a4a3a] max-md:border-t-white/10">
+    <footer className="relative bg-[#2d6a4f] border-t border-white/10 overflow-hidden">
       {/* Background Marquee Text */}
       <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 overflow-hidden pointer-events-none select-none">
         <div className="flex animate-marquee whitespace-nowrap">
@@ -77,25 +77,19 @@ export function Footer() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-8">
         {/* Top section: Brand + Newsletter */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 pb-12 border-b border-border-light">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 pb-12 border-b border-white/10">
           {/* Brand */}
           <div className="space-y-5 max-w-md max-md:flex max-md:flex-col max-md:items-center max-md:text-center">
             <Link href="/" className="inline-flex items-center gap-1.5">
-              <span className="text-2xl font-bold tracking-tight font-display text-text max-md:hidden">
-                Optimax
-              </span>
-              <span className="text-accent text-2xl font-bold tracking-tight font-display max-md:hidden">
-                .
-              </span>
               <Image
                 src="/images/logo.png"
                 alt="Optimax Studio"
                 width={140}
                 height={40}
-                className="hidden max-md:block h-9 w-auto object-contain brightness-0 invert"
+                className="h-9 w-auto object-contain brightness-0 invert"
               />
             </Link>
-            <p className="text-sm leading-relaxed text-text-secondary max-md:text-white/80">
+            <p className="text-sm leading-relaxed text-white/80">
               We build digital machines that generate revenue. From stunning
               websites to powerful CRMs — we deliver results.
             </p>
@@ -106,7 +100,7 @@ export function Footer() {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-lg bg-white border border-border p-2.5 text-muted transition-all hover:bg-accent hover:text-white hover:border-accent hover:shadow-sm max-md:rounded-full max-md:bg-transparent max-md:border-white/20 max-md:text-white max-md:p-0 max-md:w-9 max-md:h-9 max-md:inline-flex max-md:items-center max-md:justify-center max-md:hover:bg-white/15"
+                  className="rounded-full bg-transparent border border-white/20 text-white p-0 w-9 h-9 inline-flex items-center justify-center transition-all hover:bg-white/15"
                   aria-label={s.label}
                 >
                   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -119,10 +113,10 @@ export function Footer() {
 
           {/* Newsletter */}
           <div className="lg:text-right lg:max-w-md lg:ml-auto max-md:hidden">
-            <h3 className="text-lg font-semibold text-text font-display mb-2">
+            <h3 className="text-lg font-semibold text-white font-display mb-2">
               Subscribe to Our Newsletter
             </h3>
-            <p className="text-sm text-text-secondary mb-4">
+            <p className="text-sm text-white/60 mb-4">
               Get weekly insights on digital growth, CRM tips, and industry trends.
             </p>
             <form
@@ -136,11 +130,11 @@ export function Footer() {
                 name="EMAIL"
                 required
                 placeholder="Enter your email"
-                className="flex-1 rounded-xl border border-border bg-white px-4 py-2.5 text-sm text-text placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/50 transition-colors"
+                className="flex-1 rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder:text-white/40 focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]/30 transition-colors"
               />
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-accent-hover hover:shadow-glow shrink-0"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#c9a84c] px-4 py-2.5 text-sm font-semibold text-[#1a3a2a] transition-all hover:bg-[#e8c96a] shrink-0"
               >
                 <Send className="h-4 w-4" />
               </button>
@@ -152,7 +146,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 py-12 max-md:grid-cols-2 max-md:gap-2">
           {/* Services */}
           <div className="space-y-5 max-md:order-1 max-md:space-y-2">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-text font-display max-md:text-[#c9a84c] max-md:text-[11px] max-md:tracking-[1.5px]">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#c9a84c] font-display">
               Services
             </h3>
             <ul className="space-y-3 max-md:space-y-0">
@@ -160,7 +154,7 @@ export function Footer() {
                 <li key={service.href}>
                   <Link
                     href={service.href}
-                    className="group inline-flex items-center gap-1 text-sm text-text-secondary transition-colors hover:text-accent max-md:text-[#f5f0e8] max-md:text-[13px] max-md:leading-[2]"
+                    className="group inline-flex items-center gap-1 text-sm text-[#f5f0e8] transition-colors hover:text-white"
                   >
                     {service.label}
                     <ArrowUpRight className="h-3.5 w-3.5 opacity-0 -translate-y-0.5 translate-x-0.5 transition-all group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 max-md:hidden" />
@@ -172,7 +166,7 @@ export function Footer() {
 
           {/* Products */}
           <div className="space-y-5 max-md:order-3 max-md:col-span-2 max-md:space-y-2">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-text font-display max-md:text-[#c9a84c] max-md:text-[11px] max-md:tracking-[1.5px]">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#c9a84c] font-display">
               Products
             </h3>
             <ul className="space-y-3 max-md:grid max-md:grid-cols-2 max-md:space-y-0 max-md:gap-x-4 max-md:[&>li:nth-child(even)]:text-right">
@@ -180,7 +174,7 @@ export function Footer() {
                 <li key={product.href}>
                   <Link
                     href={product.href}
-                    className="group inline-flex items-center gap-1 text-sm text-text-secondary transition-colors hover:text-accent max-md:text-[#f5f0e8] max-md:text-[13px] max-md:leading-[2]"
+                    className="group inline-flex items-center gap-1 text-sm text-[#f5f0e8] transition-colors hover:text-white"
                   >
                     {product.label}
                     <ArrowUpRight className="h-3.5 w-3.5 opacity-0 -translate-y-0.5 translate-x-0.5 transition-all group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 max-md:hidden" />
@@ -192,7 +186,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-5 max-md:order-2 max-md:space-y-2 max-md:text-right">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-text font-display max-md:text-[#c9a84c] max-md:text-[11px] max-md:tracking-[1.5px]">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#c9a84c] font-display">
               Company
             </h3>
             <ul className="space-y-3 max-md:space-y-0">
@@ -206,7 +200,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-text-secondary transition-colors hover:text-accent max-md:block max-md:text-[#f5f0e8] max-md:text-[13px] max-md:leading-[2]"
+                    className="text-sm text-[#f5f0e8] transition-colors hover:text-white"
                   >
                     {link.label}
                   </Link>
@@ -217,31 +211,31 @@ export function Footer() {
 
           {/* Contact */}
           <div className="space-y-5 max-md:hidden">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-text font-display">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#c9a84c] font-display">
               Contact
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <Mail className="h-5 w-5 shrink-0 text-accent mt-0.5" />
+                <Mail className="h-5 w-5 shrink-0 text-[#c9a84c] mt-0.5" />
                 <a
                   href="mailto:hello@optimaxstudio.com"
-                  className="text-sm text-text-secondary transition-colors hover:text-accent"
+                  className="text-sm text-[#d0d8d0] transition-colors hover:text-white"
                 >
                   hello@optimaxstudio.com
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Phone className="h-5 w-5 shrink-0 text-accent mt-0.5" />
+                <Phone className="h-5 w-5 shrink-0 text-[#c9a84c] mt-0.5" />
                 <a
                   href="tel:+918957079052"
-                  className="text-sm text-text-secondary transition-colors hover:text-accent"
+                  className="text-sm text-[#d0d8d0] transition-colors hover:text-white"
                 >
                   +91 89570 79052
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 shrink-0 text-accent mt-0.5" />
-                <span className="text-sm text-text-secondary leading-relaxed">
+                <MapPin className="h-5 w-5 shrink-0 text-[#c9a84c] mt-0.5" />
+                <span className="text-sm text-[#d0d8d0] leading-relaxed">
                   Unit No — F104, Crown Avenue,<br />
                   Sector 92, Gurgaon — 122505
                 </span>
@@ -251,7 +245,7 @@ export function Footer() {
               href="https://wa.me/918957079052"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-green-50 border border-green-200 px-4 py-2 text-sm font-medium text-green-700 transition-all hover:bg-green-100"
+              className="inline-flex items-center gap-2 rounded-full bg-[#25d366]/20 border border-[#25d366]/40 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-[#25d366]/30"
             >
               <MessageCircle className="h-4 w-4" />
               Chat on WhatsApp
@@ -260,20 +254,20 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border-light pt-8 max-md:flex-row max-md:border-white/10 max-md:pt-4 max-md:gap-2">
-          <p className="text-sm text-muted max-md:text-[11px] max-md:text-[#c9a84c]">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-8 max-md:flex-row max-md:pt-4 max-md:gap-2">
+          <p className="text-sm text-[#c9a84c] max-md:text-[11px]">
             &copy; {currentYear} Optimax Studio.
           </p>
           <div className="flex items-center gap-6 max-md:gap-4">
             <Link
               href="/privacy-policy"
-              className="text-sm text-muted transition-colors hover:text-text max-md:text-[11px] max-md:text-[#c9a84c]"
+              className="text-sm text-[#c9a84c] transition-colors hover:text-white max-md:text-[11px]"
             >
               Privacy
             </Link>
             <Link
               href="/terms"
-              className="text-sm text-muted transition-colors hover:text-text max-md:text-[11px] max-md:text-[#c9a84c]"
+              className="text-sm text-[#c9a84c] transition-colors hover:text-white max-md:text-[11px]"
             >
               Terms
             </Link>
