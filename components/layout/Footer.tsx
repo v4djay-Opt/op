@@ -60,7 +60,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-[#2d6a4f] border-t border-white/10 overflow-hidden">
+    <footer className="relative bg-[#2e5b4c] border-t border-white/10 overflow-hidden">
       {/* Background Marquee Text */}
       <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 overflow-hidden pointer-events-none select-none">
         <div className="flex animate-marquee whitespace-nowrap">
