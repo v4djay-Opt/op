@@ -191,7 +191,7 @@ export function Header() {
             exit={{ x: "100%" }}
             transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
             className="fixed inset-0 z-[60] overflow-y-auto lg:hidden"
-            style={{ background: "#2e5b4c" }}
+            style={{ background: "#1e5040" }}
           >
             {/* Top bar: logo + close button */}
             <div className="flex items-center justify-between px-6 pt-5 pb-4">
