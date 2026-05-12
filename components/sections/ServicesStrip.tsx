@@ -165,23 +165,22 @@ export const ServicesStrip = memo(function ServicesStrip() {
 
   return (
     <section className="relative pt-20 lg:pt-28 pb-20 px-4">
-      <div className="mx-auto max-w-5xl">
+      <div ref={pinRef} className="mx-auto max-w-5xl">
         <SectionHeading
           label="What We Do"
           title={<>Services Built for <em className="italic text-accent">Growth</em></>}
           description="We don't just build — we engineer revenue machines tailored to your industry."
         />
 
-        <div ref={pinRef}>
-          <div
-            ref={stackRef}
-            className="services-stack-grid"
-            style={
-              isDesktop
-                ? { display: "grid", gridTemplateColumns: "1fr", overflow: "hidden" }
-                : undefined
-            }
-          >
+        <div
+          ref={stackRef}
+          className="services-stack-grid"
+          style={
+            isDesktop
+              ? { display: "grid", gridTemplateColumns: "1fr", overflow: "hidden" }
+              : undefined
+          }
+        >
           {services.map((service, i) => (
             <div
               key={service.title}
@@ -269,7 +268,6 @@ export const ServicesStrip = memo(function ServicesStrip() {
             </div>
           ))}
           </div>
-        </div>
       </div>
     </section>
   );
