@@ -42,9 +42,10 @@ export default async function CaseStudiesPage() {
         label="Results"
         title="Case Studies That Speak for Themselves"
         subtitle="Real numbers, real businesses, real impact. See how Optimax delivers measurable growth."
+        green
       />
 
-      <section className="pb-24 lg:pb-32 px-4">
+      <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">
         <div className="mx-auto max-w-6xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {cases.map((c) => (

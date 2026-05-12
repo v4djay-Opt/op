@@ -65,11 +65,12 @@ export default function ProductsPage() {
         label="Products"
         title="Software Built for Your Industry"
         subtitle="Deploy in days, not months. Our ready-to-use products are customized to fit your exact workflow."
+        green
       />
 
       {/* ── TRUST STRIP ── */}
-      <section className="border-y border-border bg-accent/5 px-4">
-        <div className="mx-auto max-w-4xl">
+      <section className="inner-page mt-12 md:mt-16 border-y border-border bg-accent/5 px-4">
+        <div className="mx-auto max-w-6xl">
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 py-8">
             <div className="text-center">
               <div className="text-3xl font-bold text-accent font-display">
@@ -97,8 +98,8 @@ export default function ProductsPage() {
       </section>
 
       {/* ── PRODUCT GRID ── */}
-      <section className="pb-24 lg:pb-32 px-4">
-        <div className="mx-auto max-w-7xl">
+      <section className="inner-page pb-24 lg:pb-32 px-4">
+        <div className="mx-auto max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product, i) => {
               const Icon = iconMap[product.icon];

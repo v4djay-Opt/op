@@ -120,10 +120,15 @@ export default async function IndustryPage({
       />
 
       {/* ── HERO (breadcrumbs before label) ── */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-background">
-          <div className="absolute inset-0 bg-gradient-to-b from-nature-sky/30 to-background" />
-        </div>
+      <section className="relative min-h-[520px] flex flex-col justify-center pt-20 pb-10 px-4 overflow-hidden" style={{ background: "#1a4a3a" }}>
+        <div
+          className="absolute -top-24 -left-24 h-[500px] w-[500px] rounded-full pointer-events-none"
+          style={{ background: "rgba(255,255,255,0.04)" }}
+        />
+        <div
+          className="absolute -bottom-16 -right-16 h-[350px] w-[350px] rounded-full pointer-events-none"
+          style={{ background: "rgba(255,255,255,0.03)" }}
+        />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <FadeIn>
             <Breadcrumbs
@@ -131,16 +136,17 @@ export default async function IndustryPage({
                 { label: "Industries", href: "/industries" },
                 { label: industry.name },
               ]}
+              light
             />
           </FadeIn>
           <FadeIn>
-            <span className="inline-block text-sm font-semibold uppercase tracking-wider text-accent font-display mb-4 mt-4">
+            <span className="inline-block text-sm font-semibold uppercase tracking-wider text-white/50 font-display mb-4 mt-4">
               Industry
             </span>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-text font-display leading-tight">
+            <h1 className="text-[clamp(2rem,4.5vw,3.2rem)] font-bold text-white font-display leading-[1.15]">
               {industry.name}
             </h1>
-            <p className="mt-4 md:mt-6 text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-4 text-base font-normal text-white/75 max-w-[580px] mx-auto leading-relaxed">
               {industry.tagline}
             </p>
           </FadeIn>
@@ -148,8 +154,8 @@ export default async function IndustryPage({
       </section>
 
       {/* ── SOCIAL PROOF STRIP ── */}
-      <section className="border-y border-border bg-accent/5 px-4">
-        <div className="mx-auto max-w-4xl">
+      <section className="inner-page mt-12 md:mt-16 border-y border-border bg-accent/5 px-4">
+        <div className="mx-auto max-w-6xl">
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 py-8">
             <div className="text-center">
               <div className="text-3xl font-bold text-accent font-display">
@@ -175,8 +181,8 @@ export default async function IndustryPage({
 
       {/* ── IMAGE GALLERY ── */}
       {industry.images && industry.images.length > 0 && (
-        <section className="px-4 mb-16 mt-8">
-          <div className="mx-auto max-w-5xl">
+        <section className="inner-page px-4 mb-16 mt-8">
+          <div className="mx-auto max-w-6xl">
             <FadeIn>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {industry.images.map((img, i) => (
@@ -199,8 +205,8 @@ export default async function IndustryPage({
         </section>
       )}
 
-      <section className="pb-24 lg:pb-32 px-4">
-        <div className="mx-auto max-w-4xl">
+      <section className="inner-page pb-24 lg:pb-32 px-4">
+        <div className="mx-auto max-w-6xl">
           {/* Pain Points */}
           <FadeIn className="mb-16 mt-16">
             <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-6">

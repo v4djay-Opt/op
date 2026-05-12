@@ -57,9 +57,10 @@ export default async function BlogPage() {
         label="Blog"
         title="Insights for Digital Growth"
         subtitle="Actionable strategies on marketing, design, CRM, and product development."
+        green
       />
 
-      <section className="pb-24 lg:pb-32 px-4">
+      <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">
         <div className="mx-auto max-w-6xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {posts.map((post) => (

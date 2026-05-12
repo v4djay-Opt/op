@@ -16,9 +16,10 @@ interface NavDropdownProps {
   href: string;
   items: DropdownItem[];
   columns?: number;
+  light?: boolean;
 }
 
-export function NavDropdown({ label, href, items, columns = 1 }: NavDropdownProps) {
+export function NavDropdown({ label, href, items, columns = 1, light }: NavDropdownProps) {
   const [open, setOpen] = useState(false);
   const isMega = columns === 2;
 
@@ -30,13 +31,15 @@ export function NavDropdown({ label, href, items, columns = 1 }: NavDropdownProp
     >
       <Link
         href={href}
-        className="group flex items-center gap-1 text-sm font-medium text-text-secondary transition-colors hover:text-text"
+        className={`group flex items-center gap-1 text-sm font-medium transition-colors ${
+          light ? "text-white/80 hover:text-white" : "text-text-secondary hover:text-text"
+        }`}
       >
         {label}
         <ChevronDown
           className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
         />
-        <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-accent transition-all duration-300 group-hover:w-full" />
+        <span className={`absolute -bottom-1 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full ${light ? "bg-white" : "bg-accent"}`} />
       </Link>
 
       {open && (

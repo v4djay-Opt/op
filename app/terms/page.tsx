@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <>
-      <PageHero label="Legal" title="Terms of Service" />
+      <PageHero label="Legal" title="Terms of Service" green />
 
-      <section className="pb-24 lg:pb-32 px-4">
+      <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">
         <div className="mx-auto max-w-3xl prose-invert">
           <p>Last updated: May 2026</p>
 

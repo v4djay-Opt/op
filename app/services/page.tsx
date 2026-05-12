@@ -31,12 +31,13 @@ export default function ServicesPage() {
     <>
       <PageHero
         label="Services"
-        title="Everything Your Business Needs to Grow Online"
+        title="Everything Your Business Needs"
         subtitle="From strategy to execution, we provide end-to-end digital solutions tailored to your goals."
+        green
       />
 
-      <section className="pb-24 lg:pb-32 px-4">
-        <div className="mx-auto max-w-7xl">
+      <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">
+        <div className="mx-auto max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             {services.map((service, i) => {
               const Icon = iconMap[service.icon];

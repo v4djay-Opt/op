@@ -366,10 +366,15 @@ export default function DigitalMarketingPage() {
       </script>
 
       {/* ── HERO ── */}
-      <section className="relative pt-28 pb-12 md:pt-36 md:pb-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-background">
-          <div className="absolute inset-0 bg-gradient-to-b from-nature-sky/30 to-background" />
-        </div>
+      <section className="relative min-h-[520px] flex flex-col justify-center pt-20 pb-10 px-4 overflow-hidden" style={{ background: "#1a4a3a" }}>
+        <div
+          className="absolute -top-24 -left-24 h-[500px] w-[500px] rounded-full pointer-events-none"
+          style={{ background: "rgba(255,255,255,0.04)" }}
+        />
+        <div
+          className="absolute -bottom-16 -right-16 h-[350px] w-[350px] rounded-full pointer-events-none"
+          style={{ background: "rgba(255,255,255,0.03)" }}
+        />
         {/* img: alt="digital marketing agency team at Optimax Studio Gurgaon" */}
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <FadeIn>
@@ -378,20 +383,21 @@ export default function DigitalMarketingPage() {
                 { label: "Services", href: "/services" },
                 { label: "Digital Marketing" },
               ]}
+              light
             />
           </FadeIn>
           <FadeIn delay={0.1}>
-            <span className="inline-block text-sm font-semibold uppercase tracking-wider text-accent font-display mb-4 mt-2">
+            <span className="inline-block text-sm font-semibold uppercase tracking-wider text-white/50 font-display mb-4 mt-2">
               Service
             </span>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-text font-display leading-tight">
-              Digital Marketing Agency That Drives Real Results
+            <h1 className="text-[clamp(2rem,4.5vw,3.2rem)] font-bold text-white font-display leading-[1.15]">
+              Digital Marketing Agency
             </h1>
           </FadeIn>
           <FadeIn delay={0.3}>
-            <p className="mt-4 md:mt-6 text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-4 text-base font-normal text-white/75 max-w-[580px] mx-auto leading-relaxed">
               SEO, paid ads, social media, and performance marketing — all
               under one roof, all built for measurable growth.
             </p>
@@ -402,14 +408,14 @@ export default function DigitalMarketingPage() {
                 href="https://cal.com/optimax-studio"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-accent/90"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#1a4a3a] transition-all hover:bg-white/90"
               >
                 Book a Free Strategy Call
                 <ArrowRight className="h-4 w-4" />
               </a>
               <Link
                 href="/case-studies"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-accent/30 px-6 py-3 text-sm font-semibold text-accent transition-all hover:bg-accent/5"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-white/10"
               >
                 See Our Results
               </Link>
@@ -419,8 +425,8 @@ export default function DigitalMarketingPage() {
       </section>
 
       {/* ── MAIN CONTENT ── */}
-      <section className="px-4 pb-24">
-        <div className="mx-auto max-w-4xl">
+      <section className="inner-page pt-12 md:pt-16 px-4 pb-24">
+        <div className="mx-auto max-w-6xl">
 
           {/* Intro — first 100 words: digital marketing agency, digital marketing services, performance marketing agencies */}
           <FadeIn>
@@ -478,14 +484,14 @@ export default function DigitalMarketingPage() {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-3 rounded-xl border border-white/5 bg-navy-800/40 p-5"
+                  className="flex items-start gap-3 rounded-xl border border-accent/20 bg-accent p-5"
                 >
-                  <CheckCircle2 className="h-5 w-5 shrink-0 text-accent mt-0.5" />
+                  <CheckCircle2 className="h-5 w-5 shrink-0 text-white/80 mt-0.5" />
                   <div>
-                    <span className="text-sm font-semibold text-text block mb-1">
+                    <span className="text-sm font-semibold text-white block mb-1">
                       {item.title}
                     </span>
-                    <span className="text-xs text-muted leading-relaxed">
+                    <span className="text-xs text-white/75 leading-relaxed">
                       {item.desc}
                     </span>
                   </div>

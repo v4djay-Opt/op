@@ -204,10 +204,15 @@ export default async function BlogPostPage({
       <ReadingProgress />
 
       {/* ── HERO ── */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-4">
-        <div className="absolute inset-0 bg-navy-900">
-          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_30%_30%,rgba(37,99,235,0.15),transparent_50%)]" />
-        </div>
+      <section className="relative min-h-[520px] flex flex-col justify-center pt-20 pb-10 px-4 overflow-hidden" style={{ background: "#1a4a3a" }}>
+        <div
+          className="absolute -top-24 -left-24 h-[500px] w-[500px] rounded-full pointer-events-none"
+          style={{ background: "rgba(255,255,255,0.04)" }}
+        />
+        <div
+          className="absolute -bottom-16 -right-16 h-[350px] w-[350px] rounded-full pointer-events-none"
+          style={{ background: "rgba(255,255,255,0.03)" }}
+        />
         <div className="relative z-10 mx-auto max-w-3xl">
           <FadeIn>
             <Breadcrumbs
@@ -215,18 +220,24 @@ export default async function BlogPostPage({
                 { label: "Blog", href: "/blog" },
                 { label: post.title },
               ]}
+              light
             />
           </FadeIn>
           <FadeIn>
             {post.category && (
-              <span className="inline-block text-sm font-semibold uppercase tracking-wider text-accent font-display mb-3">
+              <span className="inline-block text-sm font-semibold uppercase tracking-wider text-white/50 font-display mb-3">
                 {post.category}
               </span>
             )}
-            <h1 className="text-3xl md:text-5xl font-bold text-text font-display leading-tight">
+            <h1 className="text-[clamp(2rem,4.5vw,3.2rem)] font-bold text-white font-display leading-[1.15]">
               {post.title}
             </h1>
-            <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-muted">
+            {post.excerpt && (
+              <p className="mt-4 text-base font-normal text-white/75 max-w-[580px] leading-relaxed">
+                {post.excerpt}
+              </p>
+            )}
+            <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-white/60">
               <span>{formatDate(post.publishedAt)}</span>
               <span className="flex items-center gap-1">
                 <Clock className="h-4 w-4" />
@@ -234,7 +245,7 @@ export default async function BlogPostPage({
               </span>
               {post.author && (
                 <span>
-                  By <span className="text-text">{post.author}</span>
+                  By <span className="text-white/80">{post.author}</span>
                 </span>
               )}
             </div>
@@ -243,8 +254,8 @@ export default async function BlogPostPage({
       </section>
 
       {/* Featured image */}
-      <section className="px-4 -mt-6 mb-10">
-        <div className="mx-auto max-w-5xl">
+      <section className="inner-page px-4 mt-12 md:mt-16 mb-10">
+        <div className="mx-auto max-w-6xl">
           <FadeIn>
             <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-border shadow-card bg-surface-alt">
               {post.image ? (
@@ -277,8 +288,8 @@ export default async function BlogPostPage({
       </section>
 
       {/* ── BODY (two-column) ── */}
-      <section className="pb-24 lg:pb-32 px-4">
-        <div className="mx-auto max-w-5xl flex flex-col lg:flex-row gap-12">
+      <section className="inner-page pb-24 lg:pb-32 px-4">
+        <div className="mx-auto max-w-6xl flex flex-col lg:flex-row gap-12">
           {/* LEFT — Article (70%) */}
           <div className="lg:w-[70%]">
             <FadeIn>

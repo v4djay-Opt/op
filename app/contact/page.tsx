@@ -64,9 +64,10 @@ export default function ContactPage() {
         label="Contact"
         title="Let Us Build Something Great Together"
         subtitle="Book a free strategy call or drop us a message. We respond within 24 hours."
+        green
       />
 
-      <section className="pb-24 lg:pb-32 px-4">
+      <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">
         <div className="mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Form */}

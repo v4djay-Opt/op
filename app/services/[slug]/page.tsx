@@ -41,10 +41,15 @@ export default async function ServicePage({
   return (
     <>
       {/* Hero with breadcrumb above label */}
-      <section className="relative pt-28 pb-12 md:pt-36 md:pb-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-background">
-          <div className="absolute inset-0 bg-gradient-to-b from-nature-sky/30 to-background" />
-        </div>
+      <section className="relative min-h-[520px] flex flex-col justify-center pt-20 pb-10 px-4 overflow-hidden" style={{ background: "#1a4a3a" }}>
+        <div
+          className="absolute -top-24 -left-24 h-[500px] w-[500px] rounded-full pointer-events-none"
+          style={{ background: "rgba(255,255,255,0.04)" }}
+        />
+        <div
+          className="absolute -bottom-16 -right-16 h-[350px] w-[350px] rounded-full pointer-events-none"
+          style={{ background: "rgba(255,255,255,0.03)" }}
+        />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <FadeIn>
             <Breadcrumbs
@@ -52,28 +57,29 @@ export default async function ServicePage({
                 { label: "Services", href: "/services" },
                 { label: service.name },
               ]}
+              light
             />
           </FadeIn>
           <FadeIn delay={0.1}>
-            <span className="inline-block text-sm font-semibold uppercase tracking-wider text-accent font-display mb-4">
+            <span className="inline-block text-sm font-semibold uppercase tracking-wider text-white/50 font-display mb-4">
               Service
             </span>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-text font-display leading-tight">
+            <h1 className="text-[clamp(2rem,4.5vw,3.2rem)] font-bold text-white font-display leading-[1.15]">
               {service.name}
             </h1>
           </FadeIn>
           <FadeIn delay={0.3}>
-            <p className="mt-4 md:mt-6 text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-4 text-base font-normal text-white/75 max-w-[580px] mx-auto leading-relaxed">
               {service.tagline}
             </p>
           </FadeIn>
         </div>
       </section>
 
-      <section className="px-4">
-        <div className="mx-auto max-w-4xl">
+      <section className="inner-page pt-12 md:pt-16 px-4">
+        <div className="mx-auto max-w-6xl">
           {/* Description */}
           <FadeIn>
             <p className="text-lg text-muted leading-relaxed mb-16">
@@ -90,10 +96,10 @@ export default async function ServicePage({
               {service.whatWeDo.map((item, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-3 rounded-xl border border-white/5 bg-navy-800/40 p-5"
+                  className="flex items-start gap-3 rounded-xl border border-accent/20 bg-accent p-5"
                 >
-                  <CheckCircle2 className="h-5 w-5 shrink-0 text-accent mt-0.5" />
-                  <span className="text-sm text-text leading-relaxed">{item}</span>
+                  <CheckCircle2 className="h-5 w-5 shrink-0 text-white/80 mt-0.5" />
+                  <span className="text-sm text-white leading-relaxed">{item}</span>
                 </div>
               ))}
             </div>

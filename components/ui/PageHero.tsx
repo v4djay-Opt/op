@@ -9,9 +9,10 @@ interface PageHeroProps {
   subtitle?: string;
   subtitleClassName?: string;
   centered?: boolean;
+  green?: boolean;
 }
 
-export function PageHero({ label, title, subtitle, subtitleClassName, centered = true }: PageHeroProps) {
+export function PageHero({ label, title, subtitle, subtitleClassName, centered = true, green }: PageHeroProps) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -20,16 +21,32 @@ export function PageHero({ label, title, subtitle, subtitleClassName, centered =
   }, []);
 
   return (
-    <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-4 overflow-hidden">
-      <div className="absolute inset-0 bg-background">
-        <div className="absolute inset-0 bg-gradient-to-b from-nature-sky/30 to-background" />
-      </div>
+    <section
+      className={`relative min-h-[520px] flex flex-col justify-center pt-20 pb-10 px-4 overflow-hidden`}
+      style={green ? { background: "#1a4a3a" } : undefined}
+    >
+      {green ? (
+        <>
+          <div
+            className="absolute -top-24 -left-24 h-[500px] w-[500px] rounded-full pointer-events-none"
+            style={{ background: "rgba(255,255,255,0.04)" }}
+          />
+          <div
+            className="absolute -bottom-16 -right-16 h-[350px] w-[350px] rounded-full pointer-events-none"
+            style={{ background: "rgba(255,255,255,0.03)" }}
+          />
+        </>
+      ) : (
+        <div className="absolute inset-0 bg-background">
+          <div className="absolute inset-0 bg-gradient-to-b from-nature-sky/30 to-background" />
+        </div>
+      )}
       <div className={`relative z-10 mx-auto max-w-4xl ${centered ? "text-center" : ""}`}>
         {label && (
           <motion.span
             initial={isClient ? { opacity: 0, y: 10 } : false}
             animate={isClient ? { opacity: 1, y: 0 } : false}
-            className="inline-block text-sm font-semibold uppercase tracking-wider text-accent font-display mb-4"
+            className={`inline-block text-sm font-semibold uppercase tracking-wider font-display mb-4 ${green ? "text-accent-light" : "text-accent"}`}
           >
             {label}
           </motion.span>
@@ -38,7 +55,7 @@ export function PageHero({ label, title, subtitle, subtitleClassName, centered =
           initial={isClient ? { opacity: 0, y: 20 } : false}
           animate={isClient ? { opacity: 1, y: 0 } : false}
           transition={{ delay: 0.1 }}
-          className="text-3xl md:text-5xl lg:text-6xl font-bold text-text font-display leading-tight"
+          className={`text-[clamp(2rem,4.5vw,3.2rem)] font-bold font-display leading-[1.15] ${green ? "text-white" : "text-text"}`}
         >
           {title}
         </motion.h1>
@@ -49,7 +66,7 @@ export function PageHero({ label, title, subtitle, subtitleClassName, centered =
             transition={{ delay: 0.2 }}
             className={
               subtitleClassName ??
-              "mt-4 md:mt-6 text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed"
+              `mt-4 text-base font-normal max-w-[580px] mx-auto leading-relaxed ${green ? "text-white/75" : "text-muted"}`
             }
           >
             {subtitle}

@@ -29,10 +29,11 @@ export default function CareersPage() {
         label="Careers"
         title="Join the Team"
         subtitle="We're building the future of digital services in India. If you're obsessed with quality, speed, and results — you'll fit right in."
+        green
       />
 
-      <section className="pb-24 lg:pb-32 px-4">
-        <div className="mx-auto max-w-4xl">
+      <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">
+        <div className="mx-auto max-w-6xl">
           {/* Why Work Here */}
           <FadeIn className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-6">

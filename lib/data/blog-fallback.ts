@@ -164,7 +164,7 @@ export const fallbackPosts: FallbackPost[] = [
   },
   {
     _id: "fallback-3",
-    title: "SEO vs Paid Ads: Where Should You Invest First?",
+    title: "SEO vs Paid Ads",
     slug: { current: "seo-vs-paid-ads" },
     excerpt:
       "A data-backed framework for allocating your marketing budget for maximum ROI.",

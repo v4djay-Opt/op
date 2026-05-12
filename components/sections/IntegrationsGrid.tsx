@@ -1,29 +1,49 @@
 "use client";
 
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import {
+  siNextdotjs,
+  siReact,
+  siTailwindcss,
+  siWordpress,
+  siShopify,
+  siRazorpay,
+  siGoogleads,
+  siMeta,
+  siSanity,
+  siVercel,
+  siAmazonaws,
+  siFigma,
+} from "simple-icons/icons";
 
 const tools = [
-  { name: "Next.js" },
-  { name: "React" },
-  { name: "Tailwind CSS" },
-  { name: "WordPress" },
-  { name: "Shopify" },
-  { name: "Razorpay" },
-  { name: "Google Ads" },
-  { name: "Meta Ads" },
-  { name: "Sanity CMS" },
-  { name: "Vercel" },
-  { name: "AWS" },
-  { name: "Figma" },
+  { name: "Next.js",      icon: siNextdotjs },
+  { name: "React",        icon: siReact },
+  { name: "Tailwind CSS", icon: siTailwindcss },
+  { name: "WordPress",    icon: siWordpress },
+  { name: "Shopify",      icon: siShopify },
+  { name: "Razorpay",     icon: siRazorpay },
+  { name: "Google Ads",   icon: siGoogleads },
+  { name: "Meta Ads",     icon: siMeta },
+  { name: "Sanity CMS",   icon: siSanity },
+  { name: "Vercel",       icon: siVercel },
+  { name: "AWS",          icon: siAmazonaws },
+  { name: "Figma",        icon: siFigma },
 ];
 
-function ToolCard({ tool }: { tool: { name: string } }) {
+function ToolCard({ tool }: { tool: (typeof tools)[number] }) {
   return (
     <div className="flex flex-col items-center justify-center rounded-2xl bg-white border border-border p-7 min-w-[130px] lg:min-w-[160px] transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1.5 hover:border-accent/20 select-none">
-      <div className="h-12 w-12 mb-3 flex items-center justify-center rounded-xl bg-surface-alt">
-        <span className="text-base font-bold text-accent font-display">
-          {tool.name.charAt(0)}
-        </span>
+      <div className="h-12 w-12 mb-3 flex items-center justify-center">
+        <svg
+          role="img"
+          viewBox="0 0 24 24"
+          aria-label={tool.name}
+          className="h-8 w-8"
+          style={{ fill: `#${tool.icon.hex}` }}
+        >
+          <path d={tool.icon.path} />
+        </svg>
       </div>
       <span className="text-sm font-medium text-muted whitespace-nowrap">
         {tool.name}

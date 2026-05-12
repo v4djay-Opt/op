@@ -68,10 +68,11 @@ export default function IndustriesPage() {
         label="Industries"
         title="Solutions Tailored to Your Industry"
         subtitle="From real estate CRMs to school management systems — we've built digital solutions for 40+ businesses across 7 industries in India."
+        green
       />
 
-      <section className="pb-24 lg:pb-32 px-4">
-        <div className="mx-auto max-w-7xl">
+      <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">
+        <div className="mx-auto max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {industries.map((industry, i) => {
               const Icon = iconMap[industry.icon];
@@ -126,8 +127,8 @@ export default function IndustriesPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="pb-24 lg:pb-32 px-4">
-        <div className="mx-auto max-w-4xl text-center">
+      <section className="inner-page pb-24 lg:pb-32 px-4">
+        <div className="mx-auto max-w-6xl text-center">
           <FadeIn>
             <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-3">
               Don't See Your Industry?

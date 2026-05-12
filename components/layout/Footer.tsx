@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowUpRight,
   Mail,
@@ -59,21 +60,42 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-surface-alt border-t border-border">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+    <footer className="relative bg-surface-alt border-t border-border overflow-hidden max-md:bg-[#1a4a3a] max-md:border-t-white/10">
+      {/* Background Marquee Text */}
+      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 overflow-hidden pointer-events-none select-none">
+        <div className="flex animate-marquee whitespace-nowrap">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <span
+              key={i}
+              className="text-[8rem] sm:text-[10rem] md:text-[14rem] lg:text-[18rem] xl:text-[22rem] font-bold font-display text-accent/[0.04] mx-12 shrink-0 leading-none"
+            >
+              Optimax Studio
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-8">
         {/* Top section: Brand + Newsletter */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 pb-12 border-b border-border-light">
           {/* Brand */}
-          <div className="space-y-5 max-w-md">
+          <div className="space-y-5 max-w-md max-md:flex max-md:flex-col max-md:items-center max-md:text-center">
             <Link href="/" className="inline-flex items-center gap-1.5">
-              <span className="text-2xl font-bold tracking-tight font-display text-text">
+              <span className="text-2xl font-bold tracking-tight font-display text-text max-md:hidden">
                 Optimax
               </span>
-              <span className="text-accent text-2xl font-bold tracking-tight font-display">
+              <span className="text-accent text-2xl font-bold tracking-tight font-display max-md:hidden">
                 .
               </span>
+              <Image
+                src="/images/logo.png"
+                alt="Optimax Studio"
+                width={140}
+                height={40}
+                className="hidden max-md:block h-9 w-auto object-contain brightness-0 invert"
+              />
             </Link>
-            <p className="text-sm leading-relaxed text-text-secondary">
+            <p className="text-sm leading-relaxed text-text-secondary max-md:text-white/80">
               We build digital machines that generate revenue. From stunning
               websites to powerful CRMs — we deliver results.
             </p>
@@ -84,7 +106,7 @@ export function Footer() {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-lg bg-white border border-border p-2.5 text-muted transition-all hover:bg-accent hover:text-white hover:border-accent hover:shadow-sm"
+                  className="rounded-lg bg-white border border-border p-2.5 text-muted transition-all hover:bg-accent hover:text-white hover:border-accent hover:shadow-sm max-md:rounded-full max-md:bg-transparent max-md:border-white/20 max-md:text-white max-md:p-0 max-md:w-9 max-md:h-9 max-md:inline-flex max-md:items-center max-md:justify-center max-md:hover:bg-white/15"
                   aria-label={s.label}
                 >
                   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -96,7 +118,7 @@ export function Footer() {
           </div>
 
           {/* Newsletter */}
-          <div className="lg:text-right lg:max-w-md lg:ml-auto">
+          <div className="lg:text-right lg:max-w-md lg:ml-auto max-md:hidden">
             <h3 className="text-lg font-semibold text-text font-display mb-2">
               Subscribe to Our Newsletter
             </h3>
@@ -127,21 +149,21 @@ export function Footer() {
         </div>
 
         {/* Middle section: Links + Contact */}
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 py-12">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 py-12 max-md:grid-cols-2 max-md:gap-2">
           {/* Services */}
-          <div className="space-y-5">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-text font-display">
+          <div className="space-y-5 max-md:order-1 max-md:space-y-2">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-text font-display max-md:text-[#c9a84c] max-md:text-[11px] max-md:tracking-[1.5px]">
               Services
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 max-md:space-y-0">
               {services.map((service) => (
                 <li key={service.href}>
                   <Link
                     href={service.href}
-                    className="group inline-flex items-center gap-1 text-sm text-text-secondary transition-colors hover:text-accent"
+                    className="group inline-flex items-center gap-1 text-sm text-text-secondary transition-colors hover:text-accent max-md:text-[#f5f0e8] max-md:text-[13px] max-md:leading-[2]"
                   >
                     {service.label}
-                    <ArrowUpRight className="h-3.5 w-3.5 opacity-0 -translate-y-0.5 translate-x-0.5 transition-all group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0" />
+                    <ArrowUpRight className="h-3.5 w-3.5 opacity-0 -translate-y-0.5 translate-x-0.5 transition-all group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 max-md:hidden" />
                   </Link>
                 </li>
               ))}
@@ -149,19 +171,19 @@ export function Footer() {
           </div>
 
           {/* Products */}
-          <div className="space-y-5">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-text font-display">
+          <div className="space-y-5 max-md:order-3 max-md:col-span-2 max-md:space-y-2">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-text font-display max-md:text-[#c9a84c] max-md:text-[11px] max-md:tracking-[1.5px]">
               Products
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 max-md:grid max-md:grid-cols-2 max-md:space-y-0 max-md:gap-x-4 max-md:[&>li:nth-child(even)]:text-right">
               {products.map((product) => (
                 <li key={product.href}>
                   <Link
                     href={product.href}
-                    className="group inline-flex items-center gap-1 text-sm text-text-secondary transition-colors hover:text-accent"
+                    className="group inline-flex items-center gap-1 text-sm text-text-secondary transition-colors hover:text-accent max-md:text-[#f5f0e8] max-md:text-[13px] max-md:leading-[2]"
                   >
                     {product.label}
-                    <ArrowUpRight className="h-3.5 w-3.5 opacity-0 -translate-y-0.5 translate-x-0.5 transition-all group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0" />
+                    <ArrowUpRight className="h-3.5 w-3.5 opacity-0 -translate-y-0.5 translate-x-0.5 transition-all group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 max-md:hidden" />
                   </Link>
                 </li>
               ))}
@@ -169,11 +191,11 @@ export function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-5">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-text font-display">
+          <div className="space-y-5 max-md:order-2 max-md:space-y-2 max-md:text-right">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-text font-display max-md:text-[#c9a84c] max-md:text-[11px] max-md:tracking-[1.5px]">
               Company
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 max-md:space-y-0">
               {[
                 { label: "About Us", href: "/about" },
                 { label: "Case Studies", href: "/case-studies" },
@@ -184,7 +206,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-text-secondary transition-colors hover:text-accent"
+                    className="text-sm text-text-secondary transition-colors hover:text-accent max-md:block max-md:text-[#f5f0e8] max-md:text-[13px] max-md:leading-[2]"
                   >
                     {link.label}
                   </Link>
@@ -194,7 +216,7 @@ export function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="space-y-5">
+          <div className="space-y-5 max-md:hidden">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-text font-display">
               Contact
             </h3>
@@ -238,22 +260,22 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border-light pt-8">
-          <p className="text-sm text-muted">
-            &copy; {currentYear} Optimax Studio. All rights reserved.
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border-light pt-8 max-md:flex-row max-md:border-white/10 max-md:pt-4 max-md:gap-2">
+          <p className="text-sm text-muted max-md:text-[11px] max-md:text-[#c9a84c]">
+            &copy; {currentYear} Optimax Studio.
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 max-md:gap-4">
             <Link
               href="/privacy-policy"
-              className="text-sm text-muted transition-colors hover:text-text"
+              className="text-sm text-muted transition-colors hover:text-text max-md:text-[11px] max-md:text-[#c9a84c]"
             >
-              Privacy Policy
+              Privacy
             </Link>
             <Link
               href="/terms"
-              className="text-sm text-muted transition-colors hover:text-text"
+              className="text-sm text-muted transition-colors hover:text-text max-md:text-[11px] max-md:text-[#c9a84c]"
             >
-              Terms of Service
+              Terms
             </Link>
           </div>
         </div>

@@ -161,10 +161,15 @@ export default async function CaseStudyDetailPage({
       />
 
       {/* ── HERO ── */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-4">
-        <div className="absolute inset-0 bg-navy-900">
-          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_30%_30%,rgba(37,99,235,0.15),transparent_50%)]" />
-        </div>
+      <section className="relative min-h-[520px] flex flex-col justify-center pt-20 pb-10 px-4 overflow-hidden" style={{ background: "#1a4a3a" }}>
+        <div
+          className="absolute -top-24 -left-24 h-[500px] w-[500px] rounded-full pointer-events-none"
+          style={{ background: "rgba(255,255,255,0.04)" }}
+        />
+        <div
+          className="absolute -bottom-16 -right-16 h-[350px] w-[350px] rounded-full pointer-events-none"
+          style={{ background: "rgba(255,255,255,0.03)" }}
+        />
         <div className="relative z-10 mx-auto max-w-4xl">
           <FadeIn>
             <Breadcrumbs
@@ -172,40 +177,44 @@ export default async function CaseStudyDetailPage({
                 { label: "Case Studies", href: "/case-studies" },
                 { label: cs.client },
               ]}
+              light
             />
           </FadeIn>
           <FadeIn>
             <div className="flex items-center justify-between mb-4">
-              <span className="inline-flex items-center rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
+              <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/80">
                 {cs.industry}
               </span>
-              <span className="text-xs text-muted">
+              <span className="text-xs text-white/50">
                 Published: {formatDate(cs.publishedAt)}
               </span>
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold text-text font-display leading-tight">
-              {cs.client} Case Study — {cs.result} {cs.metric} in{" "}
-              {cs.heroMetrics?.[0]?.value || ""}
+            <h1 className="text-[clamp(2rem,4.5vw,3.2rem)] font-bold text-white font-display leading-[1.15]">
+              {cs.client} Case Study
             </h1>
+            <p className="mt-4 text-base font-normal text-white/75 max-w-[580px] leading-relaxed">
+              How we achieved {cs.result.toLowerCase()} {cs.metric.toLowerCase()} in{" "}
+              {cs.heroMetrics?.[0]?.value || "record time"}.
+            </p>
 
             {/* Metric row — main + 2 extra */}
             <div className="mt-6 flex flex-wrap items-center gap-4 md:gap-6">
               <div className="flex items-center gap-2">
-                <TrendingUp className="h-5 w-5 text-accent" />
-                <span className="text-xl font-bold text-accent font-display">
+                <TrendingUp className="h-5 w-5 text-white/70" />
+                <span className="text-xl font-bold text-white font-display">
                   {cs.result}
                 </span>
-                <span className="text-sm text-muted">{cs.metric}</span>
+                <span className="text-sm text-white/60">{cs.metric}</span>
               </div>
               {cs.heroMetrics?.map((m) => (
                 <div
                   key={m.label}
-                  className="flex items-center gap-2 border-l border-white/10 pl-4 md:pl-6"
+                  className="flex items-center gap-2 border-l border-white/20 pl-4 md:pl-6"
                 >
-                  <span className="text-xl font-bold text-accent font-display">
+                  <span className="text-xl font-bold text-white font-display">
                     {m.value}
                   </span>
-                  <span className="text-sm text-muted">{m.label}</span>
+                  <span className="text-sm text-white/60">{m.label}</span>
                 </div>
               ))}
             </div>
@@ -214,7 +223,7 @@ export default async function CaseStudyDetailPage({
       </section>
 
       {/* ── BODY ── */}
-      <section className="pb-24 lg:pb-32 px-4">
+      <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">
         <div className="mx-auto max-w-3xl">
           <FadeIn>
             <p className="text-lg text-muted leading-relaxed">
