@@ -7,7 +7,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 const reasons = [
   {
     icon: Zap,
-    title: "5+ Years of Experience",
+    title: "7+ Years of Experience",
     description:
       "Deep expertise across web, mobile, and enterprise solutions.",
   },
@@ -42,15 +42,15 @@ export function WhyOptimax() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {reasons.map((reason, i) => (
-            <FadeIn key={reason.title} delay={i * 0.1}>
-              <div className="group flex flex-col rounded-2xl bg-white border border-border p-6 transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1.5">
+            <FadeIn key={reason.title} delay={i * 0.1} className="h-full">
+              <div className="group flex flex-col h-full rounded-2xl bg-white border border-border p-6 transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1.5">
                 <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent-light text-accent">
                   <reason.icon className="h-6 w-6" />
                 </div>
                 <h3 className="text-lg font-semibold text-text font-display mb-2">
                   {reason.title}
                 </h3>
-                <p className="text-sm text-text-secondary leading-relaxed">
+                <p className="text-sm text-text-secondary leading-relaxed flex-grow">
                   {reason.description}
                 </p>
               </div>
