@@ -14,7 +14,7 @@ import {
   siVercel,
   siAmazonaws,
   siFigma,
-} from "simple-icons/icons";
+} from "simple-icons";
 
 const tools = [
   { name: "Next.js",      icon: siNextdotjs },
