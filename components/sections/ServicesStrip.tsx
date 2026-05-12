@@ -1,7 +1,9 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useLayoutEffect, useEffect, useRef, memo } from "react";
 import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Monitor,
   TrendingUp,
@@ -9,13 +11,14 @@ import {
   Database,
   Search,
   ArrowRight,
-  ChevronLeft,
-  ChevronRight,
   CheckCircle2,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+/** px of extra scroll allocated to each card reveal step */
+const STEP = 450;
 
 const services = [
   {
@@ -100,172 +103,148 @@ const services = [
   },
 ];
 
-function ServiceCard({ service }: { service: (typeof services)[0] }) {
-  const Icon = service.icon;
-  return (
-    <div className="rounded-3xl bg-white border border-border shadow-card overflow-hidden h-full">
-      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[420px] lg:min-h-[440px]">
-        {/* Text panel */}
-        <div className="flex flex-col justify-center px-8 py-10 lg:px-12">
-          <div className="flex items-center gap-3 mb-5">
-            <div
-              className="inline-flex h-12 w-12 items-center justify-center rounded-2xl text-accent shrink-0"
-              style={{ background: service.color }}
-            >
-              <Icon className="h-6 w-6" />
-            </div>
-            <span className="text-xs font-bold tracking-widest uppercase text-muted">
-              Service
-            </span>
-          </div>
+export const ServicesStrip = memo(function ServicesStrip() {
+  const pinRef   = useRef<HTMLDivElement>(null);
+  const stackRef = useRef<HTMLDivElement>(null);
+  const initedRef = useRef(false);
 
-          <h3 className="text-2xl lg:text-3xl font-bold text-text font-display mb-4 leading-snug">
-            {service.title}
-          </h3>
-          <p className="text-text-secondary leading-relaxed mb-6 text-sm lg:text-base">
-            {service.description}
-          </p>
+  useIsomorphicLayoutEffect(() => {
+    // Mobile: skip GSAP, CSS shows normal list
+    if (window.matchMedia("(max-width: 1023px)").matches) return;
 
-          <ul className="space-y-2.5 mb-8">
-            {service.bullets.map((b) => (
-              <li key={b} className="flex items-start gap-3 text-sm text-text-secondary">
-                <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" />
-                {b}
-              </li>
-            ))}
-          </ul>
+    const pin = pinRef.current;
+    const stack = stackRef.current;
+    if (!pin || !stack || initedRef.current) return;
+    initedRef.current = true;
 
-          <Link
-            href={service.href}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-accent group w-fit"
-          >
-            Learn More
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
-        </div>
+    gsap.registerPlugin(ScrollTrigger);
 
-        {/* Visual panel */}
-        <div
-          className="relative flex items-center justify-center min-h-[260px] lg:min-h-0"
-          style={{ background: service.color }}
-        >
-          <Icon className="h-36 w-36 text-accent/15" strokeWidth={1} />
+    const cards = gsap.utils.toArray<HTMLElement>(".stack-reveal-card", stack);
+    if (cards.length < 2) return;
 
-          <div className="absolute bottom-6 right-6 rounded-2xl bg-white border border-border shadow-card px-5 py-4">
-            <div className="text-3xl font-bold text-accent font-display leading-none">
-              {service.stat}
-            </div>
-            <div className="text-xs text-muted mt-1">{service.statLabel}</div>
-          </div>
+    const ctx = gsap.context(() => {
+      // Sync GSAP state with CSS initial state (non-first cards off-screen)
+      gsap.set(cards.slice(1), { y: "100%" });
 
-          <div className="absolute top-6 left-6 flex gap-1.5">
-            {[0, 1, 2].map((d) => (
-              <div key={d} className="h-2 w-2 rounded-full bg-accent/25" />
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: pin,
+          pin: true,
+          anticipatePin: 1,
+          start: "top top+=80",
+          end: `+=${(cards.length - 1) * STEP}`,
+          scrub: 0.5,
+        },
+      });
 
-export function ServicesStrip() {
-  const [activeIndex, setActiveIndex] = useState(0);
+      for (let i = 1; i < cards.length; i++) {
+        const pos = i - 1;
+        tl.to(cards[i], { y: 0, ease: "power2.out", duration: 1 }, pos);
+        for (let j = 0; j < i; j++) {
+          const depth = i - j;
+          const scale = 1 - depth * 0.04;
+          tl.to(cards[j], { scale, ease: "none", duration: 1 }, pos);
+        }
+      }
+    }, pin);
 
-  const goPrev = useCallback(() => {
-    setActiveIndex((i) => Math.max(0, i - 1));
-  }, []);
-
-  const goNext = useCallback(() => {
-    setActiveIndex((i) => Math.min(services.length - 1, i + 1));
+    return () => {
+      initedRef.current = false;
+      ctx.revert();
+    };
   }, []);
 
   return (
-    <section className="relative pt-20 lg:pt-28 pb-20 px-4 overflow-hidden">
-      <div className="mx-auto max-w-6xl">
+    <section className="relative pt-20 lg:pt-28 pb-20 px-4">
+      <div className="mx-auto max-w-5xl">
         <SectionHeading
           label="What We Do"
           title={<>Services Built for <em className="italic text-accent">Growth</em></>}
           description="We don't just build — we engineer revenue machines tailored to your industry."
         />
 
-        {/* Desktop: horizontal carousel with arrows */}
-        <div className="hidden lg:block relative">
-          <div className="overflow-hidden rounded-3xl">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndex}
-                initial={{ opacity: 0, x: 60 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -60 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-              >
-                <ServiceCard service={services[activeIndex]} />
-              </motion.div>
-            </AnimatePresence>
-          </div>
+        <div ref={pinRef}>
+          <div ref={stackRef} className="services-stack-grid">
+          {services.map((service, i) => (
+            <div
+              key={service.title}
+              className="stack-reveal-card rounded-3xl bg-white border border-border shadow-card overflow-hidden"
+              style={{ zIndex: i + 1 }}
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[440px]">
 
-          {/* Navigation arrows */}
-          <div className="flex items-center justify-between mt-8">
-            <div className="flex items-center gap-3">
-              <button
-                onClick={goPrev}
-                disabled={activeIndex === 0}
-                aria-label="Previous service"
-                className="h-10 w-10 flex items-center justify-center rounded-full bg-white border border-border shadow-sm text-text transition-all hover:border-accent/30 hover:text-accent disabled:opacity-30 disabled:cursor-not-allowed"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                onClick={goNext}
-                disabled={activeIndex === services.length - 1}
-                aria-label="Next service"
-                className="h-10 w-10 flex items-center justify-center rounded-full bg-white border border-border shadow-sm text-text transition-all hover:border-accent/30 hover:text-accent disabled:opacity-30 disabled:cursor-not-allowed"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </div>
-
-            {/* Step counter */}
-            <div className="flex items-center gap-3">
-              {services.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActiveIndex(i)}
-                  className={`h-2.5 rounded-full transition-all ${
-                    i === activeIndex
-                      ? "w-8 bg-accent"
-                      : "w-2.5 bg-border hover:bg-muted"
+                {/* ── Left: text ── */}
+                <div
+                  className={`flex flex-col justify-center px-8 py-10 lg:px-12 ${
+                    i % 2 === 1 ? "lg:order-2" : ""
                   }`}
-                  aria-label={`Go to service ${i + 1}`}
-                />
-              ))}
+                >
+                  <div className="flex items-center gap-3 mb-5">
+                    <div
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-2xl text-accent shrink-0"
+                      style={{ background: service.color }}
+                    >
+                      <service.icon className="h-6 w-6" />
+                    </div>
+                    <span className="text-xs font-bold tracking-widest uppercase text-muted">
+                      0{i + 1}
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl lg:text-3xl font-bold text-text font-display mb-4 leading-snug">
+                    {service.title}
+                  </h3>
+                  <p className="text-text-secondary leading-relaxed mb-6 text-sm lg:text-base">
+                    {service.description}
+                  </p>
+
+                  <ul className="space-y-2.5 mb-8">
+                    {service.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-3 text-sm text-text-secondary">
+                        <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link
+                    href={service.href}
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-accent group"
+                  >
+                    Learn More
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
+
+                {/* ── Right: visual panel ── */}
+                <div
+                  className={`relative flex items-center justify-center min-h-[260px] lg:min-h-0 ${
+                    i % 2 === 1 ? "lg:order-1" : ""
+                  }`}
+                  style={{ background: service.color }}
+                >
+                  <service.icon className="h-36 w-36 text-accent/15" strokeWidth={1} />
+
+                  <div className="absolute bottom-6 right-6 rounded-2xl bg-white border border-border shadow-card px-5 py-4">
+                    <div className="text-3xl font-bold text-accent font-display leading-none">
+                      {service.stat}
+                    </div>
+                    <div className="text-xs text-muted mt-1">{service.statLabel}</div>
+                  </div>
+
+                  <div className="absolute top-6 left-6 flex gap-1.5">
+                    {[0, 1, 2].map((d) => (
+                      <div key={d} className="h-2 w-2 rounded-full bg-accent/25" />
+                    ))}
+                  </div>
+                </div>
+
+              </div>
             </div>
-
-            <span className="text-sm font-medium text-muted font-display">
-              {String(activeIndex + 1).padStart(2, "0")} / {String(services.length).padStart(2, "0")}
-            </span>
+          ))}
           </div>
-        </div>
-
-        {/* Tablet: 2-column grid */}
-        <div className="hidden sm:grid lg:hidden grid-cols-2 gap-6">
-          {services.map((service, i) => (
-            <FadeIn key={service.title} delay={i * 0.08}>
-              <ServiceCard service={service} />
-            </FadeIn>
-          ))}
-        </div>
-
-        {/* Mobile: vertical stack */}
-        <div className="sm:hidden space-y-6">
-          {services.map((service, i) => (
-            <FadeIn key={service.title} delay={i * 0.08}>
-              <ServiceCard service={service} />
-            </FadeIn>
-          ))}
         </div>
       </div>
     </section>
   );
-}
+});

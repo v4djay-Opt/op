@@ -215,3 +215,29 @@ body {
   max-width: none;
 }
 
+/* ── GSAP Stacking Cards ── */
+/* Desktop: all cards in same grid cell, stacked on top of each other */
+@media (min-width: 1024px) {
+  .services-stack-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: hidden;
+  }
+  .stack-reveal-card {
+    grid-area: 1 / 1;
+    transform-origin: top center;
+    will-change: transform;
+  }
+  /* CSS sets initial off-screen state — prevents flash before GSAP loads */
+  .stack-reveal-card:not(:first-child) {
+    transform: translateY(100%);
+  }
+}
+/* Mobile: normal vertical list */
+@media (max-width: 1023px) {
+  .services-stack-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
