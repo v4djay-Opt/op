@@ -22,7 +22,7 @@ export const services: Service[] = [
     whatWeDo: [
       "Custom UI/UX design tailored to your brand and audience",
       "Responsive development for all devices and screen sizes",
-      "Performance optimization for Core Web Vitals and SEO",
+      "Performance optimization for Core Web Vitals and search engine optimization",
       "CMS integration (Sanity, WordPress, or custom)",
     ],
     process: [
@@ -67,7 +67,7 @@ export const services: Service[] = [
       {
         question: "Can you redesign my existing website?",
         answer:
-          "Absolutely. We specialize in redesigns that improve UX, performance, and conversion rates while preserving SEO value.",
+          "Absolutely. We specialize in redesigns that improve UX, performance, and conversion rates while preserving search engine optimization value.",
       },
     ],
   },
@@ -120,7 +120,7 @@ export const services: Service[] = [
       {
         question: "How soon will I see results?",
         answer:
-          "PPC campaigns show results within days. SEO and organic strategies typically take 2-3 months to show significant impact.",
+          "PPC campaigns show results within days. Search engine optimization and organic strategies typically take 2-3 months to show significant impact.",
       },
       {
         question: "Do you handle creative design for ads?",
@@ -248,11 +248,11 @@ export const services: Service[] = [
   },
   {
     slug: "seo",
-    name: "SEO",
+    name: "Search Engine Optimization",
     tagline: "Rank Higher, Get Found, Drive Organic Revenue",
     icon: "Search",
     description:
-      "Technical SEO, content strategy, and link building that puts your business on page one. Sustainable organic growth without ad spend.",
+      "Technical search engine optimization, content strategy, and link building that puts your business on page one. Sustainable organic growth without ad spend.",
     whatWeDo: [
       "Technical SEO audits and site health fixes",
       "Keyword research and content strategy",
@@ -264,7 +264,7 @@ export const services: Service[] = [
         step: 1,
         title: "Audit",
         description:
-          "Comprehensive technical and content SEO audit.",
+          "Comprehensive technical and content search engine optimization audit.",
       },
       {
         step: 2,
@@ -288,7 +288,7 @@ export const services: Service[] = [
     stats: { value: "3.5x", label: "Average Organic Traffic Growth" },
     faqs: [
       {
-        question: "How long until I see SEO results?",
+        question: "How long until I see search engine optimization results?",
         answer:
           "Most clients see measurable improvements in 2-3 months, with significant gains by month 6.",
       },
@@ -298,7 +298,7 @@ export const services: Service[] = [
           "No ethical agency can guarantee rankings. We guarantee transparent reporting and best-practice execution.",
       },
       {
-        question: "Do you handle local SEO?",
+        question: "Do you handle local search engine optimization?",
         answer:
           "Yes, we optimize Google Business Profiles, local citations, and location-based content.",
       },

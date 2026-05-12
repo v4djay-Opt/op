@@ -23,7 +23,7 @@ const serviceItems = [
   { label: "Digital Marketing", href: "/services/digital-marketing", description: "Data-driven campaigns that maximize ROI" },
   { label: "Social Media Management", href: "/services/social-media-management", description: "Build a brand people love" },
   { label: "CRM & Custom Portals", href: "/services/crm-custom-portals", description: "Software tailored to your workflow" },
-  { label: "SEO", href: "/services/seo", description: "Rank higher, drive organic revenue" },
+  { label: "Search Engine Optimization", href: "/services/seo", description: "Rank higher, drive organic revenue" },
 ];
 
 const productItems = [

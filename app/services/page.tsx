@@ -23,7 +23,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 export const metadata: Metadata = {
   title: "Services — Optimax Studio",
   description:
-    "Explore our full range of digital services: Web Design, Digital Marketing, Social Media, CRM Development, and SEO.",
+    "Explore our full range of digital services: Web Design, Digital Marketing, Social Media, CRM Development, and Search Engine Optimization.",
 };
 
 export default function ServicesPage() {

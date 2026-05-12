@@ -21,14 +21,14 @@ const SITE_URL = "https://optimaxstudio.com";
 export const metadata: Metadata = {
   title: "Website Designing Company in Delhi — Optimax Studio",
   description:
-    "Optimax Studio is a trusted website designing company in Delhi offering SEO, web design, and digital marketing services across Delhi NCR. Book a free consultation today.",
+    "Optimax Studio is a trusted website designing company in Delhi offering Search Engine Optimization, web design, and digital marketing services across Delhi NCR. Book a free consultation today.",
   alternates: {
     canonical: `${SITE_URL}/services/seo`,
   },
   openGraph: {
     title: "Website Designing Company in Delhi | Optimax Studio",
     description:
-      "Optimax Studio is a trusted website designing company in Delhi offering SEO, web design, and digital marketing services across Delhi NCR. Book a free consultation today.",
+      "Optimax Studio is a trusted website designing company in Delhi offering Search Engine Optimization, web design, and digital marketing services across Delhi NCR. Book a free consultation today.",
     type: "website",
     url: `${SITE_URL}/services/seo`,
     siteName: "Optimax Studio",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Website Designing Company in Delhi | Optimax Studio",
     description:
-      "Optimax Studio is a trusted website designing company in Delhi offering SEO, web design, and digital marketing services across Delhi NCR. Book a free consultation today.",
+      "Optimax Studio is a trusted website designing company in Delhi offering Search Engine Optimization, web design, and digital marketing services across Delhi NCR. Book a free consultation today.",
     images: [`${SITE_URL}/og/seo.jpg`],
   },
 };
@@ -50,7 +50,7 @@ const serviceSchema = {
   "@type": "Service",
   name: "Website Designing Company in Delhi",
   description:
-    "Optimax Studio is a professional website designing company in Delhi offering SEO services, web design, and digital marketing across Delhi NCR, Gurgaon, Noida, and India.",
+    "Optimax Studio is a professional website designing company in Delhi offering Search Engine Optimization services, web design, and digital marketing across Delhi NCR, Gurgaon, Noida, and India.",
   provider: {
     "@type": "Organization",
     name: "Optimax Studio",
@@ -67,11 +67,11 @@ const serviceSchema = {
     },
   },
   areaServed: ["Delhi", "New Delhi", "Gurgaon", "Noida", "Delhi NCR", "India"],
-  serviceType: "Website Designing and SEO",
+  serviceType: "Website Designing and Search Engine Optimization",
   offers: [
-    { "@type": "Offer", name: "Basic SEO Plan", priceCurrency: "INR", price: "7999" },
-    { "@type": "Offer", name: "Growth SEO Plan", priceCurrency: "INR", price: "14999" },
-    { "@type": "Offer", name: "Pro SEO Plan", priceCurrency: "INR", price: "24999" },
+    { "@type": "Offer", name: "Basic Search Engine Optimization Plan", priceCurrency: "INR", price: "7999" },
+    { "@type": "Offer", name: "Growth Search Engine Optimization Plan", priceCurrency: "INR", price: "14999" },
+    { "@type": "Offer", name: "Pro Search Engine Optimization Plan", priceCurrency: "INR", price: "24999" },
   ],
 };
 
@@ -84,31 +84,31 @@ const faqSchema = {
       name: "Is Optimax Studio a website designing company in Delhi?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Optimax Studio is a trusted website designing company serving clients in Delhi, New Delhi, Gurgaon, Noida, and across Delhi NCR. We offer end-to-end web design and SEO services for businesses of all sizes.",
+        text: "Yes. Optimax Studio is a trusted website designing company serving clients in Delhi, New Delhi, Gurgaon, Noida, and across Delhi NCR. We offer end-to-end web design and Search Engine Optimization services for businesses of all sizes.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you provide SEO services in Delhi NCR?",
+      name: "Do you provide Search Engine Optimization services in Delhi NCR?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Absolutely. We are a full-service SEO agency in Delhi NCR offering on-page SEO, technical SEO, local SEO, and backlink building to help businesses rank higher on Google and drive organic traffic.",
+        text: "Absolutely. We are a full-service Search Engine Optimization agency in Delhi NCR offering on-page Search Engine Optimization, technical Search Engine Optimization, local Search Engine Optimization, and backlink building to help businesses rank higher on Google and drive organic traffic.",
       },
     },
     {
       "@type": "Question",
-      name: "What makes you the best SEO agency in Delhi?",
+      name: "What makes you the best Search Engine Optimization agency in Delhi?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We combine website design and SEO under one roof. Every website we build is SEO-ready from day one — fast, mobile-friendly, and structured for Google. Our clients see measurable ranking improvements within 60–90 days.",
+        text: "We combine website design and Search Engine Optimization under one roof. Every website we build is Search Engine Optimization-ready from day one — fast, mobile-friendly, and structured for Google. Our clients see measurable ranking improvements within 60–90 days.",
       },
     },
     {
       "@type": "Question",
-      name: "How much do your SEO and web design services cost in Delhi?",
+      name: "How much do your Search Engine Optimization and web design services cost in Delhi?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Our SEO packages start at Rs. 7,999/month and web design projects start at Rs. 25,000. We offer flexible pricing based on your goals and budget. Book a free call to get a custom quote.",
+        text: "Our Search Engine Optimization packages start at Rs. 7,999/month and web design projects start at Rs. 25,000. We offer flexible pricing based on your goals and budget. Book a free call to get a custom quote.",
       },
     },
     {
@@ -116,7 +116,7 @@ const faqSchema = {
       name: "Do you work with website designers in Delhi NCR for local businesses?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. We work with local businesses, startups, and established brands across Delhi NCR. Our team understands the local market and builds websites and SEO strategies tailored for Delhi-based audiences.",
+        text: "Yes. We work with local businesses, startups, and established brands across Delhi NCR. Our team understands the local market and builds websites and Search Engine Optimization strategies tailored for Delhi-based audiences.",
       },
     },
   ],
@@ -133,7 +133,7 @@ const breadcrumbSchema = {
       name: "Services",
       item: `${SITE_URL}/services`,
     },
-    { "@type": "ListItem", position: 3, name: "SEO" },
+    { "@type": "ListItem", position: 3, name: "Search Engine Optimization" },
   ],
 };
 
@@ -141,19 +141,19 @@ const breadcrumbSchema = {
 const seoServices = [
   {
     icon: Search,
-    title: "On-Page SEO Optimization",
+    title: "On-Page Search Engine Optimization Optimization",
     description:
-      "Title tags, meta descriptions, header structure, keyword density, and internal linking — every on-page SEO element optimized for maximum SERP visibility.",
+      "Title tags, meta descriptions, header structure, keyword density, and internal linking — every on-page Search Engine Optimization element optimized for maximum SERP visibility.",
   },
   {
     icon: Zap,
-    title: "Technical SEO & Site Health",
+    title: "Technical Search Engine Optimization & Site Health",
     description:
       "Crawlability, indexing, page speed, Core Web Vitals, and mobile-first optimization — the technical foundation that lets Google understand and rank your site.",
   },
   {
     icon: MapPin,
-    title: "Local SEO & Google Business Profile",
+    title: "Local Search Engine Optimization & Google Business Profile",
     description:
       "Rank in the Google 3-Pack for your location. We optimize your Google Business Profile, local citations, and location-based content for Delhi NCR searches.",
   },
@@ -161,7 +161,7 @@ const seoServices = [
     icon: Link2,
     title: "Backlink Building & Domain Authority",
     description:
-      "High-quality off-page SEO through editorial backlinks, guest posts, and digital PR — building domain authority that compounds over time.",
+      "High-quality off-page Search Engine Optimization through editorial backlinks, guest posts, and digital PR — building domain authority that compounds over time.",
   },
   {
     icon: FileText,
@@ -171,16 +171,16 @@ const seoServices = [
   },
   {
     icon: Globe,
-    title: "Web Design Built for SEO",
+    title: "Web Design Built for Search Engine Optimization",
     description:
-      "As a website making company in Delhi, every site we build ships SEO-ready: clean semantic HTML, schema markup, sitemap, and sub-2s load times.",
+      "As a website making company in Delhi, every site we build ships Search Engine Optimization-ready: clean semantic HTML, schema markup, sitemap, and sub-2s load times.",
   },
 ];
 
 const process = [
   {
     step: 1,
-    title: "SEO Audit",
+    title: "Search Engine Optimization Audit",
     description:
       "Comprehensive technical and content audit — crawlability, indexing errors, page speed, keyword gaps, and competitor analysis.",
   },
@@ -188,7 +188,7 @@ const process = [
     step: 2,
     title: "Fix & Optimise",
     description:
-      "Resolve technical issues, improve site structure, fix on-page SEO, and ensure every page is search-engine ready.",
+      "Resolve technical issues, improve site structure, fix on-page Search Engine Optimization, and ensure every page is search-engine ready.",
   },
   {
     step: 3,
@@ -207,53 +207,53 @@ const process = [
 const stats = [
   { value: "50+", label: "Websites Designed & Ranked" },
   { value: "Top 3", label: "Google Rankings for Clients" },
-  { value: "90 Days", label: "to Measurable SEO Results" },
+  { value: "90 Days", label: "to Measurable Search Engine Optimization Results" },
 ];
 
 const pricing = [
   {
-    plan: "Basic SEO",
+    plan: "Basic Search Engine Optimization",
     price: "Rs. 7,999/mo",
     badge: null as string | null,
     description: "For local businesses and early-stage startups.",
     features: [
       "Up to 10 keywords targeted",
-      "On-page SEO (5 pages/mo)",
+      "On-page Search Engine Optimization (5 pages/mo)",
       "Google Business Profile optimization",
       "Monthly ranking report",
-      "Technical SEO audit (one-time)",
+      "Technical Search Engine Optimization audit (one-time)",
       "Email support",
     ],
     cta: "Get Started",
   },
   {
-    plan: "Growth SEO",
+    plan: "Growth Search Engine Optimization",
     price: "Rs. 14,999/mo",
     badge: "Most Popular" as string | null,
     description: "For growing brands targeting Delhi NCR.",
     features: [
       "Up to 25 keywords targeted",
-      "On-page SEO (15 pages/mo)",
+      "On-page Search Engine Optimization (15 pages/mo)",
       "2 blog posts/mo",
       "Backlink building (5 links/mo)",
-      "Local SEO optimization",
+      "Local Search Engine Optimization optimization",
       "Bi-weekly progress calls",
       "GA4 + Search Console reporting",
     ],
     cta: "Get Started",
   },
   {
-    plan: "Pro SEO",
+    plan: "Pro Search Engine Optimization",
     price: "Rs. 24,999/mo",
     badge: null as string | null,
-    description: "Full-stack SEO for competitive industries.",
+    description: "Full-stack Search Engine Optimization for competitive industries.",
     features: [
       "Unlimited keyword targeting",
-      "On-page SEO (unlimited pages)",
+      "On-page Search Engine Optimization (unlimited pages)",
       "4 blog posts/mo",
       "Backlink building (15 links/mo)",
-      "Technical SEO (ongoing)",
-      "Dedicated SEO manager",
+      "Technical Search Engine Optimization (ongoing)",
+      "Dedicated Search Engine Optimization manager",
       "Weekly reporting + strategy call",
     ],
     cta: "Get a Quote",
@@ -267,15 +267,15 @@ const whoWeServe = [
   },
   {
     label: "E-commerce Brands",
-    desc: "Product page SEO, category optimization, and schema markup to drive organic traffic to your online store.",
+    desc: "Product page Search Engine Optimization, category optimization, and schema markup to drive organic traffic to your online store.",
   },
   {
     label: "Startups & Founders",
-    desc: "Launch with an SEO-ready website from day one — no retrofitting required. Rank faster, spend less on ads.",
+    desc: "Launch with an Search Engine Optimization-ready website from day one — no retrofitting required. Rank faster, spend less on ads.",
   },
   {
     label: "Real Estate & Enterprises",
-    desc: "High-competition keyword strategies and local SEO for real estate developers and enterprise brands across Delhi NCR.",
+    desc: "High-competition keyword strategies and local Search Engine Optimization for real estate developers and enterprise brands across Delhi NCR.",
   },
 ];
 
@@ -289,28 +289,28 @@ const faqs = [
   {
     question: "Is Optimax Studio a website designing company in Delhi?",
     answer:
-      "Yes. Optimax Studio is a trusted website designing company serving clients in Delhi, New Delhi, Gurgaon, Noida, and across Delhi NCR. We offer end-to-end web design and SEO services for businesses of all sizes.",
+      "Yes. Optimax Studio is a trusted website designing company serving clients in Delhi, New Delhi, Gurgaon, Noida, and across Delhi NCR. We offer end-to-end web design and Search Engine Optimization services for businesses of all sizes.",
   },
   {
-    question: "Do you provide SEO services in Delhi NCR?",
+    question: "Do you provide Search Engine Optimization services in Delhi NCR?",
     answer:
-      "Absolutely. We are a full-service SEO agency in Delhi NCR offering on-page SEO, technical SEO, local SEO, and backlink building to help businesses rank higher on Google and drive organic traffic.",
+      "Absolutely. We are a full-service Search Engine Optimization agency in Delhi NCR offering on-page Search Engine Optimization, technical Search Engine Optimization, local Search Engine Optimization, and backlink building to help businesses rank higher on Google and drive organic traffic.",
   },
   {
-    question: "What makes you the best SEO agency in Delhi?",
+    question: "What makes you the best Search Engine Optimization agency in Delhi?",
     answer:
-      "We combine website design and SEO under one roof. Every website we build is SEO-ready from day one — fast, mobile-friendly, and structured for Google. Our clients see measurable ranking improvements within 60–90 days.",
+      "We combine website design and Search Engine Optimization under one roof. Every website we build is Search Engine Optimization-ready from day one — fast, mobile-friendly, and structured for Google. Our clients see measurable ranking improvements within 60–90 days.",
   },
   {
-    question: "How much do your SEO and web design services cost in Delhi?",
+    question: "How much do your Search Engine Optimization and web design services cost in Delhi?",
     answer:
-      "Our SEO packages start at Rs. 7,999/month and web design projects start at Rs. 25,000. We offer flexible pricing based on your goals and budget. Book a free call to get a custom quote.",
+      "Our Search Engine Optimization packages start at Rs. 7,999/month and web design projects start at Rs. 25,000. We offer flexible pricing based on your goals and budget. Book a free call to get a custom quote.",
   },
   {
     question:
       "Do you work with website designers in Delhi NCR for local businesses?",
     answer:
-      "Yes. We work with local businesses, startups, and established brands across Delhi NCR. Our team understands the local market and builds websites and SEO strategies tailored for Delhi-based audiences.",
+      "Yes. We work with local businesses, startups, and established brands across Delhi NCR. Our team understands the local market and builds websites and Search Engine Optimization strategies tailored for Delhi-based audiences.",
   },
 ];
 
@@ -318,7 +318,7 @@ const interlinks = [
   {
     label: "Website Development Company",
     href: "/services/web-design-development",
-    desc: "Custom, SEO-ready websites built to convert visitors into customers.",
+    desc: "Custom, Search Engine Optimization-ready websites built to convert visitors into customers.",
   },
   {
     label: "Digital Marketing Agency in Gurgaon",
@@ -338,7 +338,7 @@ const interlinks = [
   {
     label: "Real Estate Digital Solutions",
     href: "/industries/real-estate",
-    desc: "SEO, website, and marketing solutions for property businesses.",
+    desc: "Search Engine Optimization, website, and marketing solutions for property businesses.",
   },
   {
     label: "Ecommerce Solutions India",
@@ -385,7 +385,7 @@ export default function SeoPage() {
             <Breadcrumbs
               items={[
                 { label: "Services", href: "/services" },
-                { label: "SEO" },
+                { label: "Search Engine Optimization" },
               ]}
             />
           </FadeIn>
@@ -401,7 +401,7 @@ export default function SeoPage() {
           </FadeIn>
           <FadeIn delay={0.3}>
             <p className="mt-4 md:mt-6 text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
-              Web design and SEO under one roof — so your business looks
+              Web design and Search Engine Optimization under one roof — so your business looks
               great, loads fast, and dominates Google for Delhi NCR searches.
             </p>
           </FadeIn>
@@ -411,7 +411,7 @@ export default function SeoPage() {
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-accent/90"
               >
-                Get a Free SEO Audit
+                Get a Free Search Engine Optimization Audit
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
@@ -436,31 +436,31 @@ export default function SeoPage() {
               <strong>website designing company in Delhi</strong> helping
               businesses across Delhi NCR get found online and convert visitors
               into customers. As a full-service{" "}
-              <strong>SEO agency in Delhi</strong>, we combine stunning web
+              <strong>Search Engine Optimization agency in Delhi</strong>, we combine stunning web
               design with powerful search engine optimization — so your business
               doesn't just look great, it ranks on Google too. From startups in
               New Delhi to established brands in Gurgaon, our{" "}
               <strong>web designing company</strong> delivers results that
-              matter. Every project ships with on-page SEO, schema markup, and
+              matter. Every project ships with on-page Search Engine Optimization, schema markup, and
               mobile-first responsive design built in from day one.
             </p>
           </FadeIn>
 
-          {/* H2: Why Businesses Choose Our SEO Agency in Delhi */}
+          {/* H2: Why Businesses Choose Our Search Engine Optimization Agency in Delhi */}
           <FadeIn className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-4">
-              Why Businesses Choose Our SEO Agency in Delhi
+              Why Businesses Choose Our Search Engine Optimization Agency in Delhi
             </h2>
             <p className="text-base text-muted leading-relaxed mb-4">
-              As the <strong>best SEO agency in Delhi</strong>, Optimax Studio
+              As the <strong>best Search Engine Optimization agency in Delhi</strong>, Optimax Studio
               takes a fundamentally different approach: we don't separate web
-              design from SEO. When you work with us, every page we design is
+              design from Search Engine Optimization. When you work with us, every page we design is
               built with crawlability, indexing, and SERP performance in mind —
               before a single word of content is written.
             </p>
             <p className="text-base text-muted leading-relaxed mb-6">
               Most{" "}
-              <strong>SEO companies in Delhi NCR</strong> either handle only
+              <strong>Search Engine Optimization companies in Delhi NCR</strong> either handle only
               rankings or only design. We do both — which means faster organic
               traffic growth, lower cost per acquisition, and a website that
               compounds in value over time.
@@ -468,7 +468,7 @@ export default function SeoPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
                 {
-                  title: "SEO-Ready Websites From Day One",
+                  title: "Search Engine Optimization-Ready Websites From Day One",
                   desc: "Schema markup, sitemap, canonical tags, and mobile-first code — zero retrofitting needed after launch.",
                 },
                 {
@@ -480,7 +480,7 @@ export default function SeoPage() {
                   desc: "Keyword rankings, organic traffic, domain authority, and conversion — all in a clear, jargon-free report.",
                 },
                 {
-                  title: "Local SEO Expertise",
+                  title: "Local Search Engine Optimization Expertise",
                   desc: "Google Business Profile, local citations, and location-page optimization for Delhi NCR searches.",
                 },
               ].map((item, i) => (
@@ -520,7 +520,7 @@ export default function SeoPage() {
               need a landing page, a full corporate site, or an ecommerce store,
               we are the{" "}
               <strong>website developer in Delhi</strong> that makes design and
-              SEO inseparable.{" "}
+              Search Engine Optimization inseparable.{" "}
               <Link
                 href="/services/web-design-development"
                 className="text-accent hover:underline font-medium"
@@ -530,13 +530,13 @@ export default function SeoPage() {
             </p>
           </FadeIn>
 
-          {/* H2: Our SEO Services in Delhi NCR */}
+          {/* H2: Our Search Engine Optimization Services in Delhi NCR */}
           <FadeIn className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-4">
-              Our SEO Services in Delhi NCR
+              Our Search Engine Optimization Services in Delhi NCR
             </h2>
             <p className="text-base text-muted leading-relaxed mb-6">
-              Our end-to-end <strong>SEO services in Delhi NCR</strong> cover
+              Our end-to-end <strong>Search Engine Optimization services in Delhi NCR</strong> cover
               every layer of search optimization — from technical foundations
               to content creation and backlink authority building.
             </p>
@@ -566,15 +566,15 @@ export default function SeoPage() {
             </div>
           </FadeIn>
 
-          {/* H2: Best SEO Agency in Delhi — What We Do Differently */}
+          {/* H2: Best Search Engine Optimization Agency in Delhi — What We Do Differently */}
           <FadeIn className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-4">
-              Best SEO Agency in Delhi — What We Do Differently
+              Best Search Engine Optimization Agency in Delhi — What We Do Differently
             </h2>
             <p className="text-base text-muted leading-relaxed mb-4">
-              Among <strong>SEO companies in Delhi NCR</strong>, most agencies
+              Among <strong>Search Engine Optimization companies in Delhi NCR</strong>, most agencies
               rely on templated strategies and recycled reports. Optimax Studio
-              builds a bespoke SEO roadmap for every client — based on your
+              builds a bespoke Search Engine Optimization roadmap for every client — based on your
               industry, audience, and competition — and executes it with
               full transparency.
             </p>
@@ -585,7 +585,7 @@ export default function SeoPage() {
                   desc: "We build sustainable organic growth through white-hat keyword research, quality content, and ethical backlink building.",
                 },
                 {
-                  title: "Full Technical SEO Coverage",
+                  title: "Full Technical Search Engine Optimization Coverage",
                   desc: "We fix crawlability issues, page speed, mobile-first errors, and indexing problems that most agencies overlook.",
                 },
                 {
@@ -593,7 +593,7 @@ export default function SeoPage() {
                   desc: "We write for SERP position first and conversion second — so traffic doesn't just arrive, it becomes revenue.",
                 },
                 {
-                  title: "Local + National SEO Together",
+                  title: "Local + National Search Engine Optimization Together",
                   desc: "Whether you're targeting 'near me' searches in Delhi or national keywords across India — we run both strategies simultaneously.",
                 },
               ].map((item, i) => (
@@ -674,7 +674,7 @@ export default function SeoPage() {
               <div className="rounded-2xl border border-border bg-surface-alt overflow-hidden">
                 <div className="h-64 lg:h-full flex items-center justify-center">
                   <span className="text-muted text-sm font-medium">
-                    SEO Process Dashboard
+                    Search Engine Optimization Process Dashboard
                   </span>
                 </div>
               </div>
@@ -698,22 +698,22 @@ export default function SeoPage() {
             </div>
           </FadeIn>
 
-          {/* H2: Digital Media Agency Delhi — SEO + Design + Marketing */}
+          {/* H2: Digital Media Agency Delhi — Search Engine Optimization + Design + Marketing */}
           <FadeIn className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-4">
-              Digital Media Agency Delhi — SEO + Design + Marketing
+              Digital Media Agency Delhi — Search Engine Optimization + Design + Marketing
             </h2>
             <p className="text-base text-muted leading-relaxed mb-4">
-              Optimax Studio is more than an SEO firm. As a full-service{" "}
+              Optimax Studio is more than an Search Engine Optimization firm. As a full-service{" "}
               <strong>digital media agency Delhi</strong> businesses rely on, we
-              offer end-to-end growth services: web design, SEO, Google Ads,
+              offer end-to-end growth services: web design, Search Engine Optimization, Google Ads,
               social media management, and custom CRM development — all under
               one roof, all working together.
             </p>
             <p className="text-base text-muted leading-relaxed">
-              This integrated approach means your organic SEO and paid media
+              This integrated approach means your organic Search Engine Optimization and paid media
               reinforce each other, your website is designed to convert the
-              traffic your SEO generates, and your social media content supports
+              traffic your Search Engine Optimization generates, and your social media content supports
               your keyword authority. The result: faster growth, lower cost per
               lead, and a scalable digital presence.{" "}
               <Link
@@ -725,14 +725,14 @@ export default function SeoPage() {
             </p>
           </FadeIn>
 
-          {/* H2: SEO Companies in Delhi NCR — Why Optimax Stands Out */}
+          {/* H2: Search Engine Optimization Companies in Delhi NCR — Why Optimax Stands Out */}
           <FadeIn className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-4">
-              SEO Companies in Delhi NCR — Why Optimax Stands Out
+              Search Engine Optimization Companies in Delhi NCR — Why Optimax Stands Out
             </h2>
             <p className="text-base text-muted leading-relaxed mb-4">
               Delhi NCR has hundreds of{" "}
-              <strong>SEO companies in Delhi NCR</strong> — most offering the
+              <strong>Search Engine Optimization companies in Delhi NCR</strong> — most offering the
               same templated packages, the same recycled reports, and the same
               vague promises. Optimax Studio is different for three reasons:
             </p>
@@ -740,13 +740,13 @@ export default function SeoPage() {
               {[
                 {
                   num: "01",
-                  title: "We own both design and SEO",
-                  desc: "No handoff between a design agency and an SEO firm. We build the site and rank it — total ownership, total accountability.",
+                  title: "We own both design and Search Engine Optimization",
+                  desc: "No handoff between a design agency and an Search Engine Optimization firm. We build the site and rank it — total ownership, total accountability.",
                 },
                 {
                   num: "02",
                   title: "We work with your business goals, not keyword counts",
-                  desc: "Your SEO strategy is built around leads, sales, and revenue — not impressions or rankings for keywords nobody converts on.",
+                  desc: "Your Search Engine Optimization strategy is built around leads, sales, and revenue — not impressions or rankings for keywords nobody converts on.",
                 },
                 {
                   num: "03",
@@ -780,9 +780,9 @@ export default function SeoPage() {
               Transparent Pricing for Every Budget
             </h2>
             <p className="text-base text-muted leading-relaxed mb-8">
-              Our SEO packages are priced transparently — no hidden fees, no
+              Our Search Engine Optimization packages are priced transparently — no hidden fees, no
               lock-in contracts. Web design projects start separately at Rs.
-              25,000. Need a combined SEO + web design quote?{" "}
+              25,000. Need a combined Search Engine Optimization + web design quote?{" "}
               <Link
                 href="/contact"
                 className="text-accent hover:underline font-medium"
@@ -842,7 +842,7 @@ export default function SeoPage() {
             </div>
           </FadeIn>
 
-          {/* Local SEO Section */}
+          {/* Local Search Engine Optimization Section */}
           <FadeIn className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-4">
               Website Designing Company Serving All of Delhi NCR
@@ -854,7 +854,7 @@ export default function SeoPage() {
               <strong>Connaught Place</strong>,{" "}
               <strong>Nehru Place</strong>, <strong>South Delhi</strong>, or{" "}
               <strong>Dwarka</strong>, we offer the same quality of web design
-              and SEO services — in-person or remote.
+              and Search Engine Optimization services — in-person or remote.
             </p>
             <p className="text-base text-muted leading-relaxed mb-6">
               Our team regularly works with clients in{" "}
@@ -862,7 +862,7 @@ export default function SeoPage() {
               <strong>Rohini</strong>, and <strong>North Delhi</strong> — and
               our Gurgaon office makes same-day in-person strategy sessions
               possible for the entire <strong>web designing company in New
-              Delhi</strong> area. Wherever you are in the NCR, our local SEO
+              Delhi</strong> area. Wherever you are in the NCR, our local Search Engine Optimization
               strategies are built specifically for your geography and audience.
             </p>
             <div className="flex flex-wrap gap-2">
@@ -891,7 +891,7 @@ export default function SeoPage() {
                 >
                   <div
                     className="relative aspect-[16/10] bg-surface-alt overflow-hidden"
-                    aria-label={`SEO results — ${project.name}`}
+                    aria-label={`Search Engine Optimization results — ${project.name}`}
                   >
                     <div className="absolute inset-0 flex items-center justify-center text-muted text-sm font-medium">
                       {project.name}
@@ -952,9 +952,9 @@ export default function SeoPage() {
 
           {/* Bottom CTA */}
           <BottomCTA
-            title="Ready to rank higher with the best SEO agency in Delhi NCR?"
-            subtitle="Get a free SEO audit and see exactly where your website stands — and how we'll fix it."
-            buttonText="Get a Free SEO Audit"
+            title="Ready to rank higher with the best Search Engine Optimization agency in Delhi NCR?"
+            subtitle="Get a free Search Engine Optimization audit and see exactly where your website stands — and how we'll fix it."
+            buttonText="Get a Free Search Engine Optimization Audit"
             href="/contact"
           />
         </div>

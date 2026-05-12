@@ -25,7 +25,7 @@ const services = [
     icon: Monitor,
     title: "Web Design & Development",
     description:
-      "Custom, high-performance websites that convert visitors into customers. We build fast, responsive, SEO-optimized experiences.",
+      "Custom, high-performance websites that convert visitors into customers. We build fast, responsive, search-engine-optimized experiences.",
     bullets: [
       "Custom UI/UX design from scratch",
       "Next.js / React development",
@@ -87,9 +87,9 @@ const services = [
   },
   {
     icon: Search,
-    title: "SEO",
+    title: "Search Engine Optimization",
     description:
-      "Technical and content SEO that ranks you above the competition and drives organic revenue.",
+      "Technical and content search engine optimization that ranks you above the competition and drives organic revenue.",
     bullets: [
       "Technical SEO audits",
       "Content strategy & creation",

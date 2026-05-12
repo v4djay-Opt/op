@@ -13,7 +13,7 @@ const plans = [
     period: "project",
     features: [
       "5-page responsive website",
-      "Basic SEO setup",
+      "Basic search engine optimization setup",
       "Contact form integration",
       "Mobile optimized",
       "1 month free support",
@@ -27,7 +27,7 @@ const plans = [
     period: "project",
     features: [
       "Custom web app / CRM",
-      "Advanced SEO & analytics",
+      "Advanced search engine optimization & analytics",
       "Social media setup",
       "Lead capture funnels",
       "3 months free support",
