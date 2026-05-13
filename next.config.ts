@@ -54,9 +54,17 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        source: "/studio",
+        headers: [
+          { key: "X-Frame-Options", value: "ALLOWALL" },
+          { key: "Content-Security-Policy", value: "frame-ancestors https://sanity.io https://*.sanity.io" },
+        ],
+      },
+      {
         source: "/studio/:path*",
         headers: [
-          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "ALLOWALL" },
+          { key: "Content-Security-Policy", value: "frame-ancestors https://sanity.io https://*.sanity.io" },
         ],
       },
     ];
