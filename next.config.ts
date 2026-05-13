@@ -30,7 +30,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/(.*)",
+        source: "/((?!studio).*)",
         headers: [
           { key: "X-Frame-Options", value: "DENY" },
           { key: "X-Content-Type-Options", value: "nosniff" },
@@ -51,6 +51,12 @@ const nextConfig: NextConfig = {
               "connect-src 'self' https://api.razorpay.com https://*.sanity.io",
             ].join("; "),
           },
+        ],
+      },
+      {
+        source: "/studio/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
         ],
       },
     ];
