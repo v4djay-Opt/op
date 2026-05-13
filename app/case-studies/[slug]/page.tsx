@@ -71,7 +71,7 @@ export async function generateMetadata({
   if (!cs) return { title: "Not Found" };
 
   const title = `${cs.client} Case Study — ${cs.result} ${cs.metric} | Optimax Studio`;
-  const description = `See how Optimax Studio helped ${cs.client} achieve ${cs.result} ${cs.metric}. ${cs.description.slice(0, 90)}`;
+  const description = `See how Optimax Studio helped ${cs.client ?? ""} achieve ${cs.result ?? ""} ${cs.metric ?? ""}. ${(cs.description ?? "").slice(0, 90)}`;
   const canonical = `${SITE_URL}/case-studies/${normalizeSlug(cs.slug)}`;
 
   return {
@@ -193,7 +193,7 @@ export default async function CaseStudyDetailPage({
               {cs.client} Case Study
             </h1>
             <p className="mt-4 text-base font-normal text-white/75 max-w-[580px] leading-relaxed">
-              How we achieved {cs.result.toLowerCase()} {cs.metric.toLowerCase()} in{" "}
+              How we achieved {cs.result?.toLowerCase() ?? ""} {cs.metric?.toLowerCase() ?? ""} in{" "}
               {cs.heroMetrics?.[0]?.value || "record time"}.
             </p>
 
@@ -244,7 +244,7 @@ export default async function CaseStudyDetailPage({
               ) : (
                 <div className="flex h-full w-full flex-col items-center justify-center bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-accent/20 via-navy-800 to-navy-900">
                   <span className="text-8xl font-bold text-white/10 font-display absolute">
-                    {cs.client.charAt(0)}
+                    {cs.client?.charAt(0) ?? ""}
                   </span>
                   <div className="relative z-10 text-center">
                     <div className="text-5xl font-bold text-accent font-display">
@@ -386,7 +386,7 @@ export default async function CaseStudyDetailPage({
           )}
 
           <BottomCTA
-            title={`Want similar results for your ${cs.industry.toLowerCase()} business?`}
+            title={`Want similar results for your ${cs.industry?.toLowerCase() ?? ""} business?`}
             subtitle="Book a free strategy call and let us show you exactly how we can help."
           />
         </div>
