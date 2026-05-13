@@ -2,8 +2,11 @@ import { defineCliConfig } from "sanity/cli";
 
 export default defineCliConfig({
   api: {
-    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "placeholder",
-    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
+    projectId: "byckime6",
+    dataset: "production",
   },
-  studioHost: "optimax", // becomes https://optimax.sanity.studio
+  studioHost: "optimaxstudio-cms",
+  deployment: {
+    appId: "funb43j8xm2y5bw07sz6b0ab",
+  },
 });
