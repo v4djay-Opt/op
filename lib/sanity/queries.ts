@@ -33,7 +33,7 @@ export const relatedPostsQuery = `*[_type == "post" && slug.current != $slug && 
   estimatedReadTime
 }`;
 
-export const caseStudiesQuery = `*[_type == "caseStudy" && defined(slug.current)] | order(_createdAt desc) {
+export const caseStudiesQuery = `*[_type == "caseStudy" && defined(slug.current)] | order(publishedAt desc) {
   _id,
   title,
   slug,
@@ -42,6 +42,7 @@ export const caseStudiesQuery = `*[_type == "caseStudy" && defined(slug.current)
   result,
   metric,
   description,
+  publishedAt,
   "image": mainImage.asset->url
 }`;
 
@@ -54,6 +55,7 @@ export const caseStudyBySlugQuery = `*[_type == "caseStudy" && slug.current == $
   result,
   metric,
   description,
+  publishedAt,
   challenge,
   approach,
   outcome,
