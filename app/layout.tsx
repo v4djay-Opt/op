@@ -28,24 +28,20 @@ export const metadata: Metadata = {
   },
   description:
     "We build digital machines that generate revenue. Web design, development, marketing, and custom CRM solutions.",
+  manifest: "/site.webmanifest",
   icons: {
     icon: [
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon.ico" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
     ],
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
     other: [
-      {
-        rel: "android-chrome-192",
-        url: "/android-chrome-192x192.png",
-      },
-      {
-        rel: "android-chrome-512",
-        url: "/android-chrome-512x512.png",
-      },
+      { rel: "android-touch-icon", url: "/android-touch-icon.png" },
+      { rel: "manifest-icon-192", url: "/web-app-manifest-192x192.png" },
+      { rel: "manifest-icon-512", url: "/web-app-manifest-512x512.png" },
     ],
   },
   openGraph: {
