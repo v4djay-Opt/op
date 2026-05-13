@@ -53,18 +53,23 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // Studio: NO X-Frame-Options, only CSP frame-ancestors
       {
         source: "/studio",
         headers: [
-          { key: "X-Frame-Options", value: "ALLOWALL" },
-          { key: "Content-Security-Policy", value: "frame-ancestors https://sanity.io https://*.sanity.io" },
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'self' https://sanity.io https://*.sanity.io",
+          },
         ],
       },
       {
         source: "/studio/:path*",
         headers: [
-          { key: "X-Frame-Options", value: "ALLOWALL" },
-          { key: "Content-Security-Policy", value: "frame-ancestors https://sanity.io https://*.sanity.io" },
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'self' https://sanity.io https://*.sanity.io",
+          },
         ],
       },
     ];
