@@ -1,7 +1,7 @@
-import { createClient, type SanityClient } from "next-sanity";
+import { createClient } from "@sanity/client";
 import { projectId, dataset, apiVersion, useCdn } from "./env";
 
-const client: SanityClient = createClient({
+const client = createClient({
   projectId,
   dataset,
   apiVersion,
@@ -14,7 +14,7 @@ export async function sanityFetch<T>(
   params: Record<string, unknown> = {}
 ): Promise<T | null> {
   try {
-    return await client.fetch<T>(query, params, { next: { revalidate: 60 } });
+    return await client.fetch<T>(query, params);
   } catch (err) {
     console.error("[sanityFetch] error:", err);
     return null;
