@@ -96,7 +96,7 @@ export function HowItWorks() {
   const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section className="py-20 lg:py-28 px-4 bg-surface-alt">
+    <section className="py-[64px] lg:py-[120px] px-4 bg-surface-alt">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           label="PROCESS"

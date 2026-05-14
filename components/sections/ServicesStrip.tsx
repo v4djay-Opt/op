@@ -164,7 +164,7 @@ export const ServicesStrip = memo(function ServicesStrip() {
   }, []);
 
   return (
-    <section className="relative py-20 lg:py-28 px-4">
+    <section className="relative py-[64px] lg:py-[120px] px-4">
       <div ref={pinRef} className="mx-auto max-w-5xl py-10 lg:py-16">
         <SectionHeading
           label="What We Do"

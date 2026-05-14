@@ -62,7 +62,7 @@ export function BlogPreview({ posts }: BlogPreviewProps) {
   if (!posts.length) return null;
 
   return (
-    <section className="relative py-20 lg:py-28 px-4 bg-surface-alt overflow-hidden">
+    <section className="relative py-[64px] lg:py-[120px] px-4 bg-surface-alt overflow-hidden">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           label="Blog"

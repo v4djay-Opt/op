@@ -11,6 +11,7 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { PricingCards } from "@/components/sections/PricingCards";
 import { IntegrationsGrid } from "@/components/sections/IntegrationsGrid";
 import { BlogPreview } from "@/components/sections/BlogPreview";
+import { FAQ } from "@/components/sections/FAQ";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { sanityFetch } from "@/lib/sanity/client";
 import { postsQuery } from "@/lib/sanity/queries";
@@ -92,6 +93,7 @@ export default async function Home() {
       <WhyOptimax />
       <CaseStudies />
       <Testimonials />
+      <FAQ />
       <PricingCards />
       <IntegrationsGrid />
       <BlogPreview posts={posts} />

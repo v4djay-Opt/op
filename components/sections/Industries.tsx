@@ -168,7 +168,7 @@ export function Industries() {
   const standard = industries.filter((i) => !i.featured);
 
   return (
-    <section className="relative py-20 lg:py-28 px-4 overflow-hidden">
+    <section className="relative py-[64px] lg:py-[120px] px-4 overflow-hidden">
       {/* Subtle background texture */}
       <div className="absolute inset-0 bg-surface-alt" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.02] to-transparent pointer-events-none" />

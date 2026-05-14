@@ -56,7 +56,7 @@ export function IntegrationsGrid() {
   const duplicated = [...tools, ...tools];
 
   return (
-    <section className="py-20 lg:py-28 overflow-hidden">
+    <section className="py-[64px] lg:py-[120px] overflow-hidden">
       <div className="mx-auto max-w-7xl px-4">
         <SectionHeading
           label="Tech Stack"

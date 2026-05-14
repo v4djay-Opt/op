@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { Check } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -10,7 +11,6 @@ const plans = [
     name: "Starter",
     description: "For small businesses getting started online",
     price: "₹29,999",
-    period: "project",
     features: [
       "5-page responsive website",
       "Basic search engine optimization setup",
@@ -24,7 +24,6 @@ const plans = [
     name: "Growth",
     description: "For businesses ready to scale",
     price: "₹79,999",
-    period: "project",
     features: [
       "Custom web app / CRM",
       "Advanced search engine optimization & analytics",
@@ -39,7 +38,6 @@ const plans = [
     name: "Enterprise",
     description: "For large-scale custom solutions",
     price: "Custom",
-    period: null,
     features: [
       "Full custom portal / SaaS",
       "Dedicated project manager",
@@ -53,8 +51,10 @@ const plans = [
 ];
 
 export function PricingCards() {
+  const [isAnnual, setIsAnnual] = useState(false);
+
   return (
-    <section className="py-20 lg:py-28 px-4 bg-surface-alt">
+    <section className="py-[64px] lg:py-[120px] px-4 bg-surface-alt">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           label="Pricing"
@@ -62,63 +62,111 @@ export function PricingCards() {
           description="No hidden fees. Choose a plan that fits your business stage and scale as you grow."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        {/* Billing Toggle */}
+        <div className="flex items-center justify-center gap-3 mb-12">
+          <span className={`text-sm font-medium ${!isAnnual ? "text-text" : "text-muted"}`}>
+            One-time
+          </span>
+          <button
+            onClick={() => setIsAnnual(!isAnnual)}
+            className="relative h-7 w-12 rounded-full bg-accent/20 transition-colors"
+            aria-label="Toggle billing"
+          >
+            <span
+              className={`absolute top-0.5 h-6 w-6 rounded-full bg-accent shadow-sm transition-transform ${
+                isAnnual ? "translate-x-5" : "translate-x-0.5"
+              }`}
+            />
+          </button>
+          <span className={`text-sm font-medium ${isAnnual ? "text-text" : "text-muted"}`}>
+            Annual Retainer
+          </span>
+          {isAnnual && (
+            <span className="rounded-full bg-accent-light px-2 py-0.5 text-xs font-semibold text-accent">
+              Save 20%
+            </span>
+          )}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
           {plans.map((plan, i) => (
             <FadeIn key={plan.name} delay={i * 0.1}>
-              {plan.featured ? (
-                <div className="flex flex-col rounded-2xl bg-accent text-white p-8 shadow-lg relative h-full">
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-highlight px-4 py-1 text-xs font-bold text-white">
+              <div
+                className={`relative flex flex-col rounded-2xl p-8 h-full transition-shadow hover:shadow-card-hover ${
+                  plan.featured
+                    ? "bg-accent text-white border-2 border-accent shadow-lg"
+                    : "bg-white border border-border"
+                }`}
+              >
+                {plan.featured && (
+                  <div className="absolute -top-3 right-4 rounded-full bg-accent-light px-3 py-1 text-xs font-bold text-accent border border-accent/20">
                     Most Popular
                   </div>
-                  <h3 className="text-lg font-semibold font-display">{plan.name}</h3>
-                  <p className="text-sm text-white/70 mt-1">{plan.description}</p>
-                  <div className="mt-6 flex items-baseline gap-1">
-                    <span className="text-4xl font-bold font-display">{plan.price}</span>
-                    {plan.period && (
-                      <span className="text-sm text-white/70">/{plan.period}</span>
-                    )}
-                  </div>
-                  <ul className="mt-8 space-y-3 flex-1">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-3 text-sm text-white/90">
-                        <Check className="h-4 w-4 shrink-0 mt-0.5" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    href="/contact"
-                    className="mt-8 block text-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-accent hover:bg-white/90 transition-colors"
+                )}
+
+                <h3
+                  className={`text-lg font-semibold font-display ${
+                    plan.featured ? "text-white" : "text-text"
+                  }`}
+                >
+                  {plan.name}
+                </h3>
+                <p
+                  className={`text-sm mt-1 ${
+                    plan.featured ? "text-white/70" : "text-muted"
+                  }`}
+                >
+                  {plan.description}
+                </p>
+
+                <div className="mt-6 flex items-baseline gap-1">
+                  <span
+                    className={`text-4xl font-bold font-display ${
+                      plan.featured ? "text-white" : "text-text"
+                    }`}
                   >
-                    Get Started
-                  </Link>
+                    {plan.price}
+                  </span>
+                  {plan.price !== "Custom" && (
+                    <span
+                      className={`text-sm ${
+                        plan.featured ? "text-white/70" : "text-muted"
+                      }`}
+                    >
+                      /project
+                    </span>
+                  )}
                 </div>
-              ) : (
-                <div className="flex flex-col rounded-2xl bg-white border border-border p-8 h-full">
-                  <h3 className="text-lg font-semibold text-text font-display">{plan.name}</h3>
-                  <p className="text-sm text-muted mt-1">{plan.description}</p>
-                  <div className="mt-6 flex items-baseline gap-1">
-                    <span className="text-4xl font-bold text-text font-display">{plan.price}</span>
-                    {plan.period && (
-                      <span className="text-sm text-muted">/{plan.period}</span>
-                    )}
-                  </div>
-                  <ul className="mt-8 space-y-3 flex-1">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-3 text-sm text-text-secondary">
-                        <Check className="h-4 w-4 text-accent shrink-0 mt-0.5" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    href="/contact"
-                    className="mt-8 block text-center rounded-full border border-border px-6 py-3 text-sm font-semibold text-text hover:bg-surface-alt transition-colors"
-                  >
-                    Get Started
-                  </Link>
-                </div>
-              )}
+
+                <ul className="mt-8 space-y-3 flex-1">
+                  {plan.features.map((f) => (
+                    <li
+                      key={f}
+                      className={`flex items-start gap-3 text-sm ${
+                        plan.featured ? "text-white/90" : "text-text-secondary"
+                      }`}
+                    >
+                      <Check
+                        className={`h-4 w-4 shrink-0 mt-0.5 ${
+                          plan.featured ? "text-white" : "text-accent"
+                        }`}
+                      />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  href="/contact"
+                  className={`mt-8 block text-center rounded-full px-6 py-3 text-sm font-semibold transition-colors ${
+                    plan.featured
+                      ? "bg-white text-accent hover:bg-white/90"
+                      : "border border-border text-text hover:bg-surface-alt"
+                  }`}
+                >
+                  Get Started
+                </Link>
+              </div>
             </FadeIn>
           ))}
         </div>

@@ -40,7 +40,7 @@ const products = [
 
 export function ProductsShowcase() {
   return (
-    <section className="relative py-20 lg:py-28 px-4 bg-surface-alt">
+    <section className="relative py-[64px] lg:py-[120px] px-4 bg-surface-alt">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           label="Products"
