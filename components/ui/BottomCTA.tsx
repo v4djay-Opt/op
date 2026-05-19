@@ -25,7 +25,7 @@ export function BottomCTA({
       <p className="text-text-secondary max-w-xl mx-auto mb-6">{subtitle}</p>
       <Link
         href={href}
-        className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-base font-semibold text-white transition-all hover:bg-accent-hover hover:shadow-glow"
+        className="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-full bg-accent px-8 py-4 text-base font-semibold text-white transition-all hover:bg-accent-hover hover:shadow-glow"
       >
         {buttonText}
         <ArrowRight className="h-5 w-5" />

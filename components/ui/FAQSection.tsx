@@ -18,7 +18,7 @@ export function FAQSection({ faqs }: FAQSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <FadeIn className="mx-auto max-w-3xl">
+    <FadeIn className="mx-auto max-w-[700px]">
       <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-8 text-center">
         Frequently Asked Questions
       </h2>

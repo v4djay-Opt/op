@@ -58,6 +58,7 @@ export default async function BlogPage() {
         title="Insights for Digital Growth"
         subtitle="Actionable strategies on marketing, design, CRM, and product development."
         green
+        breadcrumbs={[{ label: "Blog" }]}
       />
 
       <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">

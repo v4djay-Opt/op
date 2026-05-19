@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { services } from "@/lib/data/services";
 import { industries } from "@/lib/data/industries";
-import { products } from "@/lib/data/products";
 import { getAllFallbackPostSlugs } from "@/lib/data/blog-fallback";
 import { getAllFallbackCaseStudySlugs } from "@/lib/data/casestudy-fallback";
 
@@ -12,7 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     { path: "", priority: 1 },
     { path: "/services", priority: 0.8 },
-    { path: "/products", priority: 0.8 },
     { path: "/industries", priority: 0.8 },
     { path: "/blog", priority: 0.7 },
     { path: "/case-studies", priority: 0.7 },
@@ -22,7 +20,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const dynamicRoutes = [
     ...services.map((s) => `/services/${s.slug}`),
     ...industries.map((i) => `/industries/${i.slug}`),
-    ...products.map((p) => `/products/${p.slug}`),
     ...getAllFallbackPostSlugs().map((s) => `/blog/${s}`),
     ...getAllFallbackCaseStudySlugs().map((s) => `/case-studies/${s}`),
   ];

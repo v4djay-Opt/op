@@ -222,7 +222,7 @@ const platforms = [
 const process = [
   {
     step: 1,
-    title: "Brand Voice & Onboarding",
+    title: "Brand Audit & Onboarding",
     description:
       "We spend the first week understanding your business, competitors, tone, and goals. We define your content pillars and platform strategy before writing a single post.",
   },
@@ -254,9 +254,10 @@ const stats = [
 
 const pricing = [
   {
-    name: "Starter",
+    plan: "Starter",
     price: "Rs. 8,999/mo",
-    featured: false,
+    badge: null as string | null,
+    description: "For small businesses starting their social media presence.",
     features: [
       "12 posts per month",
       "Instagram + Facebook",
@@ -264,11 +265,13 @@ const pricing = [
       "Monthly performance report",
       "Content calendar approval",
     ],
+    cta: "Get Started",
   },
   {
-    name: "Growth",
+    plan: "Growth",
     price: "Rs. 14,999/mo",
-    featured: true,
+    badge: "Most Popular" as string | null,
+    description: "For growing brands ready to scale their social presence.",
     features: [
       "20 posts per month",
       "Instagram + Facebook + LinkedIn",
@@ -277,11 +280,13 @@ const pricing = [
       "Bi-weekly performance report",
       "WhatsApp integration",
     ],
+    cta: "Get Started",
   },
   {
-    name: "Pro",
+    plan: "Scale",
     price: "Rs. 24,999/mo",
-    featured: false,
+    badge: null as string | null,
+    description: "Full-stack social media management for ambitious brands.",
     features: [
       "30 posts per month",
       "All platforms incl. YouTube",
@@ -290,6 +295,7 @@ const pricing = [
       "Weekly report + strategy call",
       "Dedicated account manager",
     ],
+    cta: "Book a Call",
   },
 ];
 
@@ -336,194 +342,173 @@ export default function SocialMediaPage() {
       </script>
 
       {/* ── HERO ── */}
-      <section className="relative min-h-[520px] flex flex-col justify-center pt-20 pb-10 px-4 overflow-hidden" style={{ background: "#1a4a3a" }}>
-        <div
-          className="absolute -top-24 -left-24 h-[500px] w-[500px] rounded-full pointer-events-none"
-          style={{ background: "rgba(255,255,255,0.04)" }}
-        />
-        <div
-          className="absolute -bottom-16 -right-16 h-[350px] w-[350px] rounded-full pointer-events-none"
-          style={{ background: "rgba(255,255,255,0.03)" }}
-        />
+      <section className="relative min-h-[540px] flex flex-col justify-center pt-20 pb-10 px-4 overflow-hidden" style={{ background: "#1a4a3a" }}>
+        <div className="absolute -top-24 -left-24 h-[500px] w-[500px] rounded-full pointer-events-none" style={{ background: "rgba(255,255,255,0.04)" }} />
+        <div className="absolute -bottom-16 -right-16 h-[350px] w-[350px] rounded-full pointer-events-none" style={{ background: "rgba(255,255,255,0.03)" }} />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <FadeIn>
-            <Breadcrumbs
-              items={[
-                { label: "Services", href: "/services" },
-                { label: "Social Media Management" },
-              ]}
-              light
-            />
-          </FadeIn>
           <FadeIn delay={0.1}>
-            <span className="inline-block text-sm font-semibold uppercase tracking-wider text-white/50 font-display mb-4">
-              Service
+            <span className="inline-block text-sm font-semibold uppercase tracking-wider text-white/50 font-display mb-4 mt-2">
+              Social Media Management
             </span>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <h1 className="text-[clamp(2rem,4.5vw,3.2rem)] font-bold text-white font-display leading-[1.15]">
-              Social Media Management
+            <h1 className="text-[clamp(2rem,4.5vw,3.4rem)] font-bold text-white font-display leading-[1.12]">
+              Social Media Management Services in Gurgaon
             </h1>
           </FadeIn>
           <FadeIn delay={0.3}>
-            <p className="mt-4 text-base font-normal text-white/75 max-w-[580px] mx-auto leading-relaxed">
-              Build a Brand People Love and Remember
+            <p className="mt-5 text-base font-normal text-white/75 max-w-[600px] mx-auto leading-relaxed">
+              Build a brand people love and remember — across Instagram, Facebook, LinkedIn, and more
             </p>
+          </FadeIn>
+          <FadeIn delay={0.4}>
+            <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href="https://cal.com/optimax-studio"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#1a4a3a] transition-all hover:bg-white/90"
+              >
+                Book Free Call
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <Link
+                href="/case-studies"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-white/10"
+              >
+                View Our Work
+              </Link>
+            </div>
           </FadeIn>
         </div>
       </section>
 
+      {/* ── BREADCRUMB BAR ── */}
+      <div className="border-b border-border bg-[#235142] px-4 py-3">
+        <div className="mx-auto w-full max-w-6xl">
+          <Breadcrumbs
+            light
+            className="!mb-0"
+            items={[
+              { label: "Services", href: "/services" },
+              { label: "Social Media Management" },
+            ]}
+          />
+        </div>
+      </div>
+
+      {/* ── LOCAL SEO TRUST STRIP ── */}
+      <div className="border-b border-border bg-surface-alt px-4 py-3">
+        <p className="mx-auto max-w-4xl text-center text-sm text-muted">
+          📍 Based in <strong className="text-text">Gurgaon</strong> — serving clients across Delhi NCR, Mumbai, Bangalore, and internationally. In-person or fully remote.
+        </p>
+      </div>
+
       {/* ── MAIN CONTENT ── */}
-      <section className="inner-page pt-12 md:pt-16 px-4">
+      <section className="inner-page pt-12 md:pt-16 px-4 pb-24">
         <div className="mx-auto max-w-6xl">
-          {/* Description */}
+
+          {/* Intro paragraph */}
           <FadeIn>
             <p className="text-lg text-muted leading-relaxed mb-16">
-              End-to-end social media management service from content creation to
-              community engagement. We grow your following and turn fans into
-              customers — across Instagram, Facebook, LinkedIn, and more.
+              Optimax Studio is a full-service <strong>social media management agency in Gurgaon</strong> that builds brand presence, drives engagement, and turns followers into customers. We handle everything — content, Reels, community, and reporting — so you can focus on running your business. Whether you&apos;re a startup, a local business, or a growing brand, we manage your social media as if it were our own.
             </p>
           </FadeIn>
 
           {/* What We Do */}
           <FadeIn className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-4">
               What We Do
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {whatWeDo.map((item, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-3 rounded-xl border border-accent/20 bg-accent p-5"
-                >
+                <div key={i} className="flex items-start gap-3 rounded-xl border border-accent/20 bg-accent p-5">
                   <CheckCircle2 className="h-5 w-5 shrink-0 text-white/80 mt-0.5" />
                   <div>
-                    <span className="text-sm text-white leading-relaxed block">
-                      {item.title}
-                    </span>
-                    <span className="text-xs text-white/75 leading-relaxed mt-1 block">
-                      {item.description}
-                    </span>
+                    <span className="text-sm font-semibold text-white block mb-1">{item.title}</span>
+                    <span className="text-xs text-white/75 leading-relaxed">{item.description}</span>
                   </div>
                 </div>
               ))}
             </div>
           </FadeIn>
 
-          {/* Platforms We Manage */}
+          {/* Platform Tags */}
           <FadeIn className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-6">
-              Instagram Management Service & More Platforms
+            <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-4">
+              Platform-Specific Content Strategy
             </h2>
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-2 mb-4">
               {platforms.map((p) => (
-                <span
-                  key={p}
-                  className="inline-block rounded-full bg-accent/10 text-accent px-4 py-1.5 text-sm font-medium"
-                >
+                <span key={p} className="inline-block rounded-full bg-accent/10 text-accent px-4 py-1.5 text-sm font-medium">
                   {p}
                 </span>
               ))}
             </div>
-            <p className="text-base text-muted leading-relaxed max-w-3xl">
-              We create platform-specific content strategies — Reels and carousels
-              for Instagram, thought leadership posts for LinkedIn, and video content
-              for YouTube. Each platform gets a tailored approach based on your
-              audience, posting time data, and business goals. Our{" "}
-              <Link
-                href="/services/social-media-management"
-                className="text-accent hover:underline"
-              >
-                instagram management service
-              </Link>{" "}
-              is one of our most in-demand offerings across India.
+            <p className="text-base text-muted leading-relaxed">
+              Each platform gets a tailored approach based on your audience, posting time data, and business goals.
             </p>
           </FadeIn>
 
-          {/* SEO Content Block */}
+          {/* Why Choose */}
           <FadeIn className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-4">
               Why Choose a Social Media Management Agency?
             </h2>
-            <div className="space-y-4 max-w-3xl">
+            <div className="space-y-4">
               <p className="text-base text-muted leading-relaxed">
-                Most businesses post inconsistently — a burst of content for a
-                week, then silence for a month. This inconsistency kills reach and
-                confuses your audience. Social media algorithms reward accounts
-                that show up regularly with quality content. Without a dedicated{" "}
-                <strong>social media management service</strong>, you&apos;re invisible
-                to thousands of potential customers who are actively searching for
-                what you offer.
+                Most businesses post inconsistently — a burst of content for a week, then silence for a month. This kills reach and confuses your audience. Social media algorithms reward accounts that show up regularly with quality content. Without a dedicated <strong>social media management service</strong>, you&apos;re invisible to thousands of potential customers who are actively searching for what you offer.
               </p>
               <p className="text-base text-muted leading-relaxed">
-                Social media is now the first place potential customers check
-                before making a purchase decision. Your Instagram profile,
-                LinkedIn page, and Facebook reviews are your digital storefront.
-                A well-managed presence builds trust before a single conversation
-                happens. Businesses with active, professional social media
-                accounts convert 3x more leads from the same traffic than those
-                without. That&apos;s why partnering with the right{" "}
-                <strong>social media management agency</strong> matters.
+                Your Instagram profile, LinkedIn page, and Facebook reviews are your digital storefront. A well-managed presence builds trust before a single conversation happens. Businesses with active, professional social media accounts convert 3x more leads from the same traffic than those without — that&apos;s why partnering with the right <strong>social media management agency</strong> matters.
               </p>
               <p className="text-base text-muted leading-relaxed">
-                At Optimax Studio, we don&apos;t just post content — we build a brand.
-                Every piece of content we create is backed by a strategy: what
-                your audience responds to, when they&apos;re most active, and what
-                moves them from follower to customer. Our clients across Gurgaon,
-                Delhi NCR, and pan-India see measurable results — more DM
-                inquiries, higher engagement rates, and a consistent brand voice —
-                within the first 30 days of our{" "}
-                <strong>social media management services</strong>.
-              </p>
-            </div>
-          </FadeIn>
-
-          {/* Demo Image */}
-          <FadeIn className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-6">
-              Our Process in Action
-            </h2>
-            <div className="rounded-2xl border border-border bg-white overflow-hidden">
-              <div className="relative aspect-[16/9] bg-surface-alt flex items-center justify-center">
-                <span className="absolute top-4 left-4 rounded-full bg-accent px-3 py-1 text-xs font-bold text-white">
-                  Sample Dashboard
-                </span>
-                <span className="text-muted text-sm font-medium">
-                  Social Media Management Dashboard
-                </span>
-              </div>
-              <p className="px-5 py-3 text-xs text-muted italic border-t border-border bg-surface-alt">
-                Sample social media management dashboard — content calendar,
-                platform performance &amp; engagement tracking. Your actual
-                dashboard will reflect your brand data.
+                At Optimax Studio, every piece of content is backed by a strategy: what your audience responds to, when they&apos;re most active, and what moves them from follower to customer. Our clients across Gurgaon, Delhi NCR, and pan-India see measurable results within the first 30 days.
               </p>
             </div>
           </FadeIn>
 
           {/* Our Process */}
-          <FadeIn className="mb-16">
+          <FadeIn className="mb-8">
             <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-6">
-              Our Process
+              How We Work
             </h2>
-            <div className="space-y-4">
-              {process.map((step) => (
-                <div
-                  key={step.step}
-                  className="flex items-start gap-4 rounded-xl border border-white/5 bg-navy-800/40 p-5"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent font-bold font-display">
-                    {step.step}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                {process.map((step) => (
+                  <div key={step.step} className="flex items-start gap-4 rounded-xl border border-white/5 bg-navy-800/40 p-5">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent font-bold font-display">
+                      {step.step}
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-text font-display">{step.title}</h3>
+                      <p className="text-sm text-muted mt-1">{step.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-base font-semibold text-text font-display">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm text-muted mt-1">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              <div className="relative rounded-2xl border border-border overflow-hidden h-64 lg:h-full min-h-[260px] bg-surface-alt flex items-center justify-center">
+                <span className="text-muted text-sm font-medium">Social Media Process</span>
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* Mid-page CTA — after process */}
+          <FadeIn className="mb-16">
+            <div className="rounded-2xl bg-accent/5 border border-accent/20 px-8 py-7 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div>
+                <p className="font-semibold text-text font-display text-lg">Not sure which package suits you?</p>
+                <p className="text-sm text-muted mt-1">Book a free 30-minute call and we&apos;ll recommend the right plan for your brand.</p>
+              </div>
+              <a
+                href="https://cal.com/optimax-studio"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-accent/90"
+              >
+                Book Free Call
+                <ArrowRight className="h-4 w-4" />
+              </a>
             </div>
           </FadeIn>
 
@@ -531,96 +516,72 @@ export default function SocialMediaPage() {
           <FadeIn className="mb-16">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {stats.map((stat, i) => (
-                <div
-                  key={i}
-                  className="rounded-2xl border border-accent/20 bg-accent/5 p-6 text-center"
-                >
-                  <div className="text-3xl md:text-4xl font-bold text-accent font-display">
-                    {stat.value}
-                  </div>
-                  <div className="text-muted mt-2 text-sm">
-                    {stat.label}
-                  </div>
+                <div key={i} className="rounded-2xl border border-accent/20 bg-accent/5 p-6 text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-accent font-display">{stat.value}</div>
+                  <div className="text-muted mt-2 text-sm">{stat.label}</div>
                 </div>
               ))}
             </div>
           </FadeIn>
 
-          {/* Pricing Packages */}
+          {/* Pricing */}
           <FadeIn className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-8 text-center">
-              Social Media Management Packages &amp; Pricing
+            <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-4">
+              Transparent Pricing — No Hidden Fees
             </h2>
+            <p className="text-base text-muted leading-relaxed mb-8">
+              Month-to-month plans, no lock-ins. Need something custom?{" "}
+              <Link href="/contact" className="text-accent hover:underline font-medium">Get in touch</Link> for a tailored quote.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {pricing.map((plan) => (
-                <div
-                  key={plan.name}
-                  className={`flex flex-col rounded-2xl border p-6 relative ${
-                    plan.featured
-                      ? "border-accent/30 bg-accent/5"
-                      : "border-border bg-white shadow-card"
-                  }`}
-                >
-                  {plan.featured && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-accent px-4 py-1 text-xs font-bold text-white">
-                      Most Popular
-                    </div>
-                  )}
-                  <div className="mb-4">
-                    <span
-                      className={`text-sm font-medium ${
-                        plan.featured ? "text-accent" : "text-muted"
-                      }`}
-                    >
-                      {plan.name}
+                <div key={plan.plan} className={`flex flex-col rounded-2xl border p-6 ${plan.badge === "Most Popular" ? "border-accent/30 bg-accent/5" : "border-border bg-white shadow-card"}`}>
+                  {plan.badge && (
+                    <span className="self-start mb-3 inline-block rounded-full bg-accent text-white text-xs font-semibold px-3 py-1">
+                      {plan.badge}
                     </span>
-                    <div
-                      className={`mt-1 text-3xl font-bold font-display ${
-                        plan.featured ? "text-accent" : "text-text"
-                      }`}
-                    >
-                      {plan.price}
-                    </div>
-                  </div>
-                  <ul className="mb-6 space-y-3 flex-1">
-                    {plan.features.map((f, idx) => (
-                      <li
-                        key={idx}
-                        className={`flex items-start gap-2 text-sm ${
-                          plan.featured ? "text-text" : "text-muted"
-                        }`}
-                      >
-                        <CheckCircle2
-                          className={`h-4 w-4 shrink-0 mt-0.5 ${
-                            plan.featured ? "text-accent" : "text-accent"
-                          }`}
-                        />
+                  )}
+                  <span className="text-sm font-medium text-muted">{plan.plan}</span>
+                  <div className="mt-1 text-3xl font-bold text-text font-display">{plan.price}</div>
+                  <p className="text-xs text-muted mt-1 mb-4">{plan.description}</p>
+                  <ul className="mb-6 space-y-2.5 flex-1">
+                    {plan.features.map((f, fi) => (
+                      <li key={fi} className="flex items-start gap-2 text-sm text-muted">
+                        <CheckCircle2 className="h-4 w-4 shrink-0 text-accent mt-0.5" />
                         {f}
                       </li>
                     ))}
                   </ul>
-                  <Link
-                    href="/contact"
-                    className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all ${
-                      plan.featured
-                        ? "bg-accent text-white hover:bg-accent-hover"
-                        : "border border-border text-text hover:bg-surface-alt"
-                    }`}
+                  <a
+                    href="https://cal.com/optimax-studio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all ${plan.badge === "Most Popular" ? "bg-accent text-white hover:bg-accent/90" : "border border-accent/30 text-accent hover:bg-accent/5"}`}
                   >
-                    Get Started
+                    {plan.cta}
                     <ArrowRight className="h-4 w-4" />
-                  </Link>
+                  </a>
                 </div>
               ))}
             </div>
-            <div className="mt-8 text-center">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-accent group/link hover:gap-2 transition-all"
+          </FadeIn>
+
+          {/* Mid-page CTA — after pricing */}
+          <FadeIn className="mb-16">
+            <div className="rounded-2xl bg-[#1a4a3a] px-8 py-7 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div>
+                <p className="font-semibold !text-white font-display text-lg">Ready to grow your social media presence?</p>
+                <p className="text-sm !text-white mt-1">We reply within 24 hours. No pushy sales — just a straight conversation.</p>
+              </div>
+              <a
+                href="https://cal.com/optimax-studio"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#1a4a3a] transition-all hover:bg-white/90"
               >
-                Not sure which plan fits? Book a free call
+                Book Free Call
                 <ArrowRight className="h-4 w-4" />
-              </Link>
+              </a>
             </div>
           </FadeIn>
 
@@ -629,65 +590,13 @@ export default function SocialMediaPage() {
             <FAQSection faqs={faqs} />
           </div>
 
-          {/* Interlinks */}
-          <FadeIn className="mb-16">
-            <div className="rounded-2xl border border-border bg-surface-alt p-6 md:p-8">
-              <h3 className="text-base font-semibold text-text font-display mb-4">
-                Explore Related Services &amp; Solutions
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {[
-                  {
-                    title: "Digital Marketing",
-                    desc: "SEO, paid ads & full-funnel campaigns",
-                    href: "/services/digital-marketing",
-                  },
-                  {
-                    title: "Web Design & Development",
-                    desc: "Websites that convert visitors to customers",
-                    href: "/services/web-design-development",
-                  },
-                  {
-                    title: "SEO Services",
-                    desc: "Rank on Google and grow organic traffic",
-                    href: "/services/seo",
-                  },
-                  {
-                    title: "Real Estate Social Media",
-                    desc: "Social media management for agents & builders",
-                    href: "/industries/real-estate",
-                  },
-                  {
-                    title: "Education Social Media",
-                    desc: "Build brand presence for schools & institutes",
-                    href: "/industries/schools-education",
-                  },
-                  {
-                    title: "Case Studies",
-                    desc: "See real results from our clients",
-                    href: "/case-studies",
-                  },
-                ].map((card) => (
-                  <Link
-                    key={card.href}
-                    href={card.href}
-                    className="group rounded-xl border border-border bg-white p-4 transition-shadow hover:shadow-md"
-                  >
-                    <span className="text-accent text-xs float-right mt-0.5">
-                      →
-                    </span>
-                    <strong className="text-sm text-text font-display block mb-1">
-                      {card.title}
-                    </strong>
-                    <span className="text-xs text-muted">{card.desc}</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </FadeIn>
-
           {/* Bottom CTA */}
-          <BottomCTA title="Ready to start your social media management project?" />
+          <BottomCTA
+            title="Ready to start your social media management project?"
+            subtitle="Book a free 30-minute strategy call and let us show you what is possible."
+            buttonText="Book Free Call"
+            href="https://cal.com/optimax-studio"
+          />
         </div>
       </section>
     </>

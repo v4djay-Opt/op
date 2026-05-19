@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <>
-      <PageHero label="Legal" title="Privacy Policy" />
+      <PageHero label="Legal" title="Privacy Policy" breadcrumbs={[{ label: "Privacy Policy" }]} />
 
       <section className="pb-24 lg:pb-32 px-4">
         <div className="mx-auto max-w-3xl prose-invert">

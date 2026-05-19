@@ -9,11 +9,12 @@ interface BreadcrumbItem {
 interface BreadcrumbsProps {
   items: BreadcrumbItem[];
   light?: boolean;
+  className?: string;
 }
 
-export function Breadcrumbs({ items, light }: BreadcrumbsProps) {
+export function Breadcrumbs({ items, light, className }: BreadcrumbsProps) {
   return (
-    <nav className={`flex items-center gap-2 text-sm mb-8 ${light ? "text-white/60" : "text-muted"}`}>
+    <nav className={`flex items-center gap-2 text-sm mb-8 ${light ? "text-white/60" : "text-muted"} ${className ?? ""}`}>
       <Link href="/" className={`transition-colors ${light ? "hover:text-white" : "hover:text-text"}`}>
         Home
       </Link>

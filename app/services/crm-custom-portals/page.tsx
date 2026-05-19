@@ -6,40 +6,40 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import {
   CheckCircle2,
   ArrowRight,
-  TrendingUp,
-  Search,
-  Share2,
-  Mail,
+  Database,
+  GitBranch,
+  ShieldCheck,
+  Plug,
   BarChart3,
-  Target,
+  Users,
 } from "lucide-react";
 import Link from "next/link";
 
 const SITE_URL = "https://optimaxstudio.com";
 
 export const metadata: Metadata = {
-  title: "Digital Marketing Agency in Gurgaon, India",
+  title: "CRM & Custom Portal Development in Gurgaon | Optimax Studio",
   description:
-    "Optimax Studio is a results-driven digital marketing agency in Gurgaon offering SEO, paid ads, social media & performance marketing services. Book a free call.",
+    "Custom CRM and business portal development in Gurgaon. Automate workflows, track leads, and give your team real-time visibility. Built for your exact process.",
   alternates: {
-    canonical: `${SITE_URL}/services/digital-marketing`,
+    canonical: `${SITE_URL}/services/crm-custom-portals`,
   },
   openGraph: {
-    title: "Digital Marketing Agency in Gurgaon, India | Optimax Studio",
+    title: "CRM & Custom Portal Development in Gurgaon | Optimax Studio",
     description:
-      "Optimax Studio is a results-driven digital marketing agency in Gurgaon offering SEO, paid ads, social media & performance marketing services. Book a free call.",
+      "Custom CRM and business portal development in Gurgaon. Automate workflows, track leads, and give your team real-time visibility. Built for your exact process.",
     type: "website",
-    url: `${SITE_URL}/services/digital-marketing`,
+    url: `${SITE_URL}/services/crm-custom-portals`,
     siteName: "Optimax Studio",
     locale: "en_IN",
-    images: [{ url: `${SITE_URL}/og/digital-marketing.jpg` }],
+    images: [{ url: `${SITE_URL}/og/crm-custom-portals.jpg` }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Digital Marketing Agency in Gurgaon, India | Optimax Studio",
+    title: "CRM & Custom Portal Development in Gurgaon | Optimax Studio",
     description:
-      "Optimax Studio is a results-driven digital marketing agency in Gurgaon offering SEO, paid ads, social media & performance marketing services. Book a free call.",
-    images: [`${SITE_URL}/og/digital-marketing.jpg`],
+      "Custom CRM and business portal development in Gurgaon. Automate workflows, track leads, and give your team real-time visibility. Built for your exact process.",
+    images: [`${SITE_URL}/og/crm-custom-portals.jpg`],
   },
 };
 
@@ -47,9 +47,9 @@ export const metadata: Metadata = {
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "Digital Marketing Agency",
+  name: "CRM & Custom Portal Development",
   description:
-    "Optimax Studio is a full-service digital marketing agency in Gurgaon offering SEO, Google Ads, social media marketing, performance marketing, and ecommerce digital marketing services across India.",
+    "Tailored CRMs and business portals that automate workflows, track leads, and give you real-time visibility into operations.",
   provider: {
     "@type": "Organization",
     name: "Optimax Studio",
@@ -66,11 +66,11 @@ const serviceSchema = {
     },
   },
   areaServed: "India",
-  serviceType: "Digital Marketing",
+  serviceType: "CRM & Custom Portal Development",
   offers: [
-    { "@type": "Offer", name: "Starter Plan", priceCurrency: "INR", price: "9999" },
-    { "@type": "Offer", name: "Growth Plan", priceCurrency: "INR", price: "19999" },
-    { "@type": "Offer", name: "Pro Plan", priceCurrency: "INR", price: "34999" },
+    { "@type": "Offer", name: "Basic Portal", priceCurrency: "INR", price: "49999" },
+    { "@type": "Offer", name: "Business CRM", priceCurrency: "INR", price: "99999" },
+    { "@type": "Offer", name: "Enterprise Portal", priceCurrency: "INR", price: "199999" },
   ],
 };
 
@@ -80,42 +80,42 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "What makes Optimax Studio the best digital marketing agency in Gurgaon?",
+      name: "Can the CRM integrate with WhatsApp?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Optimax Studio combines SEO, paid ads, social media, and performance marketing under one roof. We are a data-driven digital marketing company focused on delivering measurable ROI for every client — from startups to established brands.",
+        text: "Yes, we offer full WhatsApp Business API integration for lead capture, automated follow-ups, and team notifications.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you offer digital marketing services for ecommerce businesses?",
+      name: "Is the data secure?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. As a specialized ecommerce digital marketing agency, we run high-ROAS Google Shopping campaigns, Meta Ads, and SEO strategies specifically built for online stores to increase traffic, conversions, and repeat purchases.",
+        text: "Absolutely. We implement role-based access control, encrypted storage, and regular backups as standard on every project.",
       },
     },
     {
       "@type": "Question",
-      name: "How much do your digital marketing services cost?",
+      name: "How long does CRM development take?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Our digital marketing packages start at Rs. 9,999/month. Pricing depends on the channels and scope of work. Book a free strategy call to get a custom quote for your business.",
+        text: "Starter portals are delivered in 2 weeks. Business CRMs take 4 weeks. Enterprise builds are typically 6 weeks depending on scope and integrations.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you provide SEO and digital marketing services together?",
+      name: "Do you build on existing platforms or from scratch?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Absolutely. Our integrated approach combines search engine optimization with paid media and social media marketing — so your brand grows both organically and through paid channels simultaneously.",
+        text: "Both. We can build on top of existing tools where it makes sense, or build entirely from scratch when your workflow is unique enough to warrant it. We recommend based on your specific needs.",
       },
     },
     {
       "@type": "Question",
-      name: "Are you a digital marketing agency near me in Gurgaon or Delhi NCR?",
+      name: "Can we add features later?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. We are based in Sector 93, Gurgaon, and serve clients across Delhi NCR including Noida, Faridabad, and South Delhi — as well as remotely across India and internationally.",
+        text: "Yes. Every system we build is architected for extensibility. New modules, integrations, and user roles can be added at any stage without rebuilding from scratch.",
       },
     },
   ],
@@ -126,175 +126,146 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Services",
-      item: `${SITE_URL}/services`,
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      name: "Digital Marketing",
-    },
+    { "@type": "ListItem", position: 2, name: "Services", item: `${SITE_URL}/services` },
+    { "@type": "ListItem", position: 3, name: "CRM & Custom Portals" },
   ],
 };
 
 /* ── page data ── */
-const services = [
+const whatWeDo = [
   {
-    icon: Search,
-    title: "Search Engine Optimization (SEO)",
+    icon: Database,
+    title: "Custom CRM Development",
     description:
-      "As a dedicated search engine optimization agency, we drive sustainable organic growth through technical audits, keyword strategy, on-page optimization, and authority building.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Google Ads & PPC Management",
-    description:
-      "Data-driven paid campaigns across Google Search, Display, and Shopping — optimized for maximum ROAS and lowest cost per lead.",
-  },
-  {
-    icon: Share2,
-    title: "Social Media Marketing",
-    description:
-      "Full-funnel social media campaigns on Instagram, Facebook, and LinkedIn — from brand awareness to retargeting and lead conversion.",
-  },
-  {
-    icon: Target,
-    title: "Performance Marketing & Retargeting",
-    description:
-      "As a results-driven performance marketing company, we run retargeting funnels and lookalike audience campaigns that turn browsers into buyers.",
-  },
-  {
-    icon: Mail,
-    title: "Email Marketing & Automation",
-    description:
-      "Behaviour-triggered drip sequences, newsletters, and lifecycle campaigns that nurture leads through your funnel on autopilot.",
+      "Built around your exact workflow — lead stages, fields, follow-up rules, and team structure — not forced into a generic template.",
   },
   {
     icon: BarChart3,
-    title: "Analytics & Conversion Rate Optimization",
+    title: "Lead Tracking & Pipeline Management",
     description:
-      "GA4 setup, heatmaps, A/B testing, and weekly reporting — so every decision is backed by data, not guesswork.",
+      "Visual pipelines, automated follow-up reminders, and real-time dashboards so no lead ever goes cold.",
+  },
+  {
+    icon: Users,
+    title: "Employee & Vendor Portals",
+    description:
+      "Dedicated portals for internal teams, vendors, or clients — with role-based access, document management, and task tracking.",
+  },
+  {
+    icon: Plug,
+    title: "Tool Integration",
+    description:
+      "Connect with WhatsApp Business API, email, Razorpay, Stripe, and your existing software — all in one unified workflow.",
   },
 ];
 
 const process = [
   {
     step: 1,
-    title: "Audit & Strategy",
+    title: "Map",
     description:
-      "Deep dive into your current marketing funnel, ad accounts, SEO health, and competitor landscape — then build a 90-day growth roadmap.",
+      "We document your current workflow, pain points, and team structure to build a system that reflects how you actually work.",
   },
   {
     step: 2,
-    title: "Planning",
+    title: "Design",
     description:
-      "Define channel mix, budget allocation, content calendar, and KPIs before a single rupee is spent.",
+      "Wireframes and user flows for every role — reviewed and approved by your team before a single line of code is written.",
   },
   {
     step: 3,
-    title: "Execute",
+    title: "Build",
     description:
-      "Launch campaigns with precise targeting, conversion-optimized creatives, and tracking in place.",
+      "Clean, scalable architecture with role-based security, encrypted data storage, and performance built in from day one.",
   },
   {
     step: 4,
-    title: "Scale",
+    title: "Train & Deploy",
     description:
-      "Optimize based on real ROAS data and aggressively scale what generates the highest return.",
+      "We onboard your team, run live training sessions, and stay available post-launch to ensure smooth adoption.",
   },
 ];
 
 const stats = [
-  { value: "3x", label: "Average ROAS for Clients" },
-  { value: "25+", label: "Brands Scaled" },
-  { value: "60 Days", label: "To First Measurable Results" },
+  { value: "40%", label: "Admin Time Saved on Average" },
+  { value: "3–6 Wks", label: "Average Delivery Time" },
+  { value: "100%", label: "Custom Built — No Templates" },
 ];
 
 const pricing = [
   {
     plan: "Starter",
-    price: "Rs. 9,999/mo",
+    price: "₹49,999",
     badge: null as string | null,
-    description: "For early-stage startups and local businesses.",
+    description: "Basic Portal — one-time project fee.",
     features: [
-      "1 paid channel (Google or Meta)",
-      "Ad spend management up to Rs. 50,000",
-      "Monthly performance report",
-      "Landing page audit",
-      "Basic SEO health check",
-      "Email support",
+      "Up to 5 user roles",
+      "Lead or task tracking module",
+      "WhatsApp or email integration",
+      "Basic dashboard & reports",
+      "2 weeks delivery",
     ],
     cta: "Get Started",
   },
   {
     plan: "Growth",
-    price: "Rs. 19,999/mo",
+    price: "₹99,999",
     badge: "Most Popular" as string | null,
-    description: "For growing brands ready to scale.",
+    description: "Business CRM — one-time project fee.",
     features: [
-      "2 paid channels (Google + Meta)",
-      "Ad spend management up to Rs. 1,50,000",
-      "SEO (on-page + content)",
-      "Social media ad creatives (8/mo)",
-      "Bi-weekly performance reports",
-      "Conversion rate optimization",
-      "WhatsApp + email support",
+      "Up to 15 user roles",
+      "Full CRM: leads, pipeline, follow-ups",
+      "Payment + WhatsApp + Email integration",
+      "Custom dashboard & reports",
+      "4 weeks delivery",
     ],
     cta: "Get Started",
   },
   {
     plan: "Scale",
-    price: "Rs. 34,999/mo",
+    price: "₹1,99,999",
     badge: null as string | null,
-    description: "Full-stack performance marketing for ambitious brands.",
+    description: "Enterprise Portal — one-time project fee.",
     features: [
-      "All channels (Google, Meta, LinkedIn)",
-      "Unlimited ad spend management",
-      "SEO + content strategy",
-      "Email automation setup",
-      "Weekly reporting + strategy call",
-      "Dedicated account manager",
-      "Landing page design (1/mo)",
+      "Unlimited roles & modules",
+      "Multi-branch or multi-team support",
+      "API integrations + automation workflows",
+      "Dedicated project manager",
+      "6 weeks delivery",
     ],
-    cta: "Book a Call",
+    cta: "Get a Quote",
   },
 ];
 
 const faqs = [
   {
-    question:
-      "What makes Optimax Studio the best digital marketing agency in Gurgaon?",
+    question: "Can the CRM integrate with WhatsApp?",
     answer:
-      "Optimax Studio combines SEO, paid ads, social media, and performance marketing under one roof. We are a data-driven digital marketing company focused on delivering measurable ROI for every client — from startups to established brands.",
+      "Yes, we offer full WhatsApp Business API integration for lead capture, automated follow-ups, and team notifications.",
   },
   {
-    question: "Do you offer digital marketing services for ecommerce businesses?",
+    question: "Is the data secure?",
     answer:
-      "Yes. As a specialized ecommerce digital marketing agency, we run high-ROAS Google Shopping campaigns, Meta Ads, and SEO strategies specifically built for online stores to increase traffic, conversions, and repeat purchases.",
+      "Absolutely. We implement role-based access control, encrypted storage, and regular backups as standard on every project.",
   },
   {
-    question: "How much do your digital marketing services cost?",
+    question: "How long does CRM development take?",
     answer:
-      "Our digital marketing packages start at Rs. 9,999/month. Pricing depends on the channels and scope of work. Book a free strategy call to get a custom quote for your business.",
+      "Starter portals are delivered in 2 weeks. Business CRMs take 4 weeks. Enterprise builds are typically 6 weeks depending on scope and integrations.",
   },
   {
-    question: "Do you provide SEO and digital marketing services together?",
+    question: "Do you build on existing platforms or from scratch?",
     answer:
-      "Absolutely. Our integrated approach combines search engine optimization with paid media and social media marketing — so your brand grows both organically and through paid channels simultaneously.",
+      "Both. We can build on top of existing tools where it makes sense, or build entirely from scratch when your workflow is unique enough to warrant it. We recommend based on your specific needs.",
   },
   {
-    question:
-      "Are you a digital marketing agency near me in Gurgaon or Delhi NCR?",
+    question: "Can we add features later?",
     answer:
-      "Yes. We are based in Sector 93, Gurgaon, and serve clients across Delhi NCR including Noida, Faridabad, and South Delhi — as well as remotely across India and internationally.",
+      "Yes. Every system we build is architected for extensibility. New modules, integrations, and user roles can be added at any stage without rebuilding from scratch.",
   },
 ];
 
-
-export default function DigitalMarketingPage() {
+export default function CRMPage() {
   return (
     <>
       {/* ── JSON-LD ── */}
@@ -310,29 +281,22 @@ export default function DigitalMarketingPage() {
 
       {/* ── HERO ── */}
       <section className="relative min-h-[540px] flex flex-col justify-center pt-20 pb-10 px-4 overflow-hidden" style={{ background: "#1a4a3a" }}>
-        <div
-          className="absolute -top-24 -left-24 h-[500px] w-[500px] rounded-full pointer-events-none"
-          style={{ background: "rgba(255,255,255,0.04)" }}
-        />
-        <div
-          className="absolute -bottom-16 -right-16 h-[350px] w-[350px] rounded-full pointer-events-none"
-          style={{ background: "rgba(255,255,255,0.03)" }}
-        />
-        {/* img: alt="digital marketing agency team at Optimax Studio Gurgaon" */}
+        <div className="absolute -top-24 -left-24 h-[500px] w-[500px] rounded-full pointer-events-none" style={{ background: "rgba(255,255,255,0.04)" }} />
+        <div className="absolute -bottom-16 -right-16 h-[350px] w-[350px] rounded-full pointer-events-none" style={{ background: "rgba(255,255,255,0.03)" }} />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <FadeIn delay={0.1}>
             <span className="inline-block text-sm font-semibold uppercase tracking-wider text-white/50 font-display mb-4 mt-2">
-              Digital Marketing
+              CRM & Custom Portals
             </span>
           </FadeIn>
           <FadeIn delay={0.2}>
             <h1 className="text-[clamp(2rem,4.5vw,3.4rem)] font-bold text-white font-display leading-[1.12]">
-              Digital Marketing Agency in Gurgaon &amp; Delhi NCR
+              CRM & Custom Portals Development in Gurgaon
             </h1>
           </FadeIn>
           <FadeIn delay={0.3}>
             <p className="mt-5 text-base font-normal text-white/75 max-w-[600px] mx-auto leading-relaxed">
-              SEO, paid ads, social media, and performance marketing — all under one roof
+              Software that works exactly how your business does — automate workflows, track leads, give your team real-time visibility
             </p>
           </FadeIn>
           <FadeIn delay={0.4}>
@@ -343,14 +307,14 @@ export default function DigitalMarketingPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#1a4a3a] transition-all hover:bg-white/90"
               >
-                Book a Free Strategy Call
+                Book Free Call
                 <ArrowRight className="h-4 w-4" />
               </a>
               <Link
                 href="/case-studies"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-white/10"
               >
-                See Our Results
+                See How It Works
               </Link>
             </div>
           </FadeIn>
@@ -365,7 +329,7 @@ export default function DigitalMarketingPage() {
             className="!mb-0"
             items={[
               { label: "Services", href: "/services" },
-              { label: "Digital Marketing" },
+              { label: "CRM & Custom Portals" },
             ]}
           />
         </div>
@@ -385,43 +349,46 @@ export default function DigitalMarketingPage() {
           {/* Intro paragraph */}
           <FadeIn>
             <p className="text-lg text-muted leading-relaxed mb-16">
-              Optimax Studio is a full-service <strong>digital marketing agency in Gurgaon</strong> that helps startups, e-commerce brands, and growing businesses dominate online. We combine SEO, Google Ads, social media, and performance marketing into a single integrated strategy — so every channel compounds your results instead of competing with them. Whether you&apos;re a local business or scaling internationally, we run your marketing as if it were our own.
+              Optimax Studio builds <strong>tailored CRMs and business portals</strong> that automate workflows, track leads, and give you real-time visibility into operations. Every system is purpose-built around your exact process — no off-the-shelf templates, no compromises. Built for teams in Gurgaon and Delhi NCR who have outgrown spreadsheets.
             </p>
           </FadeIn>
 
           {/* Why Choose Us */}
           <FadeIn className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-4">
-              Why Choose a Performance Marketing Agency Over a Traditional One?
+              Why Choose a Custom-Built CRM?
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                { title: "Data-Driven Results", desc: "Every campaign runs on real-time data — click-through rate, cost per lead, ROAS, and conversion rate tracked weekly." },
-                { title: "Full-Funnel Coverage", desc: "From brand awareness at the top of the funnel to retargeting and email automation at the bottom — we cover it all." },
-                { title: "Integrated Paid & Organic", desc: "Paid media fuels immediate growth while SEO builds long-term organic traffic — both working together." },
-                { title: "No Locked Contracts", desc: "Month-to-month engagements. We earn your trust every 30 days — or you walk. No lock-ins, no hidden fees." },
-              ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3 rounded-xl border border-accent/20 bg-accent p-5">
-                  <CheckCircle2 className="h-5 w-5 shrink-0 text-white/80 mt-0.5" />
-                  <div>
-                    <span className="text-sm font-semibold text-white block mb-1">{item.title}</span>
-                    <span className="text-xs text-white/75 leading-relaxed">{item.desc}</span>
+                { icon: GitBranch, title: "Built Around Your Workflow", desc: "No template forced onto your process. We map every stage, field, and rule to match exactly how your team works." },
+                { icon: Plug, title: "Integrates With Your Stack", desc: "WhatsApp Business API, email, payment gateways, and more — your CRM connects to every tool you already use." },
+                { icon: ShieldCheck, title: "Secure & Scalable", desc: "Role-based access control, encrypted data, and an architecture that grows with your team and your business." },
+                { icon: Users, title: "Trained & Supported", desc: "We onboard your team with live training sessions and stay available post-launch — no abandoned handovers." },
+              ].map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <div key={i} className="flex items-start gap-3 rounded-xl border border-accent/20 bg-accent p-5">
+                    <Icon className="h-5 w-5 shrink-0 text-white/80 mt-0.5" />
+                    <div>
+                      <span className="text-sm font-semibold text-white block mb-1">{item.title}</span>
+                      <span className="text-xs text-white/75 leading-relaxed">{item.desc}</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </FadeIn>
 
-          {/* Our Services */}
+          {/* What We Do */}
           <FadeIn className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-4">
-              Our Digital Marketing Services
+              What We Build
             </h2>
             <p className="text-base text-muted leading-relaxed mb-6">
-              Every service is built around your specific audience, industry, and conversion goal — not a generic package.
+              Every solution is purpose-built around your business goals — not a cookie-cutter template. Secure, scalable, and ready to grow.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {services.map((item, i) => {
+              {whatWeDo.map((item, i) => {
                 const Icon = item.icon;
                 return (
                   <div key={i} className="flex items-start gap-4 rounded-xl border border-white/5 bg-navy-800/40 p-5">
@@ -458,7 +425,7 @@ export default function DigitalMarketingPage() {
                 ))}
               </div>
               <div className="relative rounded-2xl border border-border overflow-hidden h-64 lg:h-full min-h-[260px] bg-surface-alt flex items-center justify-center">
-                <span className="text-muted text-sm font-medium">Digital Marketing Process</span>
+                <span className="text-muted text-sm font-medium">CRM Development Process</span>
               </div>
             </div>
           </FadeIn>
@@ -467,8 +434,8 @@ export default function DigitalMarketingPage() {
           <FadeIn className="mb-16">
             <div className="rounded-2xl bg-accent/5 border border-accent/20 px-8 py-7 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
-                <p className="font-semibold text-text font-display text-lg">Not sure where to start?</p>
-                <p className="text-sm text-muted mt-1">Book a free 30-minute strategy call and we&apos;ll map the right channels for your business.</p>
+                <p className="font-semibold text-text font-display text-lg">Not sure what you need?</p>
+                <p className="text-sm text-muted mt-1">Book a free 30-minute consultation and we&apos;ll map the right solution for your business.</p>
               </div>
               <a
                 href="https://cal.com/optimax-studio"
@@ -476,7 +443,7 @@ export default function DigitalMarketingPage() {
                 rel="noopener noreferrer"
                 className="shrink-0 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-accent/90"
               >
-                Book Free Strategy Call
+                Book Free Call
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>
@@ -500,7 +467,7 @@ export default function DigitalMarketingPage() {
               Transparent Pricing — No Hidden Fees
             </h2>
             <p className="text-base text-muted leading-relaxed mb-8">
-              Month-to-month plans, no lock-ins. Need something custom?{" "}
+              One-time project fees. No retainers, no lock-ins. Need something custom?{" "}
               <Link href="/contact" className="text-accent hover:underline font-medium">Get in touch</Link> for a tailored quote.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -540,7 +507,7 @@ export default function DigitalMarketingPage() {
           <FadeIn className="mb-16">
             <div className="rounded-2xl bg-[#1a4a3a] px-8 py-7 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
-                <p className="font-semibold !text-white font-display text-lg">Ready to grow smarter?</p>
+                <p className="font-semibold !text-white font-display text-lg">Ready to start your project?</p>
                 <p className="text-sm !text-white mt-1">We reply within 24 hours. No pushy sales — just a straight conversation.</p>
               </div>
               <a
@@ -549,7 +516,7 @@ export default function DigitalMarketingPage() {
                 rel="noopener noreferrer"
                 className="shrink-0 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#1a4a3a] transition-all hover:bg-white/90"
               >
-                Book a Free Strategy Call
+                Book Free Call
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>
@@ -562,9 +529,9 @@ export default function DigitalMarketingPage() {
 
           {/* Bottom CTA */}
           <BottomCTA
-            title="Ready to grow with a smarter digital marketing strategy?"
-            subtitle="Share a few details and let us map out your growth plan."
-            buttonText="Book a Free Strategy Call"
+            title="Ready to start your CRM & custom portals project?"
+            subtitle="Book a free 30-minute strategy call and let us show you what is possible."
+            buttonText="Book Free Call"
             href="https://cal.com/optimax-studio"
           />
         </div>

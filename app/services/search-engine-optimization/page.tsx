@@ -6,40 +6,40 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import {
   CheckCircle2,
   ArrowRight,
-  TrendingUp,
   Search,
-  Share2,
-  Mail,
-  BarChart3,
-  Target,
+  Globe,
+  MapPin,
+  Link2,
+  FileText,
+  Zap,
 } from "lucide-react";
 import Link from "next/link";
 
 const SITE_URL = "https://optimaxstudio.com";
 
 export const metadata: Metadata = {
-  title: "Digital Marketing Agency in Gurgaon, India",
+  title: "Search Engine Optimization Agency in Delhi NCR | Optimax Studio",
   description:
-    "Optimax Studio is a results-driven digital marketing agency in Gurgaon offering SEO, paid ads, social media & performance marketing services. Book a free call.",
+    "Result-driven SEO agency in Gurgaon & Delhi NCR. On-page SEO, technical SEO, local SEO, backlink building, and content strategy for startups, local businesses, and ecommerce brands.",
   alternates: {
-    canonical: `${SITE_URL}/services/digital-marketing`,
+    canonical: `${SITE_URL}/services/search-engine-optimization`,
   },
   openGraph: {
-    title: "Digital Marketing Agency in Gurgaon, India | Optimax Studio",
+    title: "Search Engine Optimization Agency in Delhi NCR | Optimax Studio",
     description:
-      "Optimax Studio is a results-driven digital marketing agency in Gurgaon offering SEO, paid ads, social media & performance marketing services. Book a free call.",
+      "Result-driven SEO agency in Gurgaon & Delhi NCR. On-page SEO, technical SEO, local SEO, backlink building, and content strategy. Starting Rs. 5,999/mo.",
     type: "website",
-    url: `${SITE_URL}/services/digital-marketing`,
+    url: `${SITE_URL}/services/search-engine-optimization`,
     siteName: "Optimax Studio",
     locale: "en_IN",
-    images: [{ url: `${SITE_URL}/og/digital-marketing.jpg` }],
+    images: [{ url: `${SITE_URL}/og/seo.jpg` }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Digital Marketing Agency in Gurgaon, India | Optimax Studio",
+    title: "SEO Agency in Delhi NCR | Optimax Studio",
     description:
-      "Optimax Studio is a results-driven digital marketing agency in Gurgaon offering SEO, paid ads, social media & performance marketing services. Book a free call.",
-    images: [`${SITE_URL}/og/digital-marketing.jpg`],
+      "Result-driven SEO agency in Gurgaon & Delhi NCR. On-page SEO, technical SEO, local SEO, backlink building, and content strategy. Starting Rs. 5,999/mo.",
+    images: [`${SITE_URL}/og/seo.jpg`],
   },
 };
 
@@ -47,9 +47,9 @@ export const metadata: Metadata = {
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "Digital Marketing Agency",
+  name: "Search Engine Optimization Agency in Delhi NCR",
   description:
-    "Optimax Studio is a full-service digital marketing agency in Gurgaon offering SEO, Google Ads, social media marketing, performance marketing, and ecommerce digital marketing services across India.",
+    "Result-driven SEO services in Gurgaon and Delhi NCR — on-page SEO, technical SEO, local SEO, backlink building, and content strategy.",
   provider: {
     "@type": "Organization",
     name: "Optimax Studio",
@@ -65,12 +65,12 @@ const serviceSchema = {
       addressCountry: "IN",
     },
   },
-  areaServed: "India",
-  serviceType: "Digital Marketing",
+  areaServed: ["Gurgaon", "Delhi", "Noida", "Delhi NCR", "India"],
+  serviceType: "Search Engine Optimization",
   offers: [
-    { "@type": "Offer", name: "Starter Plan", priceCurrency: "INR", price: "9999" },
-    { "@type": "Offer", name: "Growth Plan", priceCurrency: "INR", price: "19999" },
-    { "@type": "Offer", name: "Pro Plan", priceCurrency: "INR", price: "34999" },
+    { "@type": "Offer", name: "Starter SEO Plan", priceCurrency: "INR", price: "5999", priceSpecification: { "@type": "UnitPriceSpecification", price: "5999", priceCurrency: "INR", unitText: "MONTH" } },
+    { "@type": "Offer", name: "Growth SEO Plan", priceCurrency: "INR", price: "14999", priceSpecification: { "@type": "UnitPriceSpecification", price: "14999", priceCurrency: "INR", unitText: "MONTH" } },
+    { "@type": "Offer", name: "Scale SEO Plan", priceCurrency: "INR", price: "24999", priceSpecification: { "@type": "UnitPriceSpecification", price: "24999", priceCurrency: "INR", unitText: "MONTH" } },
   ],
 };
 
@@ -80,42 +80,42 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "What makes Optimax Studio the best digital marketing agency in Gurgaon?",
+      name: "How long does SEO take to show results?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Optimax Studio combines SEO, paid ads, social media, and performance marketing under one roof. We are a data-driven digital marketing company focused on delivering measurable ROI for every client — from startups to established brands.",
+        text: "Most clients see measurable improvements in keyword rankings and organic traffic within 60–90 days. Significant results typically appear by month 3–6 depending on competition and starting baseline.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you offer digital marketing services for ecommerce businesses?",
+      name: "Do you provide monthly reporting?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. As a specialized ecommerce digital marketing agency, we run high-ROAS Google Shopping campaigns, Meta Ads, and SEO strategies specifically built for online stores to increase traffic, conversions, and repeat purchases.",
+        text: "Yes. Every client receives a monthly report covering keyword rankings, organic traffic growth, domain authority, and the work completed — with clear next steps for the following month.",
       },
     },
     {
       "@type": "Question",
-      name: "How much do your digital marketing services cost?",
+      name: "What tools do you use for SEO?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Our digital marketing packages start at Rs. 9,999/month. Pricing depends on the channels and scope of work. Book a free strategy call to get a custom quote for your business.",
+        text: "We use Ahrefs, SEMrush, Google Search Console, Google Analytics 4, Screaming Frog, and PageSpeed Insights — industry-standard tools for auditing, tracking, and reporting.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you provide SEO and digital marketing services together?",
+      name: "Can you do SEO and website design together for Delhi NCR businesses?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Absolutely. Our integrated approach combines search engine optimization with paid media and social media marketing — so your brand grows both organically and through paid channels simultaneously.",
+        text: "Yes. Optimax Studio combines SEO and web design under one roof. Every site we build ships SEO-ready — schema markup, fast load times, mobile-first code, and proper site structure — so you rank from day one.",
       },
     },
     {
       "@type": "Question",
-      name: "Are you a digital marketing agency near me in Gurgaon or Delhi NCR?",
+      name: "How much do your Search Engine Optimization services cost in Delhi?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. We are based in Sector 93, Gurgaon, and serve clients across Delhi NCR including Noida, Faridabad, and South Delhi — as well as remotely across India and internationally.",
+        text: "Our SEO packages start at Rs. 5,999/month for local businesses and go up to Rs. 24,999/month for competitive industries. All plans are month-to-month with no lock-in. Book a free consultation for a custom quote.",
       },
     },
   ],
@@ -126,175 +126,163 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Services",
-      item: `${SITE_URL}/services`,
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      name: "Digital Marketing",
-    },
+    { "@type": "ListItem", position: 2, name: "Services", item: `${SITE_URL}/services` },
+    { "@type": "ListItem", position: 3, name: "Search Engine Optimization", item: `${SITE_URL}/services/search-engine-optimization` },
   ],
 };
 
 /* ── page data ── */
-const services = [
+const seoServices = [
   {
     icon: Search,
-    title: "Search Engine Optimization (SEO)",
+    title: "On-Page SEO Optimization",
     description:
-      "As a dedicated search engine optimization agency, we drive sustainable organic growth through technical audits, keyword strategy, on-page optimization, and authority building.",
+      "Title tags, meta descriptions, header structure, keyword density, and internal linking — every on-page element optimized for maximum SERP visibility.",
   },
   {
-    icon: TrendingUp,
-    title: "Google Ads & PPC Management",
+    icon: MapPin,
+    title: "Local SEO & Google Business Profile",
     description:
-      "Data-driven paid campaigns across Google Search, Display, and Shopping — optimized for maximum ROAS and lowest cost per lead.",
+      "Rank in the Google 3-Pack for your location. We optimize your Google Business Profile, local citations, and location-based content for Delhi NCR searches.",
   },
   {
-    icon: Share2,
-    title: "Social Media Marketing",
+    icon: Zap,
+    title: "Technical SEO & Core Web Vitals",
     description:
-      "Full-funnel social media campaigns on Instagram, Facebook, and LinkedIn — from brand awareness to retargeting and lead conversion.",
+      "Crawlability, indexing, page speed, Core Web Vitals, and mobile-first optimization — the technical foundation that lets Google understand and rank your site.",
   },
   {
-    icon: Target,
-    title: "Performance Marketing & Retargeting",
+    icon: Link2,
+    title: "Backlink Building & Domain Authority",
     description:
-      "As a results-driven performance marketing company, we run retargeting funnels and lookalike audience campaigns that turn browsers into buyers.",
+      "High-quality off-page SEO through editorial backlinks, guest posts, and digital PR — building domain authority that compounds over time.",
   },
   {
-    icon: Mail,
-    title: "Email Marketing & Automation",
+    icon: FileText,
+    title: "National Keyword & Content Strategy",
     description:
-      "Behaviour-triggered drip sequences, newsletters, and lifecycle campaigns that nurture leads through your funnel on autopilot.",
+      "Comprehensive keyword research mapped to search intent — from high-converting service pages to informational content targeting Delhi NCR and national audiences.",
   },
   {
-    icon: BarChart3,
-    title: "Analytics & Conversion Rate Optimization",
+    icon: Globe,
+    title: "Content & Blog SEO Strategy",
     description:
-      "GA4 setup, heatmaps, A/B testing, and weekly reporting — so every decision is backed by data, not guesswork.",
+      "Topic cluster planning, blog content creation, and content refresh strategy to build topical authority and drive consistent long-tail organic traffic.",
   },
 ];
 
 const process = [
   {
     step: 1,
-    title: "Audit & Strategy",
+    title: "SEO Audit",
     description:
-      "Deep dive into your current marketing funnel, ad accounts, SEO health, and competitor landscape — then build a 90-day growth roadmap.",
+      "Comprehensive technical and content audit — crawlability, indexing errors, page speed, keyword gaps, and competitor analysis.",
   },
   {
     step: 2,
-    title: "Planning",
+    title: "Fix & Optimize",
     description:
-      "Define channel mix, budget allocation, content calendar, and KPIs before a single rupee is spent.",
+      "Resolve technical issues, improve site structure, fix on-page SEO, and ensure every page is search-engine ready.",
   },
   {
     step: 3,
-    title: "Execute",
+    title: "Grow & Publish",
     description:
-      "Launch campaigns with precise targeting, conversion-optimized creatives, and tracking in place.",
+      "Publish keyword-targeted content, optimize existing pages, and build topical authority in your niche.",
   },
   {
     step: 4,
-    title: "Scale",
+    title: "Build Authority",
     description:
-      "Optimize based on real ROAS data and aggressively scale what generates the highest return.",
+      "Acquire quality backlinks, monitor SERP rankings, and report measurable organic traffic growth every month.",
   },
 ];
 
 const stats = [
-  { value: "3x", label: "Average ROAS for Clients" },
-  { value: "25+", label: "Brands Scaled" },
-  { value: "60 Days", label: "To First Measurable Results" },
+  { value: "50+", label: "Keywords Ranked for Clients" },
+  { value: "Top 3", label: "Positions Achieved" },
+  { value: "90 Days", label: "To Measurable Results" },
 ];
 
 const pricing = [
   {
     plan: "Starter",
-    price: "Rs. 9,999/mo",
+    price: "Rs. 5,999/mo",
     badge: null as string | null,
-    description: "For early-stage startups and local businesses.",
+    description: "For local businesses and early-stage startups.",
     features: [
-      "1 paid channel (Google or Meta)",
-      "Ad spend management up to Rs. 50,000",
-      "Monthly performance report",
-      "Landing page audit",
-      "Basic SEO health check",
+      "Up to 10 keywords targeted",
+      "On-page SEO (5 pages/mo)",
+      "Google Business Profile optimization",
+      "Monthly ranking report",
+      "Technical SEO audit (one-time)",
       "Email support",
     ],
     cta: "Get Started",
   },
   {
     plan: "Growth",
-    price: "Rs. 19,999/mo",
+    price: "Rs. 14,999/mo",
     badge: "Most Popular" as string | null,
-    description: "For growing brands ready to scale.",
+    description: "For growing brands targeting Delhi NCR.",
     features: [
-      "2 paid channels (Google + Meta)",
-      "Ad spend management up to Rs. 1,50,000",
-      "SEO (on-page + content)",
-      "Social media ad creatives (8/mo)",
-      "Bi-weekly performance reports",
-      "Conversion rate optimization",
-      "WhatsApp + email support",
+      "Up to 25 keywords targeted",
+      "On-page SEO (15 pages/mo)",
+      "2 blog posts/mo",
+      "Backlink building (5 links/mo)",
+      "Local SEO optimization",
+      "Bi-weekly progress calls",
+      "GA4 + Search Console reporting",
     ],
     cta: "Get Started",
   },
   {
     plan: "Scale",
-    price: "Rs. 34,999/mo",
+    price: "Rs. 24,999/mo",
     badge: null as string | null,
-    description: "Full-stack performance marketing for ambitious brands.",
+    description: "Full-stack SEO for competitive industries.",
     features: [
-      "All channels (Google, Meta, LinkedIn)",
-      "Unlimited ad spend management",
-      "SEO + content strategy",
-      "Email automation setup",
+      "Unlimited keyword targeting",
+      "On-page SEO (unlimited pages)",
+      "4 blog posts/mo",
+      "Backlink building (15 links/mo)",
+      "Technical SEO (ongoing)",
+      "Dedicated SEO manager",
       "Weekly reporting + strategy call",
-      "Dedicated account manager",
-      "Landing page design (1/mo)",
     ],
-    cta: "Book a Call",
+    cta: "Get a Quote",
   },
 ];
 
 const faqs = [
   {
-    question:
-      "What makes Optimax Studio the best digital marketing agency in Gurgaon?",
+    question: "How long does SEO take to show results?",
     answer:
-      "Optimax Studio combines SEO, paid ads, social media, and performance marketing under one roof. We are a data-driven digital marketing company focused on delivering measurable ROI for every client — from startups to established brands.",
+      "Most clients see measurable improvements in keyword rankings and organic traffic within 60–90 days. Significant results typically appear by month 3–6 depending on competition and starting baseline.",
   },
   {
-    question: "Do you offer digital marketing services for ecommerce businesses?",
+    question: "Do you provide monthly reporting?",
     answer:
-      "Yes. As a specialized ecommerce digital marketing agency, we run high-ROAS Google Shopping campaigns, Meta Ads, and SEO strategies specifically built for online stores to increase traffic, conversions, and repeat purchases.",
+      "Yes. Every client receives a monthly report covering keyword rankings, organic traffic growth, domain authority, and the work completed — with clear next steps for the following month.",
   },
   {
-    question: "How much do your digital marketing services cost?",
+    question: "What tools do you use for SEO?",
     answer:
-      "Our digital marketing packages start at Rs. 9,999/month. Pricing depends on the channels and scope of work. Book a free strategy call to get a custom quote for your business.",
+      "We use Ahrefs, SEMrush, Google Search Console, Google Analytics 4, Screaming Frog, and PageSpeed Insights — industry-standard tools for auditing, tracking, and reporting.",
   },
   {
-    question: "Do you provide SEO and digital marketing services together?",
+    question: "Can you do SEO and website design together for Delhi NCR businesses?",
     answer:
-      "Absolutely. Our integrated approach combines search engine optimization with paid media and social media marketing — so your brand grows both organically and through paid channels simultaneously.",
+      "Yes. Optimax Studio combines SEO and web design under one roof. Every site we build ships SEO-ready — schema markup, fast load times, mobile-first code, and proper site structure — so you rank from day one.",
   },
   {
-    question:
-      "Are you a digital marketing agency near me in Gurgaon or Delhi NCR?",
+    question: "How much do your Search Engine Optimization services cost in Delhi?",
     answer:
-      "Yes. We are based in Sector 93, Gurgaon, and serve clients across Delhi NCR including Noida, Faridabad, and South Delhi — as well as remotely across India and internationally.",
+      "Our SEO packages start at Rs. 5,999/month for local businesses and go up to Rs. 24,999/month for competitive industries. All plans are month-to-month with no lock-in. Book a free consultation for a custom quote.",
   },
 ];
 
-
-export default function DigitalMarketingPage() {
+export default function SEOPage() {
   return (
     <>
       {/* ── JSON-LD ── */}
@@ -309,30 +297,26 @@ export default function DigitalMarketingPage() {
       </script>
 
       {/* ── HERO ── */}
-      <section className="relative min-h-[540px] flex flex-col justify-center pt-20 pb-10 px-4 overflow-hidden" style={{ background: "#1a4a3a" }}>
-        <div
-          className="absolute -top-24 -left-24 h-[500px] w-[500px] rounded-full pointer-events-none"
-          style={{ background: "rgba(255,255,255,0.04)" }}
-        />
-        <div
-          className="absolute -bottom-16 -right-16 h-[350px] w-[350px] rounded-full pointer-events-none"
-          style={{ background: "rgba(255,255,255,0.03)" }}
-        />
-        {/* img: alt="digital marketing agency team at Optimax Studio Gurgaon" */}
+      <section
+        className="relative min-h-[540px] flex flex-col justify-center pt-20 pb-10 px-4 overflow-hidden"
+        style={{ background: "#1a4a3a" }}
+      >
+        <div className="absolute -top-24 -left-24 h-[500px] w-[500px] rounded-full pointer-events-none" style={{ background: "rgba(255,255,255,0.04)" }} />
+        <div className="absolute -bottom-16 -right-16 h-[350px] w-[350px] rounded-full pointer-events-none" style={{ background: "rgba(255,255,255,0.03)" }} />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <FadeIn delay={0.1}>
             <span className="inline-block text-sm font-semibold uppercase tracking-wider text-white/50 font-display mb-4 mt-2">
-              Digital Marketing
+              Search Engine Optimization
             </span>
           </FadeIn>
           <FadeIn delay={0.2}>
             <h1 className="text-[clamp(2rem,4.5vw,3.4rem)] font-bold text-white font-display leading-[1.12]">
-              Digital Marketing Agency in Gurgaon &amp; Delhi NCR
+              Search Engine Optimization Agency in Delhi NCR
             </h1>
           </FadeIn>
           <FadeIn delay={0.3}>
             <p className="mt-5 text-base font-normal text-white/75 max-w-[600px] mx-auto leading-relaxed">
-              SEO, paid ads, social media, and performance marketing — all under one roof
+              Rank higher, get more traffic, and grow revenue — with transparent, result-driven SEO
             </p>
           </FadeIn>
           <FadeIn delay={0.4}>
@@ -343,7 +327,7 @@ export default function DigitalMarketingPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#1a4a3a] transition-all hover:bg-white/90"
               >
-                Book a Free Strategy Call
+                Get Free Consultation
                 <ArrowRight className="h-4 w-4" />
               </a>
               <Link
@@ -365,7 +349,7 @@ export default function DigitalMarketingPage() {
             className="!mb-0"
             items={[
               { label: "Services", href: "/services" },
-              { label: "Digital Marketing" },
+              { label: "Search Engine Optimization" },
             ]}
           />
         </div>
@@ -385,21 +369,21 @@ export default function DigitalMarketingPage() {
           {/* Intro paragraph */}
           <FadeIn>
             <p className="text-lg text-muted leading-relaxed mb-16">
-              Optimax Studio is a full-service <strong>digital marketing agency in Gurgaon</strong> that helps startups, e-commerce brands, and growing businesses dominate online. We combine SEO, Google Ads, social media, and performance marketing into a single integrated strategy — so every channel compounds your results instead of competing with them. Whether you&apos;re a local business or scaling internationally, we run your marketing as if it were our own.
+              Optimax Studio is a full-service <strong>SEO agency in Gurgaon and Delhi NCR</strong> that helps businesses rank higher on Google, drive qualified organic traffic, and convert that traffic into revenue. We work with startups, local businesses, and ecommerce brands across industries to build long-term organic growth — with transparent reporting and no black-hat shortcuts.
             </p>
           </FadeIn>
 
           {/* Why Choose Us */}
           <FadeIn className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-4">
-              Why Choose a Performance Marketing Agency Over a Traditional One?
+              Why Businesses Choose Our SEO Agency
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                { title: "Data-Driven Results", desc: "Every campaign runs on real-time data — click-through rate, cost per lead, ROAS, and conversion rate tracked weekly." },
-                { title: "Full-Funnel Coverage", desc: "From brand awareness at the top of the funnel to retargeting and email automation at the bottom — we cover it all." },
-                { title: "Integrated Paid & Organic", desc: "Paid media fuels immediate growth while SEO builds long-term organic traffic — both working together." },
-                { title: "No Locked Contracts", desc: "Month-to-month engagements. We earn your trust every 30 days — or you walk. No lock-ins, no hidden fees." },
+                { title: "Search Engine Rank Improvement From Day One", desc: "Schema markup, sitemap, canonical tags, and mobile-first code built in from the start — zero retrofitting needed after launch." },
+                { title: "Transparent Monthly Reports", desc: "Keyword rankings, organic traffic, domain authority, and conversion — all in a clear, jargon-free report every month." },
+                { title: "Expert SEO Team From Day One", desc: "Your project is handled by in-house SEO specialists in Gurgaon — not outsourced or handed off to junior staff." },
+                { title: "Local & Brand Search Keyword Focus", desc: "Google Business Profile, local citations, and location-page optimization specifically for Delhi NCR searches." },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3 rounded-xl border border-accent/20 bg-accent p-5">
                   <CheckCircle2 className="h-5 w-5 shrink-0 text-white/80 mt-0.5" />
@@ -412,16 +396,16 @@ export default function DigitalMarketingPage() {
             </div>
           </FadeIn>
 
-          {/* Our Services */}
+          {/* Our SEO Services */}
           <FadeIn className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-4">
-              Our Digital Marketing Services
+              Our SEO Services
             </h2>
             <p className="text-base text-muted leading-relaxed mb-6">
-              Every service is built around your specific audience, industry, and conversion goal — not a generic package.
+              End-to-end SEO covering every layer of search optimization — from technical foundations to content creation and backlink authority building.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {services.map((item, i) => {
+              {seoServices.map((item, i) => {
                 const Icon = item.icon;
                 return (
                   <div key={i} className="flex items-start gap-4 rounded-xl border border-white/5 bg-navy-800/40 p-5">
@@ -435,6 +419,29 @@ export default function DigitalMarketingPage() {
                   </div>
                 );
               })}
+            </div>
+          </FadeIn>
+
+          {/* What Makes Our SEO Different */}
+          <FadeIn className="mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-4">
+              What Makes Our SEO Different
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { title: "We Set Our Own Targets", desc: "Transparent KPIs — keyword targets, traffic goals, and ranking timelines — agreed with you before work starts." },
+                { title: "Full-Funnel SEO Execution", desc: "Technical, on-page, off-page, and content strategy all handled internally by one integrated team." },
+                { title: "No Outsourcing", desc: "All SEO work is done by our in-house team in Gurgaon — no white-labelling, no offshore handoffs." },
+                { title: "ROI-First Reporting", desc: "You see rankings, organic traffic growth, and lead impact every month — not vanity metrics." },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3 rounded-xl border border-accent/20 bg-accent p-5">
+                  <CheckCircle2 className="h-5 w-5 shrink-0 text-white/80 mt-0.5" />
+                  <div>
+                    <span className="text-sm font-semibold text-white block mb-1">{item.title}</span>
+                    <span className="text-xs text-white/75 leading-relaxed">{item.desc}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </FadeIn>
 
@@ -458,7 +465,7 @@ export default function DigitalMarketingPage() {
                 ))}
               </div>
               <div className="relative rounded-2xl border border-border overflow-hidden h-64 lg:h-full min-h-[260px] bg-surface-alt flex items-center justify-center">
-                <span className="text-muted text-sm font-medium">Digital Marketing Process</span>
+                <span className="text-muted text-sm font-medium">SEO Process Overview</span>
               </div>
             </div>
           </FadeIn>
@@ -467,8 +474,8 @@ export default function DigitalMarketingPage() {
           <FadeIn className="mb-16">
             <div className="rounded-2xl bg-accent/5 border border-accent/20 px-8 py-7 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
-                <p className="font-semibold text-text font-display text-lg">Not sure where to start?</p>
-                <p className="text-sm text-muted mt-1">Book a free 30-minute strategy call and we&apos;ll map the right channels for your business.</p>
+                <p className="font-semibold text-text font-display text-lg">Want a free SEO audit first?</p>
+                <p className="text-sm text-muted mt-1">We&apos;ll review your current rankings, traffic, and technical health — no commitment required.</p>
               </div>
               <a
                 href="https://cal.com/optimax-studio"
@@ -476,7 +483,7 @@ export default function DigitalMarketingPage() {
                 rel="noopener noreferrer"
                 className="shrink-0 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-accent/90"
               >
-                Book Free Strategy Call
+                Get Free Consultation
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>
@@ -505,7 +512,10 @@ export default function DigitalMarketingPage() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {pricing.map((plan) => (
-                <div key={plan.plan} className={`flex flex-col rounded-2xl border p-6 ${plan.badge === "Most Popular" ? "border-accent/30 bg-accent/5" : "border-border bg-white shadow-card"}`}>
+                <div
+                  key={plan.plan}
+                  className={`flex flex-col rounded-2xl border p-6 ${plan.badge === "Most Popular" ? "border-accent/30 bg-accent/5" : "border-border bg-white shadow-card"}`}
+                >
                   {plan.badge && (
                     <span className="self-start mb-3 inline-block rounded-full bg-accent text-white text-xs font-semibold px-3 py-1">
                       {plan.badge}
@@ -540,7 +550,7 @@ export default function DigitalMarketingPage() {
           <FadeIn className="mb-16">
             <div className="rounded-2xl bg-[#1a4a3a] px-8 py-7 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
-                <p className="font-semibold !text-white font-display text-lg">Ready to grow smarter?</p>
+                <p className="font-semibold !text-white font-display text-lg">Ready to start ranking?</p>
                 <p className="text-sm !text-white mt-1">We reply within 24 hours. No pushy sales — just a straight conversation.</p>
               </div>
               <a
@@ -549,7 +559,7 @@ export default function DigitalMarketingPage() {
                 rel="noopener noreferrer"
                 className="shrink-0 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#1a4a3a] transition-all hover:bg-white/90"
               >
-                Book a Free Strategy Call
+                Get Free Consultation
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>
@@ -562,9 +572,9 @@ export default function DigitalMarketingPage() {
 
           {/* Bottom CTA */}
           <BottomCTA
-            title="Ready to grow with a smarter digital marketing strategy?"
-            subtitle="Share a few details and let us map out your growth plan."
-            buttonText="Book a Free Strategy Call"
+            title="Ready to rank higher on Google?"
+            subtitle="Get a free SEO consultation — no pushy sales, just a straight conversation."
+            buttonText="Get Free Consultation"
             href="https://cal.com/optimax-studio"
           />
         </div>

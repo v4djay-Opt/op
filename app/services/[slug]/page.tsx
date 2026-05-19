@@ -51,15 +51,6 @@ export default async function ServicePage({
           style={{ background: "rgba(255,255,255,0.03)" }}
         />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <FadeIn>
-            <Breadcrumbs
-              items={[
-                { label: "Services", href: "/services" },
-                { label: service.name },
-              ]}
-              light
-            />
-          </FadeIn>
           <FadeIn delay={0.1}>
             <span className="inline-block text-sm font-semibold uppercase tracking-wider text-white/50 font-display mb-4">
               Service
@@ -77,6 +68,20 @@ export default async function ServicePage({
           </FadeIn>
         </div>
       </section>
+
+      {/* ── BREADCRUMB BAR ── */}
+      <div className="border-b border-border bg-[#235142] px-4 py-3">
+        <div className="mx-auto w-full max-w-6xl">
+          <Breadcrumbs
+            light
+            className="!mb-0"
+            items={[
+              { label: "Services", href: "/services" },
+              { label: service.name },
+            ]}
+          />
+        </div>
+      </div>
 
       <section className="inner-page pt-12 md:pt-16 px-4">
         <div className="mx-auto max-w-6xl">

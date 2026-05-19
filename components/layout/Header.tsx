@@ -28,14 +28,6 @@ const serviceItems = [
   { label: "Search Engine Optimization", href: "/services/seo", description: "Rank higher, drive organic revenue" },
 ];
 
-const productItems = [
-  { label: "School Management System", href: "/products/school-management-system", description: "Admissions, fees, attendance & reports" },
-  { label: "Hospital Management System", href: "/products/hospital-management-system", description: "Patient records, appointments & billing" },
-  { label: "Gym Management System", href: "/products/gym-management-system", description: "Memberships, schedules & payments" },
-  { label: "Real Estate CRM", href: "/products/real-estate-crm", description: "Track leads, properties & closings" },
-  { label: "Interior Design CRM", href: "/products/interior-design-crm", description: "Manage projects, vendors & approvals" },
-];
-
 const industryItems = [
   { label: "Real Estate", href: "/industries/real-estate", description: "CRM, lead tracking, and automated follow-ups", icon: Building2 },
   { label: "Schools & Education", href: "/industries/schools-education", description: "Admissions, fees, attendance & parent communication", icon: GraduationCap },
@@ -48,6 +40,7 @@ const industryItems = [
 
 const plainLinks = [
   { label: "Home", href: "/" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
@@ -118,12 +111,6 @@ export function Header() {
                 label="Services"
                 href="/services"
                 items={serviceItems}
-                light={isLight}
-              />
-              <NavDropdown
-                label="Products"
-                href="/products"
-                items={productItems}
                 light={isLight}
               />
               <NavDropdown
@@ -262,55 +249,6 @@ export function Header() {
                     >
                       <div className="flex flex-col pb-5" style={{ gap: 14 }}>
                         {serviceItems.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            onClick={closeMenu}
-                            className="transition-colors hover:text-white"
-                            style={{
-                              fontSize: 16,
-                              color: "#a8b8a8",
-                              letterSpacing: "0.5px",
-                              lineHeight: 1.5,
-                            }}
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* Products accordion */}
-              <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-                <button
-                  onClick={() =>
-                    setMobileSubmenu(mobileSubmenu === "products" ? null : "products")
-                  }
-                  className="flex w-full items-center justify-between font-semibold font-display transition-opacity hover:opacity-70"
-                  style={{ fontSize: 28, color: "#f5f0e8", padding: "22px 0" }}
-                >
-                  Products
-                  <ChevronDown
-                    className={`h-5 w-5 transition-transform duration-300 ${
-                      mobileSubmenu === "products" ? "rotate-180" : ""
-                    }`}
-                    style={{ color: "#a8b8a8" }}
-                  />
-                </button>
-                <AnimatePresence>
-                  {mobileSubmenu === "products" && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="flex flex-col pb-5" style={{ gap: 14 }}>
-                        {productItems.map((item) => (
                           <Link
                             key={item.href}
                             href={item.href}

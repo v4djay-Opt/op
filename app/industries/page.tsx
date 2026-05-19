@@ -69,6 +69,7 @@ export default function IndustriesPage() {
         title="Solutions Tailored to Your Industry"
         subtitle="From real estate CRMs to school management systems — we've built digital solutions for 40+ businesses across 7 industries in India."
         green
+        breadcrumbs={[{ label: "Industries" }]}
       />
 
       <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">

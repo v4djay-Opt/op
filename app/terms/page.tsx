@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <>
-      <PageHero label="Legal" title="Terms of Service" green />
+      <PageHero label="Legal" title="Terms of Service" green breadcrumbs={[{ label: "Terms of Service" }]} />
 
       <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">
         <div className="mx-auto max-w-3xl prose-invert">

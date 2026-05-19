@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -9,20 +12,76 @@ import {
   Send,
 } from "lucide-react";
 
+const TYPEWRITER_TEXT = "\u00a9 2026 Optimax Studio. We create our self.";
+
+function TypewriterCopyright() {
+  const [displayed, setDisplayed] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
+  const phase = useRef<"typing" | "pause" | "erasing">("typing");
+  const index = useRef(0);
+
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+
+    function tick() {
+      if (phase.current === "typing") {
+        setShowCursor(true);
+        if (index.current < TYPEWRITER_TEXT.length) {
+          index.current++;
+          setDisplayed(TYPEWRITER_TEXT.slice(0, index.current));
+          timer = setTimeout(tick, 55);
+        } else {
+          phase.current = "pause";
+          timer = setTimeout(tick, 3000);
+        }
+      } else if (phase.current === "pause") {
+        setShowCursor(false);
+        phase.current = "erasing";
+        timer = setTimeout(tick, 40);
+      } else {
+        setShowCursor(false);
+        if (index.current > 0) {
+          index.current--;
+          setDisplayed(TYPEWRITER_TEXT.slice(0, index.current));
+          timer = setTimeout(tick, 28);
+        } else {
+          phase.current = "typing";
+          setShowCursor(true);
+          timer = setTimeout(tick, 400);
+        }
+      }
+    }
+
+    timer = setTimeout(tick, 600);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <span className="inline-flex items-center gap-0 text-sm text-[#c9a84c] max-md:text-[11px] font-mono tracking-wide">
+      {displayed}
+      {showCursor && (
+        <span
+          aria-hidden="true"
+          style={{
+            display: "inline-block",
+            marginLeft: 1,
+            animation: "tw-blink 0.7s step-end infinite",
+            color: "#c9a84c",
+          }}
+        >|
+        </span>
+      )}
+      <style>{`@keyframes tw-blink { 0%,100%{opacity:1} 50%{opacity:0} }`}</style>
+    </span>
+  );
+}
+
 const services = [
   { label: "Web Design & Development", href: "/services/web-design-development" },
   { label: "Digital Marketing", href: "/services/digital-marketing" },
   { label: "Social Media Management", href: "/services/social-media-management" },
   { label: "CRM & Custom Portals", href: "/services/crm-custom-portals" },
   { label: "Search Engine Optimization", href: "/services/seo" },
-];
-
-const products = [
-  { label: "School Management System", href: "/products/school-management-system" },
-  { label: "Hospital Management System", href: "/products/hospital-management-system" },
-  { label: "Gym Management System", href: "/products/gym-management-system" },
-  { label: "Real Estate CRM", href: "/products/real-estate-crm" },
-  { label: "Interior Design CRM", href: "/products/interior-design-crm" },
 ];
 
 const socials = [
@@ -57,17 +116,25 @@ const socials = [
 ];
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="relative bg-[#1e5040] border-t border-white/10 overflow-hidden">
       {/* Background Marquee Text */}
-      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 overflow-hidden pointer-events-none select-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none flex items-center">
         <div className="flex animate-marquee whitespace-nowrap">
           {Array.from({ length: 8 }).map((_, i) => (
             <span
               key={i}
-              className="text-[8rem] sm:text-[10rem] md:text-[14rem] lg:text-[18rem] xl:text-[22rem] font-bold font-display text-accent/[0.04] mx-12 shrink-0 leading-none"
+              className="text-[8rem] sm:text-[10rem] md:text-[14rem] lg:text-[18rem] font-black font-display mx-12 shrink-0 leading-none"
+              style={{ color: "rgba(252, 248, 238, 0.04)" }}
+            >
+              Optimax Studio
+            </span>
+          ))}
+          {Array.from({ length: 8 }).map((_, i) => (
+            <span
+              key={`b${i}`}
+              className="text-[8rem] sm:text-[10rem] md:text-[14rem] lg:text-[18rem] font-black font-display mx-12 shrink-0 leading-none"
+              style={{ color: "hsla(235, 92%, 66%, 0.12)" }}
             >
               Optimax Studio
             </span>
@@ -76,7 +143,7 @@ export function Footer() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-        {/* Top section: Brand + Newsletter */}
+        {/* Top section: Brand */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 pb-12 border-b border-white/10">
           {/* Brand */}
           <div className="space-y-5 max-w-md max-md:flex max-md:flex-col max-md:items-center max-md:text-center">
@@ -86,14 +153,14 @@ export function Footer() {
                 alt="Optimax Studio"
                 width={140}
                 height={40}
-                className="h-9 w-auto object-contain brightness-0 invert"
+                className="h-9 w-auto object-contain brightness-0 invert max-md:max-w-[120px]"
               />
             </Link>
-            <p className="text-sm leading-relaxed text-white/80">
+            <p className="text-sm leading-relaxed text-white/80 max-md:text-[13px] max-md:max-w-[260px] max-md:mx-auto">
               We build digital machines that generate revenue. From stunning
               websites to powerful CRMs — we deliver results.
             </p>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 max-md:gap-4 max-md:justify-center">
               {socials.map((s) => (
                 <a
                   key={s.label}
@@ -103,7 +170,7 @@ export function Footer() {
                   className="rounded-full bg-transparent border border-white/20 text-white p-0 w-9 h-9 inline-flex items-center justify-center transition-all hover:bg-white/15"
                   aria-label={s.label}
                 >
-                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="h-4 w-4 max-md:h-5 max-md:w-5" fill="currentColor" viewBox="0 0 24 24">
                     {s.svg}
                   </svg>
                 </a>
@@ -142,56 +209,65 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Middle section: Links + Contact */}
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 py-12 max-md:grid-cols-2 max-md:gap-2">
+        {/* Middle section: Services / Industries */}
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 px-4 py-8 lg:grid-cols-4 lg:gap-12 lg:px-0 lg:py-12">
           {/* Services */}
-          <div className="space-y-5 max-md:order-1 max-md:space-y-2">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#c9a84c] font-display">
+          <div className="space-y-5">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#c9a84c] font-display max-md:text-[13px]">
               Services
             </h3>
-            <ul className="space-y-3 max-md:space-y-0">
+            <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.href}>
                   <Link
                     href={service.href}
-                    className="group inline-flex items-center gap-1 text-sm text-[#f5f0e8] transition-colors hover:text-white"
+                    className="group inline-flex items-center gap-1 text-sm text-[#f5f0e8] transition-colors hover:text-white max-md:text-[13px] max-md:leading-[1.8]"
                   >
                     {service.label}
-                    <ArrowUpRight className="h-3.5 w-3.5 opacity-0 -translate-y-0.5 translate-x-0.5 transition-all group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 max-md:hidden" />
+                    <ArrowUpRight className="h-3.5 w-3.5 opacity-0 -translate-y-0.5 translate-x-0.5 transition-all group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0" />
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Products */}
-          <div className="space-y-5 max-md:order-3 max-md:col-span-2 max-md:space-y-2">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#c9a84c] font-display">
-              Products
+          {/* Industries */}
+          <div className="space-y-5 max-md:text-right">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#c9a84c] font-display max-md:text-[13px]">
+              Industries
             </h3>
-            <ul className="space-y-3 max-md:grid max-md:grid-cols-2 max-md:space-y-0 max-md:gap-x-4 max-md:[&>li:nth-child(even)]:text-right">
-              {products.map((product) => (
-                <li key={product.href}>
+            <ul className="space-y-3">
+              {[
+                { label: "Real Estate", href: "/industries/real-estate" },
+                { label: "Schools & Education", href: "/industries/schools-education" },
+                { label: "Healthcare", href: "/industries/healthcare" },
+                { label: "Fitness & Gym", href: "/industries/fitness-gym" },
+                { label: "Interior Design", href: "/industries/interior-design" },
+                { label: "Retail & E-commerce", href: "/industries/retail-ecommerce" },
+                { label: "Corporate", href: "/industries/corporate" },
+              ].map((link) => (
+                <li key={link.href}>
                   <Link
-                    href={product.href}
-                    className="group inline-flex items-center gap-1 text-sm text-[#f5f0e8] transition-colors hover:text-white"
+                    href={link.href}
+                    className="group inline-flex items-center gap-1 text-sm text-[#f5f0e8] transition-colors hover:text-white max-md:text-[13px] max-md:leading-[1.8]"
                   >
-                    {product.label}
-                    <ArrowUpRight className="h-3.5 w-3.5 opacity-0 -translate-y-0.5 translate-x-0.5 transition-all group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 max-md:hidden" />
+                    {link.label}
+                    <ArrowUpRight className="h-3.5 w-3.5 opacity-0 -translate-y-0.5 translate-x-0.5 transition-all group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0" />
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-5 max-md:order-2 max-md:space-y-2 max-md:text-right">
+          {/* Company */}
+          <div className="space-y-5 max-md:hidden">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-[#c9a84c] font-display">
               Company
             </h3>
-            <ul className="space-y-3 max-md:space-y-0">
+            <ul className="space-y-3">
               {[
                 { label: "About Us", href: "/about" },
+                { label: "Pricing", href: "/pricing" },
                 { label: "Case Studies", href: "/case-studies" },
                 { label: "Blog", href: "/blog" },
                 { label: "Contact", href: "/contact" },
@@ -210,12 +286,12 @@ export function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="space-y-5 max-md:hidden">
+          <div className="space-y-5 max-md:hidden lg:text-right">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-[#c9a84c] font-display">
               Contact
             </h3>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3">
+              <li className="flex items-start gap-3 lg:justify-end">
                 <Mail className="h-5 w-5 shrink-0 text-[#c9a84c] mt-0.5" />
                 <a
                   href="mailto:hello@optimaxstudio.com"
@@ -224,7 +300,7 @@ export function Footer() {
                   hello@optimaxstudio.com
                 </a>
               </li>
-              <li className="flex items-start gap-3">
+              <li className="flex items-start gap-3 lg:justify-end">
                 <Phone className="h-5 w-5 shrink-0 text-[#c9a84c] mt-0.5" />
                 <a
                   href="tel:+918957079052"
@@ -233,7 +309,7 @@ export function Footer() {
                   +91 89570 79052
                 </a>
               </li>
-              <li className="flex items-start gap-3">
+              <li className="flex items-start gap-3 lg:justify-end">
                 <MapPin className="h-5 w-5 shrink-0 text-[#c9a84c] mt-0.5" />
                 <span className="text-sm text-[#d0d8d0] leading-relaxed">
                   Unit No — F104, Crown Avenue,<br />
@@ -252,12 +328,9 @@ export function Footer() {
             </a>
           </div>
         </div>
-
         {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-8 max-md:flex-row max-md:pt-4 max-md:gap-2">
-          <p className="text-sm text-[#c9a84c] max-md:text-[11px]">
-            &copy; {currentYear} Optimax Studio.
-          </p>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-8 max-md:flex-col max-md:items-center max-md:pt-4 max-md:gap-2">
+          <TypewriterCopyright />
           <div className="flex items-center gap-6 max-md:gap-4">
             <Link
               href="/privacy-policy"

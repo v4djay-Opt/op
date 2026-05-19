@@ -110,6 +110,7 @@ export const industries: Industry[] = [
       "CRM & Custom Portals",
       "Web Design & Development",
       "Social Media Management",
+      "SEO",
     ],
     relevantProducts: ["School Management System"],
     faqs: [
@@ -176,6 +177,7 @@ export const industries: Industry[] = [
       "CRM & Custom Portals",
       "Web Design & Development",
       "Digital Marketing",
+      "SEO",
     ],
     relevantProducts: ["Hospital Management System"],
     faqs: [
@@ -235,6 +237,7 @@ export const industries: Industry[] = [
       "CRM & Custom Portals",
       "Digital Marketing",
       "Social Media Management",
+      "Web Design & Development",
     ],
     relevantProducts: ["Gym Management System"],
     faqs: [
@@ -301,6 +304,7 @@ export const industries: Industry[] = [
       "CRM & Custom Portals",
       "Web Design & Development",
       "Social Media Management",
+      "SEO",
     ],
     relevantProducts: ["Interior Design CRM"],
     faqs: [
@@ -420,6 +424,7 @@ export const industries: Industry[] = [
       "CRM & Custom Portals",
       "Web Design & Development",
       "SEO",
+      "Digital Marketing",
     ],
     relevantProducts: [],
     faqs: [

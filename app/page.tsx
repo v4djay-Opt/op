@@ -1,17 +1,13 @@
 import { Hero } from "@/components/sections/Hero";
-import { LogoStrip } from "@/components/sections/LogoStrip";
 import { ServicesStrip } from "@/components/sections/ServicesStrip";
 import { StatsRow } from "@/components/sections/StatsRow";
-import { ProductsShowcase } from "@/components/sections/ProductsShowcase";
 import { Industries } from "@/components/sections/Industries";
-import { HowItWorks } from "@/components/sections/HowItWorks";
-import { WhyOptimax } from "@/components/sections/WhyOptimax";
 import { CaseStudies } from "@/components/sections/CaseStudies";
 import { Testimonials } from "@/components/sections/Testimonials";
-import { PricingCards } from "@/components/sections/PricingCards";
 import { IntegrationsGrid } from "@/components/sections/IntegrationsGrid";
 import { BlogPreview } from "@/components/sections/BlogPreview";
 import { FAQ } from "@/components/sections/FAQ";
+import { PricingCards } from "@/components/sections/PricingCards";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { sanityFetch } from "@/lib/sanity/client";
 import { postsQuery } from "@/lib/sanity/queries";
@@ -84,13 +80,9 @@ export default async function Home() {
         {JSON.stringify(jsonLd)}
       </script>
       <Hero />
-      <LogoStrip />
       <ServicesStrip />
       <StatsRow />
-      <ProductsShowcase />
       <Industries />
-      <HowItWorks />
-      <WhyOptimax />
       <CaseStudies />
       <Testimonials />
       <FAQ />

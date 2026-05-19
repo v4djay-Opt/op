@@ -34,6 +34,7 @@ export default function ServicesPage() {
         title="Everything Your Business Needs"
         subtitle="From strategy to execution, we provide end-to-end digital solutions tailored to your goals."
         green
+        breadcrumbs={[{ label: "Services" }]}
       />
 
       <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">

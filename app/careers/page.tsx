@@ -30,6 +30,7 @@ export default function CareersPage() {
         title="Join the Team"
         subtitle="We're building the future of digital services in India. If you're obsessed with quality, speed, and results — you'll fit right in."
         green
+        breadcrumbs={[{ label: "Careers" }]}
       />
 
       <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">

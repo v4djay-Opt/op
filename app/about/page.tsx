@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { BottomCTA } from "@/components/ui/BottomCTA";
+import { HowItWorks } from "@/components/sections/HowItWorks";
+import { WhyOptimax } from "@/components/sections/WhyOptimax";
 import {
   IconLayoutDashboard,
   IconSearch,
@@ -148,6 +150,7 @@ export default function AboutPage() {
         title="Turning Ideas into Digital Masterpieces"
         subtitle="We're Optimaxstudio — a passionate team of designers, developers, and digital strategists who believe every great business deserves an equally great online presence. Whether you're a scrappy startup finding your footing or an established brand ready to scale globally, we're here to make it happen."
         subtitleClassName="mt-4 md:mt-6 text-base md:text-lg text-muted max-w-[600px] mx-auto leading-[1.8] text-center"
+        breadcrumbs={[{ label: "About" }]}
       />
 
       <section className="pb-24 lg:pb-32 px-4">
@@ -252,6 +255,10 @@ export default function AboutPage() {
               ))}
             </div>
           </FadeIn>
+
+          <WhyOptimax />
+
+          <HowItWorks />
 
           {/* Our Mission */}
           <FadeIn className="mb-16">

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
   getIndustryBySlug,
@@ -131,15 +130,6 @@ export default async function IndustryPage({
         />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <FadeIn>
-            <Breadcrumbs
-              items={[
-                { label: "Industries", href: "/industries" },
-                { label: industry.name },
-              ]}
-              light
-            />
-          </FadeIn>
-          <FadeIn>
             <span className="inline-block text-sm font-semibold uppercase tracking-wider text-white/50 font-display mb-4 mt-4">
               Industry
             </span>
@@ -153,50 +143,67 @@ export default async function IndustryPage({
         </div>
       </section>
 
-      {/* ── SOCIAL PROOF STRIP ── */}
-      <section className="inner-page mt-12 md:mt-16 border-y border-border bg-accent/5 px-4">
+      {/* ── BREADCRUMB BAR ── */}
+      <div className="border-b border-border bg-[#235142] px-4 py-3">
+        <div className="mx-auto w-full max-w-6xl">
+          <Breadcrumbs
+            light
+            className="!mb-0"
+            items={[
+              { label: "Industries", href: "/industries" },
+              { label: industry.name },
+            ]}
+          />
+        </div>
+      </div>
+
+      {/* ── STATS BAR ── */}
+      <section className="inner-page border-y border-border px-4 py-8">
         <div className="mx-auto max-w-6xl">
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 py-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-accent font-display">
-                40+
-              </div>
-              <div className="text-sm text-muted mt-1">Clients Served</div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="rounded-2xl border border-accent/20 bg-accent/5 p-6 text-center">
+              <div className="text-3xl md:text-4xl font-bold text-accent font-display">40+</div>
+              <div className="text-muted mt-2 text-sm">Clients Served</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-accent font-display">
-                7
-              </div>
-              <div className="text-sm text-muted mt-1">Industries</div>
+            <div className="rounded-2xl border border-accent/20 bg-accent/5 p-6 text-center">
+              <div className="text-3xl md:text-4xl font-bold text-accent font-display">7</div>
+              <div className="text-muted mt-2 text-sm">Industries</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-accent font-display">
-                92%
-              </div>
-              <div className="text-sm text-muted mt-1">Client Retention</div>
+            <div className="rounded-2xl border border-accent/20 bg-accent/5 p-6 text-center">
+              <div className="text-3xl md:text-4xl font-bold text-accent font-display">92%</div>
+              <div className="text-muted mt-2 text-sm">Client Retention</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── IMAGE GALLERY ── */}
+      {/* ── IMAGE SHOWCASE GRID ── */}
       {industry.images && industry.images.length > 0 && (
         <section className="inner-page px-4 mb-16 mt-8">
           <div className="mx-auto max-w-6xl">
             <FadeIn>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {industry.images.map((img, i) => (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {industry.images.map((_, i) => (
                   <div
                     key={i}
-                    className="relative overflow-hidden rounded-2xl border border-border shadow-card group aspect-[4/3]"
+                    className="flex items-center justify-center overflow-hidden h-[200px] md:h-[220px]"
+                    style={{ background: "#E8E8E8", borderRadius: "12px" }}
                   >
-                    <Image
-                      src={img}
-                      alt={`${industry.name} showcase ${i + 1}`}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-10 w-10"
+                      style={{ color: "#BDBDBD" }}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
+                    </svg>
                   </div>
                 ))}
               </div>
@@ -216,7 +223,7 @@ export default async function IndustryPage({
               {industry.painPoints.map((point, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-3 rounded-xl border border-white/5 bg-navy-800/40 px-4 py-3"
+                  className="flex items-start gap-3 rounded-xl border border-border bg-white px-4 py-3 shadow-sm"
                 >
                   <XCircle className="h-5 w-5 shrink-0 text-red-400 mt-0.5" />
                   <span className="text-sm text-text leading-snug">
@@ -236,7 +243,7 @@ export default async function IndustryPage({
               {industry.solutions.map((solution, i) => (
                 <div
                   key={i}
-                  className="flex flex-col rounded-xl border border-accent/10 bg-accent/5 p-5"
+                  className="flex flex-col rounded-xl border border-border bg-white p-5 shadow-sm h-full"
                 >
                   <div className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 shrink-0 text-accent mt-0.5" />
@@ -258,7 +265,7 @@ export default async function IndustryPage({
               <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-6">
                 Relevant Services
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {industry.relevantServices.map((service) => {
                   const serviceSlug = serviceSlugMap[service];
                   return (
@@ -284,26 +291,6 @@ export default async function IndustryPage({
                     </Link>
                   );
                 })}
-              </div>
-            </FadeIn>
-          )}
-
-          {/* Relevant Products */}
-          {industry.relevantProducts.length > 0 && (
-            <FadeIn className="mb-16">
-              <h2 className="text-2xl md:text-3xl font-bold text-text font-display mb-6">
-                Recommended Products
-              </h2>
-              <div className="flex flex-wrap gap-3">
-                {industry.relevantProducts.map((product) => (
-                  <Link
-                    key={product}
-                    href="/products"
-                    className="inline-flex items-center rounded-full border border-accent/20 bg-accent/10 px-4 py-2 text-sm text-accent transition-colors hover:bg-accent/20"
-                  >
-                    {product}
-                  </Link>
-                ))}
               </div>
             </FadeIn>
           )}

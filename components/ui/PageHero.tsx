@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 interface PageHeroProps {
   label?: string;
@@ -10,9 +11,10 @@ interface PageHeroProps {
   subtitleClassName?: string;
   centered?: boolean;
   green?: boolean;
+  breadcrumbs?: { label: string; href?: string }[];
 }
 
-export function PageHero({ label, title, subtitle, subtitleClassName, centered = true, green }: PageHeroProps) {
+export function PageHero({ label, title, subtitle, subtitleClassName, centered = true, green, breadcrumbs }: PageHeroProps) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -21,6 +23,7 @@ export function PageHero({ label, title, subtitle, subtitleClassName, centered =
   }, []);
 
   return (
+    <>
     <section
       className={`relative min-h-[520px] flex flex-col justify-center pt-20 pb-10 px-4 overflow-hidden`}
       style={green ? { background: "#1a4a3a" } : undefined}
@@ -74,5 +77,13 @@ export function PageHero({ label, title, subtitle, subtitleClassName, centered =
         )}
       </div>
     </section>
+    {breadcrumbs && (
+      <div className="border-b border-border bg-[#235142] px-4 py-3">
+        <div className="mx-auto w-full max-w-6xl">
+          <Breadcrumbs light className="!mb-0" items={breadcrumbs} />
+        </div>
+      </div>
+    )}
+    </>
   );
 }

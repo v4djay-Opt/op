@@ -215,15 +215,6 @@ export default async function BlogPostPage({
         />
         <div className="relative z-10 mx-auto max-w-3xl">
           <FadeIn>
-            <Breadcrumbs
-              items={[
-                { label: "Blog", href: "/blog" },
-                { label: post.title },
-              ]}
-              light
-            />
-          </FadeIn>
-          <FadeIn>
             {post.category && (
               <span className="inline-block text-sm font-semibold uppercase tracking-wider text-white/50 font-display mb-3">
                 {post.category}
@@ -252,6 +243,20 @@ export default async function BlogPostPage({
           </FadeIn>
         </div>
       </section>
+
+      {/* ── BREADCRUMB BAR ── */}
+      <div className="border-b border-border bg-[#235142] px-4 py-3">
+        <div className="mx-auto w-full max-w-6xl">
+          <Breadcrumbs
+            light
+            className="!mb-0"
+            items={[
+              { label: "Blog", href: "/blog" },
+              { label: post.title },
+            ]}
+          />
+        </div>
+      </div>
 
       {/* Featured image */}
       <section className="inner-page px-4 mt-12 md:mt-16 mb-10">

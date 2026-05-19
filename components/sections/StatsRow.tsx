@@ -1,81 +1,104 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { motion } from "framer-motion";
+import { Clock, CheckCircle2, LayoutGrid, TrendingUp } from "lucide-react";
 
-function easeOutQuart(t: number) {
-  return 1 - Math.pow(1 - t, 4);
-}
-
-function AnimatedNumber({
-  target,
-  suffix,
-  duration = 1500,
-}: {
-  target: number;
-  suffix: string;
-  duration?: number;
-}) {
-  const [count, setCount] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
-  const ref = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasStarted) setHasStarted(true);
-      },
-      { threshold: 0.3 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [hasStarted]);
-
-  useEffect(() => {
-    if (!hasStarted) return;
-    let raf: number;
-    const start = performance.now();
-    const tick = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1);
-      setCount(Math.floor(easeOutQuart(progress) * target));
-      if (progress < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [hasStarted, target, duration]);
-
-  return (
-    <span ref={ref}>
-      {count}
-      {suffix}
-    </span>
-  );
-}
 
 const stats = [
-  { value: 7, suffix: "+", label: "Years of Experience" },
-  { value: 250, suffix: "+", label: "Projects Delivered" },
-  { value: 8, suffix: "", label: "Industries Served" },
-  { value: 3, suffix: "x", label: "Avg Revenue Growth" },
+  {
+    value: "7+",
+    label: "Years of Experience",
+    sub: "Building digital products since 2017",
+    icon: Clock,
+    accent: "#1a4a3a",
+    light: "#e6f0eb",
+  },
+  {
+    value: "250+",
+    label: "Projects Delivered",
+    sub: "Across startups, SMBs & enterprises",
+    icon: CheckCircle2,
+    accent: "#2d6a4f",
+    light: "#e8f4ee",
+  },
+  {
+    value: "8",
+    label: "Industries Served",
+    sub: "From healthcare to real estate",
+    icon: LayoutGrid,
+    accent: "#c9a84c",
+    light: "#faf3e0",
+  },
+  {
+    value: "3x",
+    label: "Avg Revenue Growth",
+    sub: "Measured across client portfolios",
+    icon: TrendingUp,
+    accent: "#1a4a3a",
+    light: "#e6f0eb",
+  },
 ];
 
 export function StatsRow() {
   return (
-    <section className="py-[64px] lg:py-[120px] px-4">
-      <div className="mx-auto max-w-5xl">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x divide-border">
-          {stats.map((stat, i) => (
-            <FadeIn key={stat.label} delay={i * 0.1}>
-              <div className="flex flex-col items-center text-center px-6">
-                <span className="text-4xl lg:text-5xl font-bold text-text font-display tabular-nums">
-                  <AnimatedNumber target={stat.value} suffix={stat.suffix} />
-                </span>
-                <span className="mt-2 text-sm text-muted">{stat.label}</span>
-              </div>
-            </FadeIn>
-          ))}
+    <section className="py-20 px-4 bg-[#f8faf8]">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {stats.map((stat, i) => {
+            const Icon = stat.icon;
+            return (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group relative flex flex-col rounded-2xl bg-white border border-border p-7 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+              >
+                {/* Decorative top bar */}
+                <div
+                  className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
+                  style={{ background: stat.accent }}
+                />
+
+                {/* Icon badge */}
+                <div
+                  className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl"
+                  style={{ background: stat.light }}
+                >
+                  <Icon className="h-5 w-5" style={{ color: stat.accent }} />
+                </div>
+
+                {/* Value */}
+                <motion.span
+                  className="text-5xl font-black font-display leading-none"
+                  style={{ color: stat.accent }}
+                  initial={{ opacity: 0, scale: 0.6 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ type: "spring", delay: i * 0.12 + 0.2, stiffness: 180 }}
+                >
+                  {stat.value}
+                </motion.span>
+
+                {/* Label */}
+                <p className="mt-2 text-base font-semibold text-text font-display leading-snug">
+                  {stat.label}
+                </p>
+
+                {/* Sub */}
+                <p className="mt-1.5 text-xs text-muted leading-relaxed">
+                  {stat.sub}
+                </p>
+
+                {/* Corner decoration */}
+                <div
+                  className="absolute bottom-0 right-0 h-16 w-16 rounded-tl-full opacity-[0.07]"
+                  style={{ background: stat.accent }}
+                />
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

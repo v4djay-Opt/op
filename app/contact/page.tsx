@@ -65,6 +65,7 @@ export default function ContactPage() {
         title="Let Us Build Something Great Together"
         subtitle="Book a free strategy call or drop us a message. We respond within 24 hours."
         green
+        breadcrumbs={[{ label: "Contact" }]}
       />
 
       <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">

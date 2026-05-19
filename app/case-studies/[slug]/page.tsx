@@ -172,15 +172,6 @@ export default async function CaseStudyDetailPage({
         />
         <div className="relative z-10 mx-auto max-w-4xl">
           <FadeIn>
-            <Breadcrumbs
-              items={[
-                { label: "Case Studies", href: "/case-studies" },
-                { label: cs.client },
-              ]}
-              light
-            />
-          </FadeIn>
-          <FadeIn>
             <div className="flex items-center justify-between mb-4">
               <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/80">
                 {cs.industry}
@@ -221,6 +212,20 @@ export default async function CaseStudyDetailPage({
           </FadeIn>
         </div>
       </section>
+
+      {/* ── BREADCRUMB BAR ── */}
+      <div className="border-b border-border bg-[#235142] px-4 py-3">
+        <div className="mx-auto w-full max-w-6xl">
+          <Breadcrumbs
+            light
+            className="!mb-0"
+            items={[
+              { label: "Case Studies", href: "/case-studies" },
+              { label: cs.client },
+            ]}
+          />
+        </div>
+      </div>
 
       {/* ── BODY ── */}
       <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">

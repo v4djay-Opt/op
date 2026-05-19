@@ -2,6 +2,7 @@
 
 import { useLayoutEffect, useEffect, useRef, useState, memo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -36,6 +37,7 @@ const services = [
     statLabel: "Websites Delivered",
     href: "/services/web-design-development",
     color: "#D8E8D4",
+    image: "/images/services/web-design.png",
   },
   {
     icon: TrendingUp,
@@ -52,6 +54,7 @@ const services = [
     statLabel: "Avg ROI Growth",
     href: "/services/digital-marketing",
     color: "#E8F0D8",
+    image: "/images/services/digital-marketing.png",
   },
   {
     icon: Share2,
@@ -68,6 +71,7 @@ const services = [
     statLabel: "Followers Grown",
     href: "/services/social-media-management",
     color: "#D8E8E4",
+    image: "/images/services/social-media.png",
   },
   {
     icon: Database,
@@ -84,6 +88,7 @@ const services = [
     statLabel: "Custom CRMs Built",
     href: "/services/crm-custom-portals",
     color: "#DDE8D8",
+    image: "/images/services/crm-portals.png",
   },
   {
     icon: Search,
@@ -100,6 +105,7 @@ const services = [
     statLabel: "Keyword Rankings",
     href: "/services/seo",
     color: "#D8DDE8",
+    image: "/images/services/seo.png",
   },
 ];
 
@@ -234,7 +240,10 @@ export const ServicesStrip = memo(function ServicesStrip() {
 
                   <Link
                     href={service.href}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-accent group"
+                    className="self-start inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition-all group"
+                    style={{ background: "#1a4a3a" }}
+                    onMouseEnter={e => (e.currentTarget.style.background = "#16402f")}
+                    onMouseLeave={e => (e.currentTarget.style.background = "#1a4a3a")}
                   >
                     Learn More
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -243,12 +252,22 @@ export const ServicesStrip = memo(function ServicesStrip() {
 
                 {/* ── Right: visual panel ── */}
                 <div
-                  className={`relative flex items-center justify-center min-h-[260px] lg:min-h-0 ${
+                  className={`relative flex items-center justify-center min-h-[260px] lg:min-h-0 overflow-hidden ${
                     i % 2 === 1 ? "lg:order-1" : ""
                   }`}
                   style={{ background: service.color }}
                 >
-                  <service.icon className="h-36 w-36 text-accent/15" strokeWidth={1} />
+                  {"image" in service && service.image ? (
+                    <Image
+                      src={service.image as string}
+                      alt={service.title}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  ) : (
+                    <service.icon className="h-36 w-36 text-accent/15" strokeWidth={1} />
+                  )}
 
                   <div className="absolute bottom-6 right-6 rounded-2xl bg-white border border-border shadow-card px-5 py-4">
                     <div className="text-3xl font-bold text-accent font-display leading-none">

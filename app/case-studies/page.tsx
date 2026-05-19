@@ -43,6 +43,7 @@ export default async function CaseStudiesPage() {
         title="Case Studies That Speak for Themselves"
         subtitle="Real numbers, real businesses, real impact. See how Optimax delivers measurable growth."
         green
+        breadcrumbs={[{ label: "Case Studies" }]}
       />
 
       <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">
