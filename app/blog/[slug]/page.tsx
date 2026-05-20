@@ -257,7 +257,7 @@ export default async function BlogPostPage({
       <section className="inner-page px-4 mt-12 md:mt-16 mb-10">
         <div className="mx-auto max-w-6xl">
           <FadeIn>
-            <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-border shadow-card bg-surface-alt">
+            <div className="relative aspect-[21/9] rounded-2xl overflow-hidden border border-border shadow-card bg-surface-alt">
               {post.image ? (
                 <Image
                   src={post.image}

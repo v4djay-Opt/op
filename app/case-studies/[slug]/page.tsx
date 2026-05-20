@@ -233,7 +233,7 @@ export default async function CaseStudyDetailPage({
 
           {/* Featured image */}
           <FadeIn className="mb-12">
-            <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-border shadow-card">
+            <div className="relative aspect-[21/9] rounded-2xl overflow-hidden border border-border shadow-card">
               {cs.image ? (
                 <Image
                   src={cs.image}
