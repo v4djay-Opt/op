@@ -165,7 +165,7 @@ export function CaseStudies() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: direction > 0 ? '-8%' : '8%', opacity: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="grid grid-cols-3 gap-6"
+              className="absolute inset-0 grid grid-cols-3 gap-6"
             >
               {displayCards.map((c) => (
                 <CaseCard key={c.client} c={c} />
