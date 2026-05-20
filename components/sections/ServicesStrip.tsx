@@ -369,10 +369,10 @@ export const ServicesStrip = memo(function ServicesStrip() {
               }}
             >
               {services.map((service, i) => (
-                <div key={service.title} className="w-full flex-shrink-0 px-1">
-                  <div className="rounded-2xl bg-white border border-border shadow-card overflow-hidden transform rotate-1 hover:rotate-0 transition-transform duration-300">
+                <div key={service.title} className="w-full flex-shrink-0 px-3 overflow-hidden">
+                  <div className="rounded-2xl bg-white border border-border shadow-card overflow-hidden transform rotate-[15deg] scale-[0.92] hover:rotate-0 hover:scale-100 transition-transform duration-300">
                     {/* Top image area */}
-                    <div className="relative h-[240px] overflow-hidden" style={{ background: service.color }}>
+                    <div className="relative h-[280px] overflow-hidden" style={{ background: service.color }}>
                       {"image" in service && service.image ? (
                         <Image
                           src={service.image as string}
@@ -400,14 +400,14 @@ export const ServicesStrip = memo(function ServicesStrip() {
                     </div>
 
                     {/* Bottom content */}
-                    <div className="p-5">
-                      <h3 className="text-lg font-bold text-text font-display mb-2 leading-snug">
+                    <div className="p-4">
+                      <h3 className="text-base font-bold text-text font-display mb-1.5 leading-snug">
                         {service.title}
                       </h3>
-                      <p className="text-sm text-text-secondary leading-relaxed mb-4">
+                      <p className="text-sm text-text-secondary leading-relaxed mb-3">
                         {service.description}
                       </p>
-                      <ul className="space-y-2">
+                      <ul className="space-y-1.5">
                         {service.bullets.map((b) => (
                           <li key={b} className="flex items-start gap-2 text-sm text-text-secondary">
                             <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" />
@@ -419,7 +419,7 @@ export const ServicesStrip = memo(function ServicesStrip() {
                     {/* Bottom button bar */}
                     <Link
                       href={service.href}
-                      className="flex items-center justify-between w-full px-5 py-4 text-sm font-semibold text-white transition-all group"
+                      className="flex items-center justify-between w-full px-5 py-3.5 text-sm font-semibold text-white transition-all group"
                       style={{ background: "#1a4a3a" }}
                     >
                       <span>Learn More</span>
