@@ -62,6 +62,60 @@ function MetaLine({ post }: { post: Post }) {
   );
 }
 
+function FeaturedHeroCard({ post }: { post: Post }) {
+  return (
+    <Link
+      href={`/blog/${normalizeSlug(post.slug)}`}
+      className="group flex flex-col md:flex-row rounded-2xl bg-white border border-border shadow-card overflow-hidden transition-all hover:shadow-lg"
+    >
+      {/* Left — image 50% */}
+      <div className="relative w-full md:w-1/2 aspect-[16/10] md:aspect-auto bg-gradient-to-br from-[#d4e4d4] to-[#b8d4b8] overflow-hidden shrink-0 min-h-[240px]">
+        {post.image ? (
+          <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center">
+            <span className="text-6xl font-bold text-white/40 font-display select-none">
+              {post.title.charAt(0)}
+            </span>
+          </div>
+        )}
+        <span className="absolute top-4 left-4 inline-flex items-center rounded-full bg-white/95 px-3 py-1 text-xs font-medium text-text shadow-sm backdrop-blur-sm">
+          {post.category || 'General'}
+        </span>
+      </div>
+
+      {/* Right — content 50% */}
+      <div className="flex flex-col flex-1 p-7 md:p-10 justify-center">
+        <MetaLine post={post} />
+
+        <h2 className="mt-3 text-2xl md:text-3xl font-bold text-text font-display leading-snug group-hover:text-accent transition-colors">
+          {post.title}
+        </h2>
+
+        <p className="mt-3 text-sm text-text-secondary leading-relaxed line-clamp-4">
+          {post.excerpt}
+        </p>
+
+        <div className="mt-8 flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <AuthorBadge name={post.author} />
+            <span className="text-sm font-medium text-text">{post.author || 'Optimax Team'}</span>
+          </div>
+          <span className="inline-flex items-center gap-1 text-sm font-semibold text-accent group-hover:underline">
+            Read more
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
 function SmallCard({ post }: { post: Post }) {
   return (
     <Link
@@ -123,8 +177,8 @@ export function BlogGrid({ posts }: { posts: Post[] }) {
     return posts.filter((p) => p.category === activeCategory);
   }, [activeCategory, posts]);
 
-  const topTwo = filteredPosts.slice(0, 2);
-  const rest = filteredPosts.slice(2);
+  const first = filteredPosts[0];
+  const rest = filteredPosts.slice(1);
 
   return (
     <>
@@ -161,14 +215,8 @@ export function BlogGrid({ posts }: { posts: Post[] }) {
         <div className="text-center py-16 text-muted">No articles found in this category.</div>
       ) : (
         <div className="space-y-6">
-          {/* Top row — 70/30 split */}
-          {topTwo.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-[7fr_3fr] gap-6">
-              {topTwo.map((post) => (
-                <SmallCard key={post._id} post={post} />
-              ))}
-            </div>
-          )}
+          {/* First card — full-width 50/50 hero */}
+          {first && <FeaturedHeroCard post={first} />}
 
           {/* Rest — 3 cards per row */}
           {rest.length > 0 && (
