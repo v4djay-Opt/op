@@ -64,8 +64,13 @@ export function IntegrationsGrid() {
         />
       </div>
 
-      {/* Continuous marquee */}
-      <div className="mt-8 lg:mt-10 overflow-hidden">
+      {/* Continuous marquee with fade edges */}
+      <div className="mt-8 lg:mt-10 relative overflow-hidden">
+        {/* Left fade */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-24 z-10 bg-gradient-to-r from-[#F5F2EC] to-transparent" />
+        {/* Right fade */}
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-24 z-10 bg-gradient-to-l from-[#F5F2EC] to-transparent" />
+
         <div className="animate-scroll-left flex gap-5 lg:gap-6">
           {allTools.map((tool, i) => (
             <ToolCard key={`${tool.name}-${i}`} tool={tool} />
