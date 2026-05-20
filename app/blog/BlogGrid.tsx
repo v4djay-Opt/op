@@ -66,7 +66,7 @@ function FeaturedHeroCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/blog/${normalizeSlug(post.slug)}`}
-      className="group flex flex-col md:flex-row rounded-2xl bg-white border border-border shadow-card overflow-hidden transition-all hover:shadow-lg"
+      className="group flex flex-col md:flex-row rounded-2xl bg-white border border-border shadow-card overflow-hidden transition-all hover:shadow-lg md:h-[420px]"
     >
       {/* Left — image 50% */}
       <div className="relative w-full md:w-1/2 aspect-[16/10] md:aspect-auto bg-gradient-to-br from-[#d4e4d4] to-[#b8d4b8] overflow-hidden shrink-0 min-h-[320px] md:min-h-[420px]">
