@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
@@ -71,8 +72,8 @@ function TestimonialCard({
     <div
       className={`h-full flex flex-col rounded-2xl border transition-all duration-500 ${
         isActive
-          ? "bg-white border-border shadow-card-hover scale-100 opacity-100 p-6 lg:p-10 min-h-[460px]"
-          : "bg-accent-light/30 border-border/50 shadow-sm scale-[0.96] opacity-70 p-6 lg:p-7 min-h-[420px]"
+          ? "bg-white border-border shadow-card-hover scale-100 opacity-100 p-6 lg:p-10 min-h-[280px] lg:min-h-[300px]"
+          : "bg-accent-light/30 border-border/50 shadow-sm scale-[0.96] opacity-70 p-6 lg:p-7 min-h-[240px] lg:min-h-[260px]"
       }`}
     >
       <div className="flex gap-1 mb-4">
@@ -107,34 +108,43 @@ function TestimonialCard({
 
 export function Testimonials() {
   const [centerIndex, setCenterIndex] = useState(1);
+  const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
 
   const total = testimonials.length;
-
-  const getIndex = useCallback(
-    (offset: number) => {
-      return (centerIndex + offset + total) % total;
-    },
-    [centerIndex, total]
-  );
+  const centerIndexRef = useRef(centerIndex);
+  centerIndexRef.current = centerIndex;
 
   const goNext = useCallback(() => {
+    setDirection(1);
     setCenterIndex((prev) => (prev + 1) % total);
   }, [total]);
 
   const goPrev = useCallback(() => {
+    setDirection(-1);
     setCenterIndex((prev) => (prev - 1 + total) % total);
+  }, [total]);
+
+  const goTo = useCallback((index: number) => {
+    const current = centerIndexRef.current;
+    const forward = (index - current + total) % total;
+    const backward = (current - index + total) % total;
+    setDirection(forward <= backward ? 1 : -1);
+    setCenterIndex(index);
   }, [total]);
 
   /* Auto-slide */
   useEffect(() => {
     if (isPaused) return;
-    const timer = setInterval(goNext, 5000);
+    const timer = setInterval(() => {
+      setDirection(1);
+      setCenterIndex((prev) => (prev + 1) % total);
+    }, 5000);
     return () => clearInterval(timer);
-  }, [isPaused, goNext]);
+  }, [isPaused, total]);
 
-  const leftIndex = getIndex(-1);
-  const rightIndex = getIndex(1);
+  const leftIndex = (centerIndex - 1 + total) % total;
+  const rightIndex = (centerIndex + 1) % total;
 
   return (
     <section
@@ -148,33 +158,49 @@ export function Testimonials() {
           title={<>What Our Clients <em className="italic text-accent">Say</em></>}
         />
 
-        {/* Slider track — desktop: 3 cards */}
-        <div className="hidden md:flex items-center justify-center gap-5 lg:gap-6">
-          {/* Left card */}
+        {/* Desktop: center card slides, sides static */}
+        <div className="hidden md:flex items-start justify-center gap-5 lg:gap-6">
+          {/* Left — static */}
           <div className="flex-1 min-w-0">
             <TestimonialCard t={testimonials[leftIndex]} isActive={false} />
           </div>
 
-          {/* Center (active) card */}
-          <div className="flex-1 min-w-0">
-            <TestimonialCard
-              t={testimonials[centerIndex]}
-              isActive={true}
-            />
+          {/* Center — slides in/out */}
+          <div className="flex-1 min-w-0 relative overflow-hidden" style={{ minHeight: '300px' }}>
+            <AnimatePresence initial={false} mode="sync">
+              <motion.div
+                key={centerIndex}
+                initial={{ x: direction > 0 ? '100%' : '-100%', opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: direction > 0 ? '-100%' : '100%', opacity: 0 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="absolute inset-0"
+              >
+                <TestimonialCard t={testimonials[centerIndex]} isActive={true} />
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          {/* Right card */}
+          {/* Right — static */}
           <div className="flex-1 min-w-0">
             <TestimonialCard t={testimonials[rightIndex]} isActive={false} />
           </div>
         </div>
 
-        {/* Mobile: single card */}
-        <div className="md:hidden">
-          <TestimonialCard
-            t={testimonials[centerIndex]}
-            isActive={true}
-          />
+        {/* Mobile: single card slides */}
+        <div className="md:hidden relative overflow-hidden" style={{ minHeight: '280px' }}>
+          <AnimatePresence initial={false} mode="sync">
+            <motion.div
+              key={centerIndex}
+              initial={{ x: direction > 0 ? '100%' : '-100%', opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: direction > 0 ? '-100%' : '100%', opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <TestimonialCard t={testimonials[centerIndex]} isActive={true} />
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Arrows + Dots */}
@@ -191,7 +217,7 @@ export function Testimonials() {
             {testimonials.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setCenterIndex(i)}
+                onClick={() => goTo(i)}
                 className={`h-2 rounded-full transition-all duration-300 ${
                   i === centerIndex
                     ? "w-6 bg-accent"
