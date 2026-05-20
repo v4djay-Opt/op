@@ -7,7 +7,6 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { IntegrationsGrid } from "@/components/sections/IntegrationsGrid";
 import { BlogPreview } from "@/components/sections/BlogPreview";
 import { FAQ } from "@/components/sections/FAQ";
-import { PricingCards } from "@/components/sections/PricingCards";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { sanityFetch } from "@/lib/sanity/client";
 import { postsQuery } from "@/lib/sanity/queries";
@@ -86,7 +85,6 @@ export default async function Home() {
       <CaseStudies />
       <Testimonials />
       <FAQ />
-      <PricingCards />
       <IntegrationsGrid />
       <BlogPreview posts={posts} />
       <CTABanner />
