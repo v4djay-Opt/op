@@ -370,7 +370,9 @@ export const ServicesStrip = memo(function ServicesStrip() {
             >
               {services.map((service, i) => (
                 <div key={service.title} className="w-full flex-shrink-0 px-3 overflow-hidden">
-                  <div className="rounded-2xl bg-white border border-border shadow-card overflow-hidden transform scale-[0.92] hover:scale-100 hover:rotate-[2deg] transition-transform duration-300">
+                  <div className={`rounded-2xl bg-white border border-border shadow-card overflow-hidden transform transition-transform duration-300 ${
+                    i === mobileIndex ? "scale-100 rotate-[2deg]" : "scale-[0.92]"
+                  }`}>
                     {/* Top image area */}
                     <div className="relative h-[280px] overflow-hidden" style={{ background: service.color }}>
                       {"image" in service && service.image ? (
