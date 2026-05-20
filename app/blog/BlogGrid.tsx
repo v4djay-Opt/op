@@ -62,59 +62,6 @@ function MetaLine({ post }: { post: Post }) {
   );
 }
 
-function FeaturedCard({ post }: { post: Post }) {
-  return (
-    <Link
-      href={`/blog/${normalizeSlug(post.slug)}`}
-      className="group flex flex-col h-full rounded-2xl bg-white border border-border shadow-card overflow-hidden transition-all hover:shadow-lg"
-    >
-      {/* Image area */}
-      <div className="relative aspect-[16/10] bg-gradient-to-br from-[#d4e4d4] to-[#b8d4b8] overflow-hidden shrink-0">
-        {post.image ? (
-          <Image
-            src={post.image}
-            alt={post.title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        ) : (
-          <div className="flex h-full w-full items-center justify-center">
-            <span className="text-6xl font-bold text-white/40 font-display select-none">
-              {post.title.charAt(0)}
-            </span>
-          </div>
-        )}
-        <CategoryBadge category={post.category} />
-      </div>
-
-      {/* Content */}
-      <div className="flex flex-col flex-1 p-6">
-        <MetaLine post={post} />
-
-        <h3 className="mt-3 text-xl font-bold text-text font-display leading-snug group-hover:text-accent transition-colors">
-          {post.title}
-        </h3>
-
-        <p className="mt-2 text-sm text-text-secondary leading-relaxed line-clamp-3">
-          {post.excerpt}
-        </p>
-
-        {/* Bottom bar */}
-        <div className="mt-auto pt-5 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <AuthorBadge name={post.author} />
-            <span className="text-sm font-medium text-text">{post.author || 'Optimax Team'}</span>
-          </div>
-          <span className="inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:underline">
-            Read more
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </span>
-        </div>
-      </div>
-    </Link>
-  );
-}
-
 function SmallCard({ post }: { post: Post }) {
   return (
     <Link
@@ -176,8 +123,8 @@ export function BlogGrid({ posts }: { posts: Post[] }) {
     return posts.filter((p) => p.category === activeCategory);
   }, [activeCategory, posts]);
 
-  const featured = filteredPosts[0];
-  const rest = filteredPosts.slice(1);
+  const topTwo = filteredPosts.slice(0, 2);
+  const rest = filteredPosts.slice(2);
 
   return (
     <>
@@ -209,19 +156,28 @@ export function BlogGrid({ posts }: { posts: Post[] }) {
         ))}
       </div>
 
-      {/* Grid */}
+      {/* Content */}
       {filteredPosts.length === 0 ? (
         <div className="text-center py-16 text-muted">No articles found in this category.</div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featured && (
-            <div className="md:col-span-2 md:row-span-2">
-              <FeaturedCard post={featured} />
+        <div className="space-y-6">
+          {/* Top row — 2 cards */}
+          {topTwo.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {topTwo.map((post) => (
+                <SmallCard key={post._id} post={post} />
+              ))}
             </div>
           )}
-          {rest.map((post) => (
-            <SmallCard key={post._id} post={post} />
-          ))}
+
+          {/* Rest — 3 cards per row */}
+          {rest.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {rest.map((post) => (
+                <SmallCard key={post._id} post={post} />
+              ))}
+            </div>
+          )}
         </div>
       )}
     </>
