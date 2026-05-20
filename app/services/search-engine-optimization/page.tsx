@@ -301,8 +301,9 @@ export default function SEOPage() {
         className="relative min-h-[540px] flex flex-col justify-center pt-20 pb-10 px-4 overflow-hidden"
         style={{ background: "#1a4a3a" }}
       >
-        <div className="absolute -top-24 -left-24 h-[500px] w-[500px] rounded-full pointer-events-none" style={{ background: "rgba(255,255,255,0.04)" }} />
-        <div className="absolute -bottom-16 -right-16 h-[350px] w-[350px] rounded-full pointer-events-none" style={{ background: "rgba(255,255,255,0.03)" }} />
+        <div className="absolute -top-24 -left-24 h-[500px] w-[500px] blob-1 pointer-events-none animate-blob-float" style={{ background: "rgba(255,255,255,0.04)" }} />
+        <div className="absolute -bottom-16 -right-16 h-[350px] w-[350px] blob-2 pointer-events-none animate-blob-float-delayed" style={{ background: "rgba(255,255,255,0.03)" }} />
+        <div className="absolute top-10 right-1/3 h-[180px] w-[180px] rounded-full pointer-events-none animate-blob-float" style={{ background: "rgba(255,255,255,0.025)", animationDelay: "1.5s" }} />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <FadeIn delay={0.1}>
             <span className="inline-block text-sm font-semibold uppercase tracking-wider text-white/50 font-display mb-4 mt-2">
