@@ -50,7 +50,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-          className="font-display font-bold text-text leading-[1.1] text-[32px] md:text-[56px] lg:text-[64px]"
+          className="font-display font-bold text-text leading-[1.12] text-[32px] md:text-[clamp(2.4rem,6vw,4.25rem)]"
         >
           We Build Digital Machines That{" "}
           <em className="text-accent" style={{ fontStyle: "italic" }}>
