@@ -161,9 +161,9 @@ export function BlogGrid({ posts }: { posts: Post[] }) {
         <div className="text-center py-16 text-muted">No articles found in this category.</div>
       ) : (
         <div className="space-y-6">
-          {/* Top row — 2 cards */}
+          {/* Top row — 70/30 split */}
           {topTwo.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-[7fr_3fr] gap-6">
               {topTwo.map((post) => (
                 <SmallCard key={post._id} post={post} />
               ))}
