@@ -222,17 +222,10 @@ export default async function CaseStudyDetailPage({
         </div>
       </div>
 
-      {/* ── BODY ── */}
-      <section className="inner-page pt-12 md:pt-16 pb-24 lg:pb-32 px-4">
-        <div className="mx-auto max-w-3xl">
+      {/* Featured image */}
+      <section className="inner-page px-4 mt-12 md:mt-16 mb-10">
+        <div className="mx-auto max-w-6xl">
           <FadeIn>
-            <p className="text-lg text-muted leading-relaxed">
-              {cs.description}
-            </p>
-          </FadeIn>
-
-          {/* Featured image */}
-          <FadeIn className="mb-12">
             <div className="relative aspect-[21/9] rounded-2xl overflow-hidden border border-border shadow-card">
               {cs.image ? (
                 <Image
@@ -256,139 +249,205 @@ export default async function CaseStudyDetailPage({
               )}
             </div>
           </FadeIn>
+        </div>
+      </section>
 
-          {/* The Challenge */}
-          {cs.challenge && (
-            <FadeIn className="mb-12">
-              <h2 className="text-2xl font-bold text-text font-display mb-4">
-                The Challenge
-              </h2>
-              <div className="prose prose-invert max-w-none prose-p:text-muted">
-                <PortableText value={cs.challenge as never} />
-              </div>
+      {/* ── BODY (two-column) ── */}
+      <section className="inner-page pb-24 lg:pb-32 px-4">
+        <div className="mx-auto max-w-6xl flex flex-col lg:flex-row gap-12">
+
+          {/* LEFT — Main content (70%) */}
+          <div className="lg:w-[70%]">
+            <FadeIn>
+              <p className="text-lg text-muted leading-relaxed mb-10">
+                {cs.description}
+              </p>
             </FadeIn>
-          )}
 
-          {/* Our Approach */}
-          {cs.approachSteps && cs.approachSteps.length > 0 && (
-            <FadeIn className="mb-12">
-              <h2 className="text-2xl font-bold text-text font-display mb-6">
-                Our Approach
-              </h2>
-              <ol className="space-y-5">
-                {cs.approachSteps.map((step, i) => (
-                  <li key={i} className="flex gap-4">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent text-sm font-bold">
-                      {i + 1}
-                    </span>
-                    <div>
-                      <p className="text-sm font-semibold text-text">
-                        {step.title}
-                      </p>
-                      <p className="text-sm text-muted leading-relaxed mt-0.5">
-                        {step.description}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </FadeIn>
-          )}
+            {/* The Challenge */}
+            {cs.challenge && (
+              <FadeIn className="mb-12">
+                <h2 className="text-2xl font-bold text-text font-display mb-4">
+                  The Challenge
+                </h2>
+                <div className="prose prose-invert max-w-none prose-p:text-muted">
+                  <PortableText value={cs.challenge as never} />
+                </div>
+              </FadeIn>
+            )}
 
-          {/* The Results */}
-          {cs.results && cs.results.length > 0 && (
-            <FadeIn className="mb-12">
-              <h2 className="text-2xl font-bold text-text font-display mb-6">
-                The Results
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {cs.results.map((r) => (
-                  <div
-                    key={r.label}
-                    className="flex flex-col rounded-xl border border-border bg-white p-5 shadow-card"
-                  >
-                    <span className="text-2xl font-bold text-accent font-display">
-                      {r.value}
-                    </span>
-                    <span className="text-sm font-medium text-text mt-1">
-                      {r.label}
-                    </span>
-                    <span className="text-xs text-muted mt-2 leading-relaxed">
-                      {r.description}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-          )}
-
-          {/* What the Client Said */}
-          {cs.testimonial && (
-            <FadeIn className="mb-12">
-              <h2 className="text-2xl font-bold text-text font-display mb-6">
-                What the Client Said
-              </h2>
-              <blockquote className="rounded-xl border-l-4 border-accent bg-navy-800/40 p-6">
-                <p className="text-base italic text-muted leading-relaxed">
-                  &ldquo;{cs.testimonial.quote}&rdquo;
-                </p>
-                <footer className="mt-4 text-sm text-muted">
-                  <span className="font-semibold text-text">
-                    {cs.testimonial.name}
-                  </span>
-                  <span className="mx-2">·</span>
-                  <span>{cs.testimonial.role}</span>
-                  <span className="mx-2">·</span>
-                  <span>{cs.testimonial.company}</span>
-                </footer>
-              </blockquote>
-            </FadeIn>
-          )}
-
-          {/* More Case Studies */}
-          {related.length > 0 && (
-            <FadeIn className="mt-16">
-              <h2 className="text-2xl font-bold text-text font-display mb-6">
-                More Case Studies
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {related.map((r) => (
-                  <Link
-                    key={r._id}
-                    href={`/case-studies/${normalizeSlug(r.slug)}`}
-                    className="group flex flex-col rounded-xl border border-border bg-white p-5 transition-all hover:border-accent/20 hover:shadow-lg"
-                  >
-                    {/* Industry tag */}
-                    <span className="inline-flex self-start items-center rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent mb-3">
-                      {r.industry}
-                    </span>
-
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-2xl font-bold text-accent font-display">
-                        {r.result}
+            {/* Our Approach */}
+            {cs.approachSteps && cs.approachSteps.length > 0 && (
+              <FadeIn className="mb-12">
+                <h2 className="text-2xl font-bold text-text font-display mb-6">
+                  Our Approach
+                </h2>
+                <ol className="space-y-5">
+                  {cs.approachSteps.map((step, i) => (
+                    <li key={i} className="flex gap-4">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent text-sm font-bold">
+                        {i + 1}
                       </span>
-                      <span className="text-sm text-muted">{r.metric}</span>
-                    </div>
-                    <h3 className="text-base font-semibold text-text group-hover:text-accent transition-colors">
-                      {r.client}
-                    </h3>
-                    <p className="text-sm text-muted mt-1 flex-1">
-                      {r.description}
-                    </p>
-                    <div className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:gap-2 transition-all">
-                      Read Case Study
-                      <ArrowRight className="h-4 w-4" />
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </FadeIn>
-          )}
+                      <div>
+                        <p className="text-sm font-semibold text-text">
+                          {step.title}
+                        </p>
+                        <p className="text-sm text-muted leading-relaxed mt-0.5">
+                          {step.description}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </FadeIn>
+            )}
 
-          <BottomCTA
-            title={`Want similar results for your ${cs.industry?.toLowerCase() ?? ""} business?`}
-            subtitle="Book a free strategy call and let us show you exactly how we can help."
-          />
+            {/* The Results */}
+            {cs.results && cs.results.length > 0 && (
+              <FadeIn className="mb-12">
+                <h2 className="text-2xl font-bold text-text font-display mb-6">
+                  The Results
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {cs.results.map((r) => (
+                    <div
+                      key={r.label}
+                      className="flex flex-col rounded-xl border border-border bg-white p-5 shadow-card"
+                    >
+                      <span className="text-2xl font-bold text-accent font-display">
+                        {r.value}
+                      </span>
+                      <span className="text-sm font-medium text-text mt-1">
+                        {r.label}
+                      </span>
+                      <span className="text-xs text-muted mt-2 leading-relaxed">
+                        {r.description}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </FadeIn>
+            )}
+
+            {/* What the Client Said */}
+            {cs.testimonial && (
+              <FadeIn className="mb-12">
+                <h2 className="text-2xl font-bold text-text font-display mb-6">
+                  What the Client Said
+                </h2>
+                <blockquote className="rounded-xl border-l-4 border-accent bg-navy-800/40 p-6">
+                  <p className="text-base italic text-muted leading-relaxed">
+                    &ldquo;{cs.testimonial.quote}&rdquo;
+                  </p>
+                  <footer className="mt-4 text-sm text-muted">
+                    <span className="font-semibold text-text">
+                      {cs.testimonial.name}
+                    </span>
+                    <span className="mx-2">·</span>
+                    <span>{cs.testimonial.role}</span>
+                    <span className="mx-2">·</span>
+                    <span>{cs.testimonial.company}</span>
+                  </footer>
+                </blockquote>
+              </FadeIn>
+            )}
+
+            {/* More Case Studies */}
+            {related.length > 0 && (
+              <FadeIn className="mt-16">
+                <h2 className="text-2xl font-bold text-text font-display mb-6">
+                  More Case Studies
+                </h2>
+                <div className="space-y-4">
+                  {related.map((r) => (
+                    <Link
+                      key={r._id}
+                      href={`/case-studies/${normalizeSlug(r.slug)}`}
+                      className="group flex items-start gap-4 rounded-xl border border-border bg-white p-4 transition-all hover:border-accent/20 hover:shadow-lg"
+                    >
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#d4e4d4] to-[#b8d4b8]">
+                        <span className="text-xl font-bold text-white/60 font-display">
+                          {r.client?.charAt(0) ?? ""}
+                        </span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <span className="text-lg font-bold text-accent font-display">{r.result}</span>
+                          <span className="text-xs text-muted">{r.metric}</span>
+                        </div>
+                        <h3 className="text-base font-semibold text-text group-hover:text-accent transition-colors leading-snug">
+                          {r.client}
+                        </h3>
+                        <p className="text-sm text-muted mt-0.5 line-clamp-1">{r.description}</p>
+                      </div>
+                      <ArrowRight className="h-5 w-5 text-accent opacity-0 transition-opacity group-hover:opacity-100 shrink-0 self-center ml-2" />
+                    </Link>
+                  ))}
+                </div>
+              </FadeIn>
+            )}
+
+            <BottomCTA
+              title={`Want similar results for your ${cs.industry?.toLowerCase() ?? ""} business?`}
+              subtitle="Book a free strategy call and let us show you exactly how we can help."
+            />
+          </div>
+
+          {/* RIGHT — Sticky Sidebar (30%) */}
+          <aside className="lg:w-[30%]">
+            <div className="lg:sticky lg:top-24 space-y-6">
+              {/* CTA card */}
+              <FadeIn>
+                <div className="rounded-2xl border border-border bg-white p-6 shadow-card text-center">
+                  <h3 className="text-lg font-bold text-text font-display mb-2">
+                    Want similar results?
+                  </h3>
+                  <p className="text-sm text-muted mb-5 leading-relaxed">
+                    Book a free strategy call and let us show you exactly how we can help your business grow.
+                  </p>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-accent-hover hover:shadow-glow"
+                  >
+                    Book Free Call
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </FadeIn>
+
+              {/* Key metrics */}
+              {cs.results && cs.results.length > 0 && (
+                <FadeIn>
+                  <div className="rounded-2xl border border-border bg-white p-6 shadow-card">
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-text mb-4 font-display">
+                      Key Results
+                    </h3>
+                    <div className="space-y-3">
+                      {cs.results.slice(0, 3).map((r) => (
+                        <div key={r.label} className="flex items-center justify-between">
+                          <span className="text-xs text-muted">{r.label}</span>
+                          <span className="text-sm font-bold text-accent font-display">{r.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </FadeIn>
+              )}
+
+              {/* Industry tag */}
+              <FadeIn>
+                <div className="rounded-2xl border border-border bg-white p-6 shadow-card">
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-text mb-3 font-display">
+                    Industry
+                  </h3>
+                  <span className="inline-flex items-center rounded-full bg-accent/10 px-3 py-1.5 text-sm font-medium text-accent">
+                    {cs.industry}
+                  </span>
+                </div>
+              </FadeIn>
+            </div>
+          </aside>
+
         </div>
       </section>
     </>
