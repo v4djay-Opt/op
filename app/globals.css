@@ -122,6 +122,30 @@ body {
   animation: float 6s ease-in-out 2s infinite;
 }
 
+/* Blob float — organic multi-directional drift */
+@keyframes blob-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(20px, -15px) scale(1.03);
+  }
+  50% {
+    transform: translate(-10px, 10px) scale(0.97);
+  }
+  75% {
+    transform: translate(15px, 5px) scale(1.02);
+  }
+}
+
+.animate-blob-float {
+  animation: blob-float 8s ease-in-out infinite;
+}
+
+.animate-blob-float-delayed {
+  animation: blob-float 10s ease-in-out 3s infinite;
+}
+
 /* Auto-scroll carousel for tech stack */
 @keyframes scroll-left {
   0% {
