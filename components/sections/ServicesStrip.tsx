@@ -370,9 +370,9 @@ export const ServicesStrip = memo(function ServicesStrip() {
             >
               {services.map((service, i) => (
                 <div key={service.title} className="w-full flex-shrink-0 px-1">
-                  <div className="rounded-2xl bg-white border border-border shadow-card overflow-hidden">
+                  <div className="rounded-2xl bg-white border border-border shadow-card overflow-hidden transform rotate-1 hover:rotate-0 transition-transform duration-300">
                     {/* Top image area */}
-                    <div className="relative h-[200px] overflow-hidden" style={{ background: service.color }}>
+                    <div className="relative h-[240px] overflow-hidden" style={{ background: service.color }}>
                       {"image" in service && service.image ? (
                         <Image
                           src={service.image as string}
@@ -407,7 +407,7 @@ export const ServicesStrip = memo(function ServicesStrip() {
                       <p className="text-sm text-text-secondary leading-relaxed mb-4">
                         {service.description}
                       </p>
-                      <ul className="space-y-2 mb-5">
+                      <ul className="space-y-2">
                         {service.bullets.map((b) => (
                           <li key={b} className="flex items-start gap-2 text-sm text-text-secondary">
                             <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" />
@@ -415,15 +415,16 @@ export const ServicesStrip = memo(function ServicesStrip() {
                           </li>
                         ))}
                       </ul>
-                      <Link
-                        href={service.href}
-                        className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-all group"
-                        style={{ background: "#1a4a3a" }}
-                      >
-                        Learn More
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </Link>
                     </div>
+                    {/* Bottom button bar */}
+                    <Link
+                      href={service.href}
+                      className="flex items-center justify-between w-full px-5 py-4 text-sm font-semibold text-white transition-all group"
+                      style={{ background: "#1a4a3a" }}
+                    >
+                      <span>Learn More</span>
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
                   </div>
                 </div>
               ))}
