@@ -62,10 +62,10 @@ export function BlogPreview({ posts }: BlogPreviewProps) {
   if (!posts.length) return null;
 
   return (
-    <section className="relative py-[64px] lg:py-[120px] px-4 bg-surface-alt overflow-hidden">
+    <section className="relative py-12 lg:py-20 px-4 bg-surface-alt overflow-hidden">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          label="Blog"
+          label="BLOG"
           title={<>Latest <em className="italic text-accent">Insights</em></>}
         />
 
@@ -86,7 +86,7 @@ export function BlogPreview({ posts }: BlogPreviewProps) {
                 >
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="group relative flex flex-col rounded-2xl bg-white border border-border overflow-hidden transition-all duration-300 hover:border-accent/25 hover:bg-surface-alt hover:-translate-y-2 hover:shadow-card-hover h-full"
+                    className="group relative flex flex-col rounded-2xl bg-white border border-border overflow-hidden transition-all duration-300 hover:border-accent/25 hover:bg-surface-alt hover:-translate-y-2 hover:shadow-card-hover h-full min-h-[420px]"
                   >
                     {/* Featured image */}
                     <div className="relative aspect-[16/10] bg-surface-alt overflow-hidden">

@@ -114,8 +114,8 @@ export function FAQ() {
   };
 
   return (
-    <section className="py-[64px] lg:py-[120px] px-4">
-      <div className="mx-auto max-w-3xl">
+    <section className="py-12 lg:py-20 px-4">
+      <div className="mx-auto max-w-[700px]">
         <SectionHeading
           label="FAQ"
           title={<>Frequently Asked <em className="italic text-accent">Questions</em></>}

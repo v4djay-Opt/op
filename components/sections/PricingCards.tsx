@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { Check } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -10,7 +9,7 @@ const plans = [
   {
     name: "Starter",
     description: "For small businesses getting started online",
-    price: "₹29,999",
+    price: "₹25,000",
     features: [
       "5-page responsive website",
       "Basic search engine optimization setup",
@@ -23,7 +22,7 @@ const plans = [
   {
     name: "Growth",
     description: "For businesses ready to scale",
-    price: "₹79,999",
+    price: "₹30,000",
     features: [
       "Custom web app / CRM",
       "Advanced search engine optimization & analytics",
@@ -51,55 +50,32 @@ const plans = [
 ];
 
 export function PricingCards() {
-  const [isAnnual, setIsAnnual] = useState(false);
-
   return (
-    <section className="py-[64px] lg:py-[120px] px-4 bg-surface-alt">
+    <section className="py-12 lg:py-20 px-4 bg-surface-alt">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          label="Pricing"
+          label="PRICING"
           title={<>Transparent <em className="italic text-accent">Pricing</em></>}
           description="No hidden fees. Choose a plan that fits your business stage and scale as you grow."
         />
 
-        {/* Billing Toggle */}
-        <div className="flex items-center justify-center gap-3 mb-12">
-          <span className={`text-sm font-medium ${!isAnnual ? "text-text" : "text-muted"}`}>
-            One-time
-          </span>
-          <button
-            onClick={() => setIsAnnual(!isAnnual)}
-            className="relative h-7 w-12 rounded-full bg-accent/20 transition-colors"
-            aria-label="Toggle billing"
-          >
-            <span
-              className={`absolute top-0.5 h-6 w-6 rounded-full bg-accent shadow-sm transition-transform ${
-                isAnnual ? "translate-x-5" : "translate-x-0.5"
-              }`}
-            />
-          </button>
-          <span className={`text-sm font-medium ${isAnnual ? "text-text" : "text-muted"}`}>
-            Annual Retainer
-          </span>
-          {isAnnual && (
-            <span className="rounded-full bg-accent-light px-2 py-0.5 text-xs font-semibold text-accent">
-              Save 20%
-            </span>
-          )}
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 items-start">
+          {/* Mobile: featured first; Desktop: original order */}
           {plans.map((plan, i) => (
-            <FadeIn key={plan.name} delay={i * 0.1}>
+            <FadeIn
+              key={plan.name}
+              delay={i * 0.1}
+              className={plan.featured ? "order-first md:order-none" : ""}
+            >
               <div
-                className={`relative flex flex-col rounded-2xl p-8 h-full transition-shadow hover:shadow-card-hover ${
+                className={`relative flex flex-col rounded-2xl p-6 lg:p-8 h-full transition-shadow hover:shadow-card-hover ${
                   plan.featured
-                    ? "bg-accent text-white border-2 border-accent shadow-lg"
+                    ? "bg-accent text-white border-2 border-accent shadow-lg md:-mt-4 md:mb-4"
                     : "bg-white border border-border"
                 }`}
               >
                 {plan.featured && (
-                  <div className="absolute -top-3 right-4 rounded-full bg-accent-light px-3 py-1 text-xs font-bold text-accent border border-accent/20">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-accent-light px-3 py-1 text-xs font-bold text-accent border border-accent/20">
                     Most Popular
                   </div>
                 )}

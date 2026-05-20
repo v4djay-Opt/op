@@ -37,19 +37,19 @@ const cases = [
 
 export function CaseStudies() {
   return (
-    <section className="relative py-[64px] lg:py-[120px] px-4">
+    <section className="relative py-12 lg:py-20 px-4">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          label="Results"
+          label="CASE STUDIES"
           title={<>Case <em className="italic text-accent">Studies</em></>}
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {cases.map((c, i) => (
-            <FadeIn key={c.client} delay={i * 0.12}>
+            <FadeIn key={c.client} delay={i * 0.12} className="h-full">
               <Link
                 href={c.href}
-                className="group flex flex-col rounded-2xl bg-white border border-border p-7 transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1.5 h-full"
+                className="group flex flex-col rounded-2xl bg-white border border-border p-7 transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1.5 h-full min-h-[320px]"
               >
                 <div className="flex items-center justify-between mb-5">
                   <span className="inline-flex items-center rounded-full bg-accent-light px-3 py-1 text-xs font-semibold text-accent ring-1 ring-accent/20">

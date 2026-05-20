@@ -95,21 +95,31 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
 }
 
 export function Testimonials() {
+  const topRow = testimonials.slice(0, 3);
+  const bottomRow = testimonials.slice(3, 5);
+
   return (
-    <section className="py-[64px] lg:py-[120px] px-4 bg-surface-alt">
+    <section className="py-12 lg:py-20 px-4 bg-surface-alt">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          label="Testimonials"
+          label="TESTIMONIALS"
           title={<>What Our Clients <em className="italic text-accent">Say</em></>}
         />
 
-        {/* 3-column masonry-style grid */}
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-          {testimonials.map((t, i) => (
-            <FadeIn key={t.name} delay={i * 0.1}>
-              <div className="break-inside-avoid">
-                <TestimonialCard t={t} />
-              </div>
+        {/* Top row: 3 cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+          {topRow.map((t, i) => (
+            <FadeIn key={t.name} delay={i * 0.08}>
+              <TestimonialCard t={t} />
+            </FadeIn>
+          ))}
+        </div>
+
+        {/* Bottom row: 2 cards centered */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 mt-4 lg:mt-6 max-w-3xl mx-auto">
+          {bottomRow.map((t, i) => (
+            <FadeIn key={t.name} delay={(i + 3) * 0.08}>
+              <TestimonialCard t={t} />
             </FadeIn>
           ))}
         </div>
