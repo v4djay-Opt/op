@@ -1,7 +1,7 @@
 "use client";
 
-import { Star } from "lucide-react";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { useState, useEffect, useCallback } from "react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const testimonials = [
@@ -54,17 +54,28 @@ function Avatar({ name }: { name: string }) {
     .join("")
     .slice(0, 2);
   return (
-    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-accent text-white font-bold text-xs font-display shrink-0">
+    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white font-bold text-xs font-display shrink-0">
       {initials}
     </div>
   );
 }
 
-function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
+function TestimonialCard({
+  t,
+  isActive,
+}: {
+  t: (typeof testimonials)[0];
+  isActive: boolean;
+}) {
   return (
-    <div className="h-full rounded-2xl bg-accent-light/40 border border-border p-6 lg:p-8 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1">
-      {/* Stars */}
-      <div className="flex gap-1 mb-5">
+    <div
+      className={`h-full rounded-2xl border p-6 lg:p-8 transition-all duration-500 ${
+        isActive
+          ? "bg-white border-border shadow-card-hover scale-100 opacity-100"
+          : "bg-accent-light/30 border-border/50 shadow-sm scale-[0.96] opacity-70"
+      }`}
+    >
+      <div className="flex gap-1 mb-4">
         {Array.from({ length: 5 }).map((_, j) => (
           <Star
             key={j}
@@ -77,11 +88,11 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
         ))}
       </div>
 
-      <p className="text-base text-text leading-relaxed mb-6">
+      <p className="text-sm lg:text-base text-text leading-relaxed mb-6">
         &ldquo;{t.quote}&rdquo;
       </p>
 
-      <div className="flex items-center gap-3 pt-4 border-t border-border/60">
+      <div className="flex items-center gap-3 pt-4 border-t border-border/40">
         <Avatar name={t.name} />
         <div>
           <div className="text-sm font-semibold text-text">{t.name}</div>
@@ -95,33 +106,109 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
 }
 
 export function Testimonials() {
-  const topRow = testimonials.slice(0, 3);
-  const bottomRow = testimonials.slice(3, 5);
+  const [centerIndex, setCenterIndex] = useState(1);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const total = testimonials.length;
+
+  const getIndex = useCallback(
+    (offset: number) => {
+      return (centerIndex + offset + total) % total;
+    },
+    [centerIndex, total]
+  );
+
+  const goNext = useCallback(() => {
+    setCenterIndex((prev) => (prev + 1) % total);
+  }, [total]);
+
+  const goPrev = useCallback(() => {
+    setCenterIndex((prev) => (prev - 1 + total) % total);
+  }, [total]);
+
+  /* Auto-slide */
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(goNext, 5000);
+    return () => clearInterval(timer);
+  }, [isPaused, goNext]);
+
+  const leftIndex = getIndex(-1);
+  const rightIndex = getIndex(1);
 
   return (
-    <section className="py-12 lg:py-20 px-4 bg-surface-alt">
-      <div className="mx-auto max-w-7xl">
+    <section
+      className="py-12 lg:py-20 px-4 bg-surface-alt"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <div className="mx-auto max-w-6xl">
         <SectionHeading
           label="TESTIMONIALS"
           title={<>What Our Clients <em className="italic text-accent">Say</em></>}
         />
 
-        {/* Top row: 3 cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-          {topRow.map((t, i) => (
-            <FadeIn key={t.name} delay={i * 0.08}>
-              <TestimonialCard t={t} />
-            </FadeIn>
-          ))}
+        {/* Slider track — desktop: 3 cards */}
+        <div className="hidden md:flex items-center justify-center gap-5 lg:gap-6">
+          {/* Left card */}
+          <div className="flex-1 min-w-0">
+            <TestimonialCard t={testimonials[leftIndex]} isActive={false} />
+          </div>
+
+          {/* Center (active) card */}
+          <div className="flex-1 min-w-0">
+            <TestimonialCard
+              t={testimonials[centerIndex]}
+              isActive={true}
+            />
+          </div>
+
+          {/* Right card */}
+          <div className="flex-1 min-w-0">
+            <TestimonialCard t={testimonials[rightIndex]} isActive={false} />
+          </div>
         </div>
 
-        {/* Bottom row: 2 cards centered */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 mt-4 lg:mt-6 max-w-3xl mx-auto">
-          {bottomRow.map((t, i) => (
-            <FadeIn key={t.name} delay={(i + 3) * 0.08}>
-              <TestimonialCard t={t} />
-            </FadeIn>
-          ))}
+        {/* Mobile: single card */}
+        <div className="md:hidden">
+          <TestimonialCard
+            t={testimonials[centerIndex]}
+            isActive={true}
+          />
+        </div>
+
+        {/* Arrows + Dots */}
+        <div className="flex items-center justify-center gap-6 mt-8">
+          <button
+            onClick={goPrev}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-muted transition-all hover:bg-accent hover:text-white hover:border-accent"
+            aria-label="Previous testimonial"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+
+          <div className="flex items-center gap-2">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCenterIndex(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === centerIndex
+                    ? "w-6 bg-accent"
+                    : "w-2 bg-border hover:bg-muted"
+                }`}
+                aria-label={`Go to testimonial ${i + 1}`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={goNext}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-muted transition-all hover:bg-accent hover:text-white hover:border-accent"
+            aria-label="Next testimonial"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
         </div>
       </div>
     </section>
