@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import {
   siNextdotjs,
@@ -36,19 +35,19 @@ const tools = [
 
 const CARDS_PER_PAGE = 6;
 
-function ToolIcon({ tool }: { tool: (typeof tools)[number] }) {
+function ToolCard({ tool }: { tool: (typeof tools)[number] }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-2">
+    <div className="flex flex-col items-center justify-center gap-3 rounded-2xl bg-accent-light/30 border border-accent/10 p-5 lg:p-6 transition-all duration-300 hover:bg-accent-light/50 hover:shadow-sm hover:-translate-y-0.5">
       <svg
         role="img"
         viewBox="0 0 24 24"
         aria-label={tool.name}
-        className="h-10 w-10"
+        className="h-8 w-8 lg:h-10 lg:w-10"
         style={{ fill: `#${tool.icon.hex}` }}
       >
         <path d={tool.icon.path} />
       </svg>
-      <span className="text-xs font-medium text-muted text-center">
+      <span className="text-xs font-medium text-text text-center">
         {tool.name}
       </span>
     </div>
@@ -106,48 +105,12 @@ export function IntegrationsGrid() {
               className="grid grid-cols-3 md:grid-cols-6 gap-6 lg:gap-8 place-items-center"
             >
               {visible.map((tool) => (
-                <ToolIcon key={tool.name} tool={tool} />
+                <ToolCard key={tool.name} tool={tool} />
               ))}
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Arrows + Dots */}
-        <div className="flex items-center justify-center gap-6 mt-8">
-          <button
-            onClick={goPrev}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-muted transition-all hover:bg-accent hover:text-white hover:border-accent"
-            aria-label="Previous tools"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-
-          <div className="flex items-center gap-2">
-            {Array.from({ length: totalPages }).map((_, i) => (
-              <button
-                key={i}
-                onClick={() => {
-                  setDirection(i > page ? 1 : -1);
-                  setPage(i);
-                }}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  i === page
-                    ? "w-6 bg-accent"
-                    : "w-2 bg-border hover:bg-muted"
-                }`}
-                aria-label={`Go to page ${i + 1}`}
-              />
-            ))}
-          </div>
-
-          <button
-            onClick={goNext}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-muted transition-all hover:bg-accent hover:text-white hover:border-accent"
-            aria-label="Next tools"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-        </div>
       </div>
     </section>
   );
