@@ -69,10 +69,10 @@ function TestimonialCard({
 }) {
   return (
     <div
-      className={`h-full rounded-2xl border p-6 lg:p-8 transition-all duration-500 ${
+      className={`h-full flex flex-col rounded-2xl border transition-all duration-500 ${
         isActive
-          ? "bg-white border-border shadow-card-hover scale-100 opacity-100"
-          : "bg-accent-light/30 border-border/50 shadow-sm scale-[0.96] opacity-70"
+          ? "bg-white border-border shadow-card-hover scale-100 opacity-100 p-6 lg:p-10 min-h-[460px]"
+          : "bg-accent-light/30 border-border/50 shadow-sm scale-[0.96] opacity-70 p-6 lg:p-7 min-h-[420px]"
       }`}
     >
       <div className="flex gap-1 mb-4">
@@ -88,11 +88,11 @@ function TestimonialCard({
         ))}
       </div>
 
-      <p className="text-sm lg:text-base text-text leading-relaxed mb-6">
+      <p className="flex-1 text-sm lg:text-base text-text leading-relaxed">
         &ldquo;{t.quote}&rdquo;
       </p>
 
-      <div className="flex items-center gap-3 pt-4 border-t border-border/40">
+      <div className="flex items-center gap-3 pt-4 mt-4 border-t border-border/40">
         <Avatar name={t.name} />
         <div>
           <div className="text-sm font-semibold text-text">{t.name}</div>
