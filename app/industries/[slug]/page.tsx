@@ -182,14 +182,14 @@ export default async function IndustryPage({
                 {industry.images.map((src, i) => (
                   <div
                     key={i}
-                    className="overflow-hidden rounded-xl border border-accent"
+                    className="overflow-hidden rounded-xl border border-accent transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                   >
                     <Image
                       src={src}
                       alt={`${industry.name} ${i + 1}`}
                       width={800}
                       height={600}
-                      className="w-full h-auto"
+                      className="w-full h-auto transition-transform duration-300 hover:scale-105"
                     />
                   </div>
                 ))}
