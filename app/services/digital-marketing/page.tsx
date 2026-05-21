@@ -14,6 +14,7 @@ import {
   Target,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const SITE_URL = "https://optimaxstudio.com";
 
@@ -452,8 +453,14 @@ export default function DigitalMarketingPage() {
                   </div>
                 ))}
               </div>
-              <div className="relative rounded-2xl border border-border overflow-hidden h-64 lg:h-full min-h-[260px] bg-surface-alt flex items-center justify-center">
-                <span className="text-muted text-sm font-medium">Digital Marketing Process</span>
+              <div className="relative rounded-2xl border border-border overflow-hidden h-64 lg:h-full min-h-[260px]">
+                <Image
+                  src="/images/services/digital-marketing-process.jpg"
+                  alt="Digital marketing process at Optimax Studio"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
               </div>
             </div>
           </FadeIn>

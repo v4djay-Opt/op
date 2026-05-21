@@ -5,6 +5,7 @@ import { BottomCTA } from "@/components/ui/BottomCTA";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const SITE_URL = "https://optimaxstudio.com";
 
@@ -488,8 +489,14 @@ export default function SocialMediaPage() {
                   </div>
                 ))}
               </div>
-              <div className="relative rounded-2xl border border-border overflow-hidden h-64 lg:h-full min-h-[260px] bg-surface-alt flex items-center justify-center">
-                <span className="text-muted text-sm font-medium">Social Media Process</span>
+              <div className="relative rounded-2xl border border-border overflow-hidden h-64 lg:h-full min-h-[260px]">
+                <Image
+                  src="/images/services/social-media-process.jpg"
+                  alt="Social media management process at Optimax Studio"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
               </div>
             </div>
           </FadeIn>
