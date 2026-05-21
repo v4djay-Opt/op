@@ -16,45 +16,61 @@ export interface CaseStudyCard {
   image?: string;
 }
 
-function CaseCard({ c }: { c: CaseStudyCard }) {
+function CaseCard({ c, index }: { c: CaseStudyCard; index: number }) {
   return (
     <Link
       href={c.href}
       className="group flex flex-col rounded-2xl bg-white border border-border overflow-hidden transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1.5 h-full"
     >
-      {/* Image */}
-      {c.image ? (
-        <div className="relative h-48 w-full overflow-hidden shrink-0">
-          <img src={c.image} alt={c.client} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-          <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-semibold text-accent">
-            {c.industry}
-          </span>
+      {/* Image area */}
+      <div className="relative h-52 w-full overflow-hidden shrink-0 bg-gradient-to-br from-accent/10 to-accent/5">
+        {c.image ? (
+          <img
+            src={c.image}
+            alt={c.client}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <TrendingUp className="h-16 w-16 text-accent/15" />
+          </div>
+        )}
+        {/* Number badge top-left */}
+        <span className="absolute top-3 left-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 backdrop-blur-sm text-xs font-bold text-accent shadow-sm">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        {/* Result stat bottom-right */}
+        <div className="absolute bottom-3 right-3 rounded-xl bg-white/95 backdrop-blur-sm px-3 py-2 shadow-md text-right">
+          <div className="text-lg font-extrabold text-accent font-display leading-none">
+            {c.result}<span className="text-sm font-semibold">+</span>
+          </div>
+          <div className="text-[10px] text-muted leading-tight mt-0.5">{c.metric}</div>
         </div>
-      ) : (
-        <div className="h-48 w-full shrink-0 bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center relative">
-          <TrendingUp className="h-10 w-10 text-accent/20" />
-          <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-accent">
-            {c.industry}
-          </span>
-        </div>
-      )}
+      </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-1 p-5">
-        <div className="flex items-baseline gap-2 mb-2">
-          <span className="text-3xl font-extrabold text-accent font-display leading-none">{c.result}</span>
-          <span className="text-sm text-muted">{c.metric}</span>
-        </div>
-        <h3 className="text-base font-semibold text-text font-display mb-1 group-hover:text-accent transition-colors">
+      <div className="flex flex-col flex-1 px-5 pt-5 pb-0">
+        <h3 className="text-base font-bold text-text font-display mb-2 group-hover:text-accent transition-colors">
           {c.client}
         </h3>
-        <p className="text-sm text-muted leading-relaxed flex-1 line-clamp-2">
+        <p className="text-sm text-muted leading-relaxed line-clamp-2 mb-4">
           {c.description}
         </p>
-        <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent/70 group-hover:text-accent group-hover:gap-2 transition-all">
-          Read Case Study
-          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        {/* Industry as checklist item */}
+        <div className="flex items-center gap-2 text-sm text-muted mb-1">
+          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-accent text-accent text-[10px]">✓</span>
+          {c.industry} Industry
         </div>
+        <div className="flex items-center gap-2 text-sm text-muted mb-1">
+          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-accent text-accent text-[10px]">✓</span>
+          {c.result} {c.metric}
+        </div>
+      </div>
+
+      {/* Full-width dark green button */}
+      <div className="mt-5 flex items-center justify-between bg-accent px-5 py-4 transition-all group-hover:bg-accent-hover">
+        <span className="text-sm font-bold text-white">Read Case Study</span>
+        <ArrowRight className="h-4 w-4 text-white transition-transform group-hover:translate-x-1" />
       </div>
     </Link>
   );
@@ -133,7 +149,7 @@ export function CaseStudies({ cases }: { cases: CaseStudyCard[] }) {
               className="absolute inset-0 grid grid-cols-3 gap-6"
             >
               {displayCards.map((c, i) => (
-                <CaseCard key={`${c.client}-${i}`} c={c} />
+                <CaseCard key={`${c.client}-${i}`} c={c} index={page + i} />
               ))}
             </motion.div>
           </AnimatePresence>
@@ -150,7 +166,7 @@ export function CaseStudies({ cases }: { cases: CaseStudyCard[] }) {
               transition={{ duration: 0.4, ease: "easeInOut" }}
               className="absolute inset-0"
             >
-              <CaseCard c={displayCards[0]!} />
+              <CaseCard c={displayCards[0]!} index={page} />
             </motion.div>
           </AnimatePresence>
         </div>
