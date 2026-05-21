@@ -182,14 +182,14 @@ export default async function IndustryPage({
                 {industry.images.map((src, i) => (
                   <div
                     key={i}
-                    className="relative overflow-hidden h-[200px] md:h-[220px] rounded-xl border border-border"
+                    className="overflow-hidden rounded-xl border border-border"
                   >
                     <Image
                       src={src}
                       alt={`${industry.name} ${i + 1}`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover"
+                      width={800}
+                      height={600}
+                      className="w-full h-auto"
                     />
                   </div>
                 ))}
