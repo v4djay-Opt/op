@@ -13,14 +13,26 @@ export interface CaseStudyCard {
   metric: string;
   description: string;
   href: string;
+  image?: string;
 }
 
 function CaseCard({ c }: { c: CaseStudyCard }) {
   return (
     <Link
       href={c.href}
-      className="group flex flex-col rounded-2xl bg-white border border-border p-6 lg:p-7 transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1.5 h-full min-h-[300px] lg:min-h-[320px]"
+      className="group flex flex-col rounded-2xl bg-white border border-border overflow-hidden transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1.5 h-full min-h-[300px] lg:min-h-[320px]"
     >
+      {/* Image */}
+      {c.image ? (
+        <div className="relative h-40 w-full overflow-hidden shrink-0">
+          <img src={c.image} alt={c.client} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+        </div>
+      ) : (
+        <div className="h-40 w-full shrink-0 bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center">
+          <TrendingUp className="h-10 w-10 text-accent/20" />
+        </div>
+      )}
+      <div className="flex flex-col flex-1 p-6 lg:p-7">
       <div className="flex items-center justify-between mb-4">
         <span className="inline-flex items-center rounded-full bg-accent-light px-3 py-1 text-xs font-semibold text-accent ring-1 ring-accent/20">
           {c.industry}
@@ -45,6 +57,7 @@ function CaseCard({ c }: { c: CaseStudyCard }) {
       <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent/60 transition-all group-hover:text-accent">
         Read Case Study
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+      </div>
       </div>
     </Link>
   );
@@ -91,7 +104,9 @@ export function CaseStudies({ cases }: { cases: CaseStudyCard[] }) {
 
   const visible = cases.slice(page, page + CARDS_PER_PAGE);
   const displayCards =
-    visible.length < CARDS_PER_PAGE
+    total < CARDS_PER_PAGE
+      ? visible
+      : visible.length < CARDS_PER_PAGE
       ? [...visible, ...cases.slice(0, CARDS_PER_PAGE - visible.length)]
       : visible;
 

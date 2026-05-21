@@ -21,6 +21,7 @@ interface SanityCase {
   result: string;
   metric: string;
   description: string;
+  image?: string;
 }
 
 interface Post {
@@ -87,6 +88,7 @@ export default async function Home() {
     metric: c.metric,
     description: c.description,
     href: `/case-studies/${typeof c.slug === "string" ? c.slug : c.slug.current}`,
+    image: c.image,
   }));
   const posts = rawPosts.map((p) => ({
     ...p,
