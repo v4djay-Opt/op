@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: "Optimax Studio — Digital Agency",
-    template: "%s — Optimax Studio",
+    template: "%s | Optimax Studio",
   },
   description:
     "We build digital machines that generate revenue. Web design, development, marketing, and custom CRM solutions.",

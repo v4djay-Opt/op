@@ -59,6 +59,21 @@ export default defineType({
       rows: 3,
     }),
     defineField({
+      name: "heroMetrics",
+      title: "Hero Metrics",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "value", title: "Value", type: "string" },
+            { name: "label", title: "Label", type: "string" },
+          ],
+        },
+      ],
+      description: "Extra metrics shown in the hero section (e.g. 6 months, 50% less time).",
+    }),
+    defineField({
       name: "challenge",
       title: "Challenge",
       type: "blockContent",
@@ -72,6 +87,48 @@ export default defineType({
       name: "outcome",
       title: "Outcome",
       type: "blockContent",
+    }),
+    defineField({
+      name: "approachSteps",
+      title: "Approach Steps",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "title", title: "Step Title", type: "string" },
+            { name: "description", title: "Step Description", type: "text", rows: 2 },
+          ],
+        },
+      ],
+      description: "Numbered steps shown in the Our Approach section.",
+    }),
+    defineField({
+      name: "results",
+      title: "Results",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "value", title: "Value", type: "string" },
+            { name: "label", title: "Label", type: "string" },
+            { name: "description", title: "Description", type: "text", rows: 2 },
+          ],
+        },
+      ],
+      description: "Key results shown as stat cards.",
+    }),
+    defineField({
+      name: "testimonial",
+      title: "Client Testimonial",
+      type: "object",
+      fields: [
+        { name: "quote", title: "Quote", type: "text", rows: 3 },
+        { name: "name", title: "Client Name", type: "string" },
+        { name: "role", title: "Role", type: "string" },
+        { name: "company", title: "Company", type: "string" },
+      ],
     }),
     defineField({
       name: "mainImage",

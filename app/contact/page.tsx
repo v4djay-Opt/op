@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { PageHero } from "@/components/ui/PageHero";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { LocalBusinessSchema } from "@/components/seo/LocalBusinessSchema";
 import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
 
 const servicesList = [
@@ -60,6 +61,7 @@ export default function ContactPage() {
 
   return (
     <>
+      <LocalBusinessSchema />
       <PageHero
         label="Contact"
         title="Let Us Build Something Great Together"

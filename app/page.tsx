@@ -8,6 +8,7 @@ import { IntegrationsGrid } from "@/components/sections/IntegrationsGrid";
 import { BlogPreview } from "@/components/sections/BlogPreview";
 import { FAQ } from "@/components/sections/FAQ";
 import { CTABanner } from "@/components/sections/CTABanner";
+import { LocalBusinessSchema } from "@/components/seo/LocalBusinessSchema";
 import { sanityFetch } from "@/lib/sanity/client";
 import { postsQuery, caseStudiesQuery } from "@/lib/sanity/queries";
 import { fallbackPosts } from "@/lib/data/blog-fallback";
@@ -102,6 +103,7 @@ export default async function Home() {
       >
         {JSON.stringify(jsonLd)}
       </script>
+      <LocalBusinessSchema />
       <Hero />
       <ServicesStrip />
       <StatsRow />

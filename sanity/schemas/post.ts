@@ -57,6 +57,32 @@ export default defineType({
       initialValue: 5,
     }),
     defineField({
+      name: "author",
+      title: "Author Name",
+      type: "string",
+    }),
+    defineField({
+      name: "authorRole",
+      title: "Author Role",
+      type: "string",
+    }),
+    defineField({
+      name: "authorBio",
+      title: "Author Bio",
+      type: "text",
+      rows: 3,
+    }),
+    defineField({
+      name: "authorLinkedIn",
+      title: "Author LinkedIn URL",
+      type: "url",
+    }),
+    defineField({
+      name: "authorTwitter",
+      title: "Author Twitter URL",
+      type: "url",
+    }),
+    defineField({
       name: "body",
       title: "Body",
       type: "blockContent",
