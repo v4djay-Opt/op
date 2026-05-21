@@ -20,44 +20,41 @@ function CaseCard({ c }: { c: CaseStudyCard }) {
   return (
     <Link
       href={c.href}
-      className="group flex flex-col rounded-2xl bg-white border border-border overflow-hidden transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1.5 h-full min-h-[300px] lg:min-h-[320px]"
+      className="group flex flex-col rounded-2xl bg-white border border-border overflow-hidden transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1.5 h-full"
     >
       {/* Image */}
       {c.image ? (
-        <div className="relative h-40 w-full overflow-hidden shrink-0">
+        <div className="relative h-48 w-full overflow-hidden shrink-0">
           <img src={c.image} alt={c.client} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+          <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-semibold text-accent">
+            {c.industry}
+          </span>
         </div>
       ) : (
-        <div className="h-40 w-full shrink-0 bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center">
+        <div className="h-48 w-full shrink-0 bg-gradient-to-br from-accent/10 to-accent/5 flex items-center justify-center relative">
           <TrendingUp className="h-10 w-10 text-accent/20" />
+          <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-accent">
+            {c.industry}
+          </span>
         </div>
       )}
-      <div className="flex flex-col flex-1 p-6 lg:p-7">
-      <div className="flex items-center justify-between mb-4">
-        <span className="inline-flex items-center rounded-full bg-accent-light px-3 py-1 text-xs font-semibold text-accent ring-1 ring-accent/20">
-          {c.industry}
-        </span>
-        <TrendingUp className="h-5 w-5 text-accent/30 group-hover:text-accent/60 transition-colors" />
-      </div>
 
-      <div className="mb-4">
-        <div className="text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-muted font-display leading-tight">
-          {c.result}
+      {/* Content */}
+      <div className="flex flex-col flex-1 p-5">
+        <div className="flex items-baseline gap-2 mb-2">
+          <span className="text-3xl font-extrabold text-accent font-display leading-none">{c.result}</span>
+          <span className="text-sm text-muted">{c.metric}</span>
         </div>
-        <div className="text-sm font-medium text-muted mt-1">{c.metric}</div>
-      </div>
-
-      <h3 className="text-lg lg:text-xl font-semibold text-text font-display mb-2">
-        {c.client}
-      </h3>
-      <p className="text-sm text-text-secondary leading-relaxed flex-1">
-        {c.description}
-      </p>
-
-      <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent/60 transition-all group-hover:text-accent">
-        Read Case Study
-        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-      </div>
+        <h3 className="text-base font-semibold text-text font-display mb-1 group-hover:text-accent transition-colors">
+          {c.client}
+        </h3>
+        <p className="text-sm text-muted leading-relaxed flex-1 line-clamp-2">
+          {c.description}
+        </p>
+        <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent/70 group-hover:text-accent group-hover:gap-2 transition-all">
+          Read Case Study
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </div>
       </div>
     </Link>
   );
