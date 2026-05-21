@@ -32,7 +32,6 @@ const nextConfig: NextConfig = {
       {
         source: "/((?!studio).*)",
         headers: [
-          { key: "X-Frame-Options", value: "DENY" },
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           {
@@ -49,11 +48,12 @@ const nextConfig: NextConfig = {
               "font-src 'self' data:",
               "frame-src https://cal.com https://www.google.com https://checkout.razorpay.com",
               "connect-src 'self' https://api.razorpay.com https://*.sanity.io",
+              "frame-ancestors 'self'",
             ].join("; "),
           },
         ],
       },
-      // Studio: NO X-Frame-Options, only CSP frame-ancestors
+      // Studio: allow framing from Sanity origins
       {
         source: "/studio",
         headers: [
