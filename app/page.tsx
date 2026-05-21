@@ -9,8 +9,19 @@ import { BlogPreview } from "@/components/sections/BlogPreview";
 import { FAQ } from "@/components/sections/FAQ";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { sanityFetch } from "@/lib/sanity/client";
-import { postsQuery } from "@/lib/sanity/queries";
+import { postsQuery, caseStudiesQuery } from "@/lib/sanity/queries";
 import { fallbackPosts } from "@/lib/data/blog-fallback";
+import type { CaseStudyCard } from "@/components/sections/CaseStudies";
+
+interface SanityCase {
+  _id: string;
+  slug: { current: string } | string;
+  client: string;
+  industry: string;
+  result: string;
+  metric: string;
+  description: string;
+}
 
 interface Post {
   _id: string;
@@ -64,8 +75,19 @@ const jsonLd = {
 };
 
 export default async function Home() {
-  const sanityPosts = await sanityFetch<Post[]>(postsQuery);
+  const [sanityPosts, sanityCases] = await Promise.all([
+    sanityFetch<Post[]>(postsQuery),
+    sanityFetch<SanityCase[]>(caseStudiesQuery),
+  ]);
   const rawPosts: Post[] = sanityPosts || fallbackPosts;
+  const cases: CaseStudyCard[] = (sanityCases || []).map((c) => ({
+    client: c.client,
+    industry: c.industry,
+    result: c.result,
+    metric: c.metric,
+    description: c.description,
+    href: `/case-studies/${typeof c.slug === "string" ? c.slug : c.slug.current}`,
+  }));
   const posts = rawPosts.map((p) => ({
     ...p,
     slug: normalizeSlug(p.slug),
@@ -82,7 +104,7 @@ export default async function Home() {
       <ServicesStrip />
       <StatsRow />
       <Industries />
-      <CaseStudies />
+      <CaseStudies cases={cases} />
       <Testimonials />
       <FAQ />
       <IntegrationsGrid />

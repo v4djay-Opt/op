@@ -6,64 +6,16 @@ import { ArrowRight, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
-const cases = [
-  {
-    client: "EduPro Academy",
-    industry: "Education",
-    result: "3x",
-    metric: "Lead Generation",
-    description:
-      "Redesigned their digital presence and implemented a custom CRM that tripled qualified leads in 6 months.",
-    href: "/case-studies/edupro-academy",
-  },
-  {
-    client: "FitLife Gym",
-    industry: "Fitness",
-    result: "150%",
-    metric: "Membership Growth",
-    description:
-      "Built an integrated management system with automated renewals and lead tracking.",
-    href: "/case-studies/fitlife-gym",
-  },
-  {
-    client: "Prime Realty",
-    industry: "Real Estate",
-    result: "2.5x",
-    metric: "Faster Closings",
-    description:
-      "Deployed a custom real estate CRM that streamlined the entire sales pipeline.",
-    href: "/case-studies/prime-realty",
-  },
-  {
-    client: "GreenCart Mart",
-    industry: "E-Commerce",
-    result: "220%",
-    metric: "Revenue Growth",
-    description:
-      "Built a high-conversion Shopify store with automated inventory syncing and WhatsApp checkout.",
-    href: "/case-studies/greencart-mart",
-  },
-  {
-    client: "MediCare Plus",
-    industry: "Healthcare",
-    result: "85%",
-    metric: "Booking Rate",
-    description:
-      "Developed an appointment scheduling system with automated reminders and telemedicine integration.",
-    href: "/case-studies/medicare-plus",
-  },
-  {
-    client: "Style Studio",
-    industry: "Fashion",
-    result: "4x",
-    metric: "Social Reach",
-    description:
-      "Launched a brand-first social strategy and performance site that quadrupled organic reach in 90 days.",
-    href: "/case-studies/style-studio",
-  },
-];
+export interface CaseStudyCard {
+  client: string;
+  industry: string;
+  result: string;
+  metric: string;
+  description: string;
+  href: string;
+}
 
-function CaseCard({ c }: { c: (typeof cases)[number] }) {
+function CaseCard({ c }: { c: CaseStudyCard }) {
   return (
     <Link
       href={c.href}
@@ -100,7 +52,7 @@ function CaseCard({ c }: { c: (typeof cases)[number] }) {
 
 const CARDS_PER_PAGE = 3;
 
-export function CaseStudies() {
+export function CaseStudies({ cases }: { cases: CaseStudyCard[] }) {
   const total = cases.length;
   const totalPages = Math.max(1, total - CARDS_PER_PAGE + 1);
   const [page, setPage] = useState(0);
@@ -138,11 +90,12 @@ export function CaseStudies() {
   }, [isPaused, totalPages]);
 
   const visible = cases.slice(page, page + CARDS_PER_PAGE);
-  /* Pad if we're at the end */
   const displayCards =
     visible.length < CARDS_PER_PAGE
       ? [...visible, ...cases.slice(0, CARDS_PER_PAGE - visible.length)]
       : visible;
+
+  if (cases.length === 0) return null;
 
   return (
     <section
@@ -167,8 +120,8 @@ export function CaseStudies() {
               transition={{ duration: 0.5, ease: "easeInOut" }}
               className="absolute inset-0 grid grid-cols-3 gap-6"
             >
-              {displayCards.map((c) => (
-                <CaseCard key={c.client} c={c} />
+              {displayCards.map((c, i) => (
+                <CaseCard key={`${c.client}-${i}`} c={c} />
               ))}
             </motion.div>
           </AnimatePresence>
@@ -185,7 +138,7 @@ export function CaseStudies() {
               transition={{ duration: 0.4, ease: "easeInOut" }}
               className="absolute inset-0"
             >
-              <CaseCard c={displayCards[0]} />
+              <CaseCard c={displayCards[0]!} />
             </motion.div>
           </AnimatePresence>
         </div>
