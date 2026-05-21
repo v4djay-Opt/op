@@ -138,7 +138,7 @@ export function CaseStudies({ cases }: { cases: CaseStudyCard[] }) {
         />
 
         {/* Desktop: 3 cards sliding */}
-        <div className="hidden md:block relative overflow-hidden" style={{ minHeight: '340px' }}>
+        <div className="hidden md:block relative overflow-hidden" style={{ minHeight: '520px' }}>
           <AnimatePresence initial={false} mode="sync">
             <motion.div
               key={page}
@@ -156,7 +156,7 @@ export function CaseStudies({ cases }: { cases: CaseStudyCard[] }) {
         </div>
 
         {/* Mobile: 1 card sliding */}
-        <div className="md:hidden relative overflow-hidden" style={{ minHeight: '320px' }}>
+        <div className="md:hidden relative overflow-hidden" style={{ minHeight: '500px' }}>
           <AnimatePresence initial={false} mode="sync">
             <motion.div
               key={page}
