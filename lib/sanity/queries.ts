@@ -18,7 +18,8 @@ export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
   publishedAt,
   estimatedReadTime,
   body,
-  "image": mainImage.asset->url
+  "image": mainImage.asset->url,
+  "ogImage": ogImage.asset->url
 }`;
 
 export const postSlugsQuery = `*[_type == "post" && defined(slug.current)].slug.current`;
@@ -59,7 +60,8 @@ export const caseStudyBySlugQuery = `*[_type == "caseStudy" && slug.current == $
   challenge,
   approach,
   outcome,
-  "image": mainImage.asset->url
+  "image": mainImage.asset->url,
+  "ogImage": ogImage.asset->url
 }`;
 
 export const caseStudySlugsQuery = `*[_type == "caseStudy" && defined(slug.current)].slug.current`;

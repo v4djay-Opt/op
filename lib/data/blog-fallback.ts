@@ -7,6 +7,7 @@ export interface FallbackPost {
   publishedAt: string;
   estimatedReadTime?: number;
   image?: string;
+  ogImage?: string;
   body?: unknown[];
   author?: string;
   authorRole?: string;

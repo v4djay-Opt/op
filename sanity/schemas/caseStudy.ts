@@ -79,6 +79,13 @@ export default defineType({
       type: "image",
       options: { hotspot: true },
     }),
+    defineField({
+      name: "ogImage",
+      title: "OG / Social Share Image",
+      type: "image",
+      description: "Used for social share previews (Facebook, Twitter, WhatsApp). Recommended: 1200×630px.",
+      options: { hotspot: true },
+    }),
   ],
   preview: {
     select: {

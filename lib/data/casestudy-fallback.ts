@@ -31,6 +31,7 @@ export interface FallbackCaseStudy {
   approach?: unknown[];
   outcome?: unknown[];
   image?: string;
+  ogImage?: string;
   approachSteps?: ApproachStep[];
   results?: ResultItem[];
   testimonial?: Testimonial;

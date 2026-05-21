@@ -36,6 +36,7 @@ interface CaseStudy {
   approach?: unknown[];
   outcome?: unknown[];
   image?: string;
+  ogImage?: string;
   approachSteps?: { title: string; description: string }[];
   results?: { value: string; label: string; description: string }[];
   testimonial?: { quote: string; name: string; role: string; company: string };
@@ -83,7 +84,7 @@ export async function generateMetadata({
       description,
       url: canonical,
       type: "article",
-      images: [{ url: `${SITE_URL}/og/${normalizeSlug(cs.slug)}.jpg` }],
+      images: [{ url: cs.ogImage || `${SITE_URL}/og/${normalizeSlug(cs.slug)}.jpg` }],
     },
   };
 }

@@ -33,6 +33,7 @@ interface Post {
   estimatedReadTime?: number;
   body?: unknown[];
   image?: string;
+  ogImage?: string;
   author?: string;
   authorRole?: string;
   authorBio?: string;
@@ -107,13 +108,13 @@ export async function generateMetadata({
       type: "article",
       publishedTime: post.publishedAt,
       modifiedTime: post.publishedAt,
-      images: [{ url: `${SITE_URL}/og/blog/${normalizeSlug(post.slug)}.jpg` }],
+      images: [{ url: post.ogImage || `${SITE_URL}/og/blog/${normalizeSlug(post.slug)}.jpg` }],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description,
-      images: [`${SITE_URL}/og/blog/${normalizeSlug(post.slug)}.jpg`],
+      images: [post.ogImage || `${SITE_URL}/og/blog/${normalizeSlug(post.slug)}.jpg`],
     },
   };
 }
