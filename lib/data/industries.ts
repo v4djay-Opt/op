@@ -21,9 +21,9 @@ export const industries: Industry[] = [
     description: "CRM, lead tracking, and automated follow-ups built for agents.",
     icon: "Building2",
     images: [
-      "/images/industries/real-estate-1.jpg",
-      "/images/industries/real-estate-2.jpg",
-      "/images/industries/real-estate-3.jpg",
+      "/industries/real-estate-1.jpg",
+      "/industries/real-estate-2.jpg",
+      "/industries/real-estate-3.jpg",
     ],
     painPoints: [
       "Leads slip through the cracks without a proper CRM",
@@ -88,9 +88,9 @@ export const industries: Industry[] = [
     description: "Admissions, fee collection, attendance, and parent communication — all in one system.",
     icon: "GraduationCap",
     images: [
-      "/images/industries/education-1.jpg",
-      "/images/industries/education-2.jpg",
-      "/images/industries/education-3.jpg",
+      "/industries/education-1.jpg",
+      "/industries/education-2.jpg",
+      "/industries/education-3.jpg",
     ],
     painPoints: [
       "Admission process is paperwork-heavy and slow",
@@ -155,9 +155,9 @@ export const industries: Industry[] = [
     description: "Online appointments, patient records, billing, and digital prescriptions.",
     icon: "Heart",
     images: [
-      "/images/industries/healthcare-1.jpg",
-      "/images/industries/healthcare-2.jpg",
-      "/images/industries/healthcare-3.jpg",
+      "/industries/healthcare-1.jpg",
+      "/industries/healthcare-2.jpg",
+      "/industries/healthcare-3.jpg",
     ],
     painPoints: [
       "Patient appointment scheduling is disorganized",
@@ -215,9 +215,9 @@ export const industries: Industry[] = [
     description: "Memberships, class bookings, trainer schedules, and payment tracking.",
     icon: "Dumbbell",
     images: [
-      "/images/industries/fitness-1.jpg",
-      "/images/industries/fitness-2.jpg",
-      "/images/industries/fitness-3.jpg",
+      "/industries/fitness-1.jpg",
+      "/industries/fitness-2.jpg",
+      "/industries/fitness-3.jpg",
     ],
     painPoints: [
       "Membership renewals are tracked manually",
@@ -282,9 +282,9 @@ export const industries: Industry[] = [
     description: "Client approvals, vendor tracking, timelines, and digital mood boards.",
     icon: "Sofa",
     images: [
-      "/images/industries/interior-1.jpg",
-      "/images/industries/interior-2.jpg",
-      "/images/industries/interior-3.jpg",
+      "/industries/interior-1.jpg",
+      "/industries/interior-2.jpg",
+      "/industries/interior-3.jpg",
     ],
     painPoints: [
       "Client approvals are slow and disorganized",
@@ -342,9 +342,9 @@ export const industries: Industry[] = [
     description: "Conversion-optimized storefronts with inventory sync and abandoned cart recovery.",
     icon: "ShoppingBag",
     images: [
-      "/images/industries/retail-1.jpg",
-      "/images/industries/retail-2.jpg",
-      "/images/industries/retail-3.jpg",
+      "/industries/retail-1.jpg",
+      "/industries/retail-2.jpg",
+      "/industries/retail-3.jpg",
     ],
     painPoints: [
       "Cart abandonment rates are high",
@@ -402,9 +402,9 @@ export const industries: Industry[] = [
     description: "Internal portals, approval workflows, employee self-service, and executive dashboards.",
     icon: "Briefcase",
     images: [
-      "/images/industries/corporate-1.jpg",
-      "/images/industries/corporate-2.jpg",
-      "/images/industries/corporate-3.jpg",
+      "/industries/corporate-1.jpg",
+      "/industries/corporate-2.jpg",
+      "/industries/corporate-3.jpg",
     ],
     painPoints: [
       "Internal processes are slow and paper-based",

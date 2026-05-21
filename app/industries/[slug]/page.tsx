@@ -10,6 +10,7 @@ import { FAQSection } from "@/components/ui/FAQSection";
 import { BottomCTA } from "@/components/ui/BottomCTA";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { XCircle, CheckCircle2, ArrowRight, TrendingUp } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const SITE_URL = "https://optimaxstudio.com";
@@ -178,27 +179,18 @@ export default async function IndustryPage({
           <div className="mx-auto max-w-6xl">
             <FadeIn>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {industry.images.map((_, i) => (
+                {industry.images.map((src, i) => (
                   <div
                     key={i}
-                    className="flex items-center justify-center overflow-hidden h-[200px] md:h-[220px]"
-                    style={{ background: "#E8E8E8", borderRadius: "12px" }}
+                    className="relative overflow-hidden h-[200px] md:h-[220px] rounded-xl"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-10 w-10"
-                      style={{ color: "#BDBDBD" }}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      />
-                    </svg>
+                    <Image
+                      src={src}
+                      alt={`${industry.name} ${i + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover"
+                    />
                   </div>
                 ))}
               </div>
