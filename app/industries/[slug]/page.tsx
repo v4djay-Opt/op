@@ -182,7 +182,7 @@ export default async function IndustryPage({
                 {industry.images.map((src, i) => (
                   <div
                     key={i}
-                    className="overflow-hidden rounded-xl border border-border"
+                    className="overflow-hidden rounded-xl border border-accent"
                   >
                     <Image
                       src={src}
