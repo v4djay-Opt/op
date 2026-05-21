@@ -189,7 +189,7 @@ export default async function IndustryPage({
                       alt={`${industry.name} ${i + 1}`}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
                 ))}
