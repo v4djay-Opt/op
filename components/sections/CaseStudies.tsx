@@ -53,18 +53,9 @@ function CaseCard({ c, index }: { c: CaseStudyCard; index: number }) {
         <h3 className="text-base font-bold text-text font-display mb-2 group-hover:text-accent transition-colors">
           {c.client}
         </h3>
-        <p className="text-sm text-muted leading-relaxed line-clamp-2 mb-4">
+        <p className="text-sm text-muted leading-relaxed line-clamp-3">
           {c.description}
         </p>
-        {/* Industry as checklist item */}
-        <div className="flex items-center gap-2 text-sm text-muted mb-1">
-          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-accent text-accent text-[10px]">✓</span>
-          {c.industry} Industry
-        </div>
-        <div className="flex items-center gap-2 text-sm text-muted mb-1">
-          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-accent text-accent text-[10px]">✓</span>
-          {c.result} {c.metric}
-        </div>
       </div>
 
       {/* Full-width dark green button */}
