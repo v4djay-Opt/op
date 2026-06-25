@@ -52,8 +52,8 @@ const serviceSchema = {
     email: "hello@optimaxstudio.com",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Unit No F104, Crown Avenue, Sector 92",
-      addressLocality: "Gurgaon",
+      streetAddress: "104, GLS Crown Avenue, Wazirpur Road",
+      addressLocality: "Gurugram",
       addressRegion: "Haryana",
       postalCode: "122505",
       addressCountry: "IN",

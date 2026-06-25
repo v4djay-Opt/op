@@ -312,8 +312,8 @@ export function Footer() {
               <li className="flex items-start gap-3 lg:justify-end">
                 <MapPin className="h-5 w-5 shrink-0 text-[#c9a84c] mt-0.5" />
                 <span className="text-sm text-[#d0d8d0] leading-relaxed">
-                  Unit No — F104, Crown Avenue,<br />
-                  Sector 92, Gurgaon — 122505
+                  104, GLS Crown Avenue,<br />
+                  Wazirpur Road, Gurugram — 122505
                 </span>
               </li>
             </ul>

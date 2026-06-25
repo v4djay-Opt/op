@@ -12,7 +12,7 @@ export function LocalBusinessSchema() {
     priceRange: "₹₹",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "F104, GLS Crown Avenue, Sector 92",
+      streetAddress: "104, GLS Crown Avenue, Wazirpur Road",
       addressLocality: "Gurgaon",
       addressRegion: "HR",
       postalCode: "122505",

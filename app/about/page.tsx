@@ -47,8 +47,8 @@ const orgSchema = {
     "Full-service digital agency offering web design, development, SEO, branding, and digital marketing.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Unit No F104, Crown Avenue, Sector 92",
-    addressLocality: "Gurgaon",
+    streetAddress: "104, GLS Crown Avenue, Wazirpur Road",
+    addressLocality: "Gurugram",
     addressRegion: "Haryana",
     postalCode: "122505",
     addressCountry: "IN",
@@ -325,7 +325,7 @@ export default function AboutPage() {
                   Address
                 </h3>
                 <p className="text-sm text-muted leading-relaxed">
-                  F104, Crown Avenue, Sector 93, Gurgaon — 122505
+                  104, GLS Crown Avenue, Wazirpur Road, Gurugram — 122505
                 </p>
               </div>
               <div className="rounded-xl border border-border bg-surface-alt p-5">

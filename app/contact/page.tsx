@@ -209,7 +209,7 @@ export default function ContactPage() {
                     <li className="flex items-start gap-3">
                       <MapPin className="h-5 w-5 shrink-0 text-accent mt-0.5" />
                       <span className="text-sm text-muted">
-                        F104, Crown Avenue, Sector 92, Gurgaon — 122505
+                        104, GLS Crown Avenue, Wazirpur Road, Gurugram — 122505
                       </span>
                     </li>
                   </ul>
