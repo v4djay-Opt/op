@@ -26,14 +26,33 @@ const MIME_TYPES = {
   ".ico":   "image/x-icon",
 };
 
+const fs = require("fs");
+
 app.prepare().then(() => {
   createServer(async (req, res) => {
     try {
       const parsedUrl = parse(req.url, true);
-      const ext = path.extname(parsedUrl.pathname).toLowerCase();
+      const { pathname } = parsedUrl;
+      const ext = path.extname(pathname).toLowerCase();
+
       if (MIME_TYPES[ext]) {
         res.setHeader("Content-Type", MIME_TYPES[ext]);
       }
+
+      // If a _next/static chunk is requested but doesn't exist on disk,
+      // return a proper 404 with the correct MIME type so the browser
+      // doesn't get an HTML error page served as JS (which causes the
+      // "MIME type not executable" console error).
+      if (pathname.startsWith("/_next/static/") && (ext === ".js" || ext === ".css")) {
+        const filePath = path.join(__dirname, ".next", pathname.replace("/_next/", ""));
+        if (!fs.existsSync(filePath)) {
+          res.statusCode = 404;
+          res.setHeader("Content-Type", MIME_TYPES[ext]);
+          res.end("");
+          return;
+        }
+      }
+
       await handle(req, res, parsedUrl);
     } catch (err) {
       console.error("Error handling", req.url, err);
