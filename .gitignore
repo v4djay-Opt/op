@@ -64,9 +64,6 @@ Thumbs.db
 *.backup
 *.tmp
 
-# sanity local cache
-.sanity/
-
 # turbo cache
 .turbo/
 

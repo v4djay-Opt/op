@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { services } from "@/lib/data/services";
+import { getServices } from "@/lib/wordpress/content";
 import {
   ArrowRight,
   Globe,
@@ -24,9 +24,11 @@ export const metadata: Metadata = {
   title: "Digital Services — Web Design, SEO & CRM",
   description:
     "Explore our full range of digital services: Web Design, Digital Marketing, Social Media, CRM Development, and Search Engine Optimization.",
+  alternates: { canonical: "/services" },
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const services = await getServices();
   return (
     <>
       <PageHero

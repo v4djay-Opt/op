@@ -1,31 +1,17 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
-import { sanityFetch } from "@/lib/sanity/client";
-import { caseStudiesQuery } from "@/lib/sanity/queries";
-import { fallbackCaseStudies } from "@/lib/data/casestudy-fallback";
+import { getCaseStudies } from "@/lib/wordpress/content";
 import { CaseStudyGrid } from "./CaseStudyGrid";
 
 export const metadata: Metadata = {
-  title: "Case Studies — Optimax Studio",
+  title: "Case Studies",
   description:
     "See how we have helped businesses across industries achieve measurable growth with digital solutions.",
+  alternates: { canonical: "/case-studies" },
 };
 
-interface CaseStudy {
-  _id: string;
-  title: string;
-  slug: { current: string } | string;
-  client: string;
-  industry: string;
-  result: string;
-  metric: string;
-  description: string;
-  image?: string;
-}
-
 export default async function CaseStudiesPage() {
-  const sanityData = await sanityFetch<CaseStudy[]>(caseStudiesQuery);
-  const cases: CaseStudy[] = sanityData || (fallbackCaseStudies as CaseStudy[]);
+  const cases = await getCaseStudies();
 
   return (
     <>

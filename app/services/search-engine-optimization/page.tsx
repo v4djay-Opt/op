@@ -16,10 +16,10 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
-const SITE_URL = "https://optimaxstudio.com";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Search Engine Optimization Agency in Delhi NCR | Optimax Studio",
+  title: "Search Engine Optimization Agency in Delhi NCR",
   description:
     "Result-driven SEO agency in Gurgaon & Delhi NCR. On-page SEO, technical SEO, local SEO, backlink building, and content strategy for startups, local businesses, and ecommerce brands.",
   alternates: {

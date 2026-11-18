@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { industries } from "@/lib/data/industries";
+import { getIndustries } from "@/lib/wordpress/content";
 import {
   ArrowRight,
   Building2,
@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-const SITE_URL = "https://optimaxstudio.com";
+import { SITE_URL } from "@/lib/site";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Building2,
@@ -27,8 +27,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export const metadata: Metadata = {
-  title:
-    "Industries We Serve — Real Estate, Education, Healthcare & More | Optimax Studio",
+  title: "Industries We Serve — Real Estate, Education, Healthcare & More",
   description:
     "Optimax Studio builds custom CRMs, websites, and digital tools for Real Estate, Schools, Healthcare, Fitness, Interior Design, Retail, and Corporate businesses in India.",
   alternates: { canonical: `${SITE_URL}/industries` },
@@ -41,20 +40,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function IndustriesPage() {
+export default async function IndustriesPage() {
+  const industries = await getIndustries();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Industries Served by Optimax Studio",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Real Estate", url: `${SITE_URL}/industries/real-estate` },
-      { "@type": "ListItem", position: 2, name: "Schools & Education", url: `${SITE_URL}/industries/education` },
-      { "@type": "ListItem", position: 3, name: "Healthcare", url: `${SITE_URL}/industries/healthcare` },
-      { "@type": "ListItem", position: 4, name: "Fitness & Gym", url: `${SITE_URL}/industries/fitness` },
-      { "@type": "ListItem", position: 5, name: "Interior Design", url: `${SITE_URL}/industries/interior-design` },
-      { "@type": "ListItem", position: 6, name: "Retail & E-commerce", url: `${SITE_URL}/industries/retail` },
-      { "@type": "ListItem", position: 7, name: "Corporate", url: `${SITE_URL}/industries/corporate` },
-    ],
+    itemListElement: industries.map((industry, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: industry.name,
+      url: `${SITE_URL}/industries/${industry.slug}`,
+    })),
   };
 
   return (

@@ -1,50 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { PortableText } from "@portabletext/react";
-import { sanityFetch } from "@/lib/sanity/client";
-import {
-  caseStudyBySlugQuery,
-  caseStudySlugsQuery,
-} from "@/lib/sanity/queries";
-import {
-  getFallbackCaseStudyBySlug,
-  getAllFallbackCaseStudySlugs,
-  fallbackCaseStudies,
-  type FallbackCaseStudy,
-} from "@/lib/data/casestudy-fallback";
+import { getCaseStudies, getCaseStudy } from "@/lib/wordpress/content";
+import { cmsMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { BottomCTA } from "@/components/ui/BottomCTA";
 import { TrendingUp, ArrowRight } from "lucide-react";
 import Link from "next/link";
-
-const SITE_URL = "https://optimaxstudio.com";
-
-interface CaseStudy {
-  _id: string;
-  title: string;
-  slug: { current: string } | string;
-  client: string;
-  industry: string;
-  result: string;
-  metric: string;
-  description: string;
-  publishedAt: string;
-  heroMetrics?: { value: string; label: string }[];
-  challenge?: unknown[];
-  approach?: unknown[];
-  outcome?: unknown[];
-  image?: string;
-  ogImage?: string;
-  approachSteps?: { title: string; description: string }[];
-  results?: { value: string; label: string; description: string }[];
-  testimonial?: { quote: string; name: string; role: string; company: string };
-}
-
-function normalizeSlug(slug: { current: string } | string): string {
-  return typeof slug === "string" ? slug : slug.current;
-}
 
 function formatDate(dateString: string): string {
   return new Date(dateString).toLocaleDateString("en-US", {
@@ -55,9 +19,7 @@ function formatDate(dateString: string): string {
 }
 
 export async function generateStaticParams() {
-  const sanitySlugs = await sanityFetch<string[]>(caseStudySlugsQuery);
-  const slugs = sanitySlugs || getAllFallbackCaseStudySlugs();
-  return slugs.map((slug) => ({ slug }));
+  return (await getCaseStudies()).map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({
@@ -66,27 +28,18 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const cs =
-    (await sanityFetch<CaseStudy>(caseStudyBySlugQuery, { slug })) ||
-    getFallbackCaseStudyBySlug(slug);
+  const cs = await getCaseStudy(slug);
   if (!cs) return { title: "Not Found" };
 
-  const title = `${cs.client} Case Study — ${cs.result} ${cs.metric} | Optimax Studio`;
-  const description = `See how Optimax Studio helped ${cs.client ?? ""} achieve ${cs.result ?? ""} ${cs.metric ?? ""}. ${(cs.description ?? "").slice(0, 90)}`;
-  const canonical = `${SITE_URL}/case-studies/${normalizeSlug(cs.slug)}`;
-
-  return {
-    title,
-    description,
-    alternates: { canonical },
-    openGraph: {
-      title: `${cs.client} Case Study | Optimax Studio`,
-      description,
-      url: canonical,
-      type: "article",
-      images: [{ url: cs.ogImage || `${SITE_URL}/og/${normalizeSlug(cs.slug)}.jpg` }],
-    },
-  };
+  const headline = [cs.result, cs.metric].filter(Boolean).join(" ");
+  return cmsMetadata({
+    path: `/case-studies/${cs.slug}`,
+    title: headline ? `${cs.client} Case Study — ${headline}` : `${cs.client} Case Study`,
+    description: cs.description || `How Optimax Studio helped ${cs.client}${headline ? ` achieve ${headline}` : ""}.`,
+    seo: cs.seo,
+    image: cs.image,
+    article: { publishedTime: cs.publishedAt, modifiedTime: cs.modifiedAt },
+  });
 }
 
 export default async function CaseStudyDetailPage({
@@ -95,16 +48,12 @@ export default async function CaseStudyDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const cs =
-    (await sanityFetch<CaseStudy>(caseStudyBySlugQuery, { slug })) ||
-    getFallbackCaseStudyBySlug(slug);
+  const all = await getCaseStudies();
+  const cs = all.find((c) => c.slug === slug);
   if (!cs) notFound();
 
-  const related =
-    fallbackCaseStudies.filter((c) => c.slug.current !== slug).slice(0, 2) || [];
-
-  const canonicalUrl = `${SITE_URL}/case-studies/${normalizeSlug(cs.slug)}`;
-  const datePublished = cs.publishedAt ? cs.publishedAt.split("T")[0] : "";
+  const related = all.filter((c) => c.slug !== slug).slice(0, 2);
+  const canonicalUrl = `${SITE_URL}/case-studies/${cs.slug}`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -121,8 +70,8 @@ export default async function CaseStudyDetailPage({
             url: `${SITE_URL}/logo.png`,
           },
         },
-        datePublished,
-        dateModified: datePublished,
+        datePublished: cs.publishedAt,
+        dateModified: cs.modifiedAt,
         mainEntityOfPage: {
           "@type": "WebPage",
           "@id": canonicalUrl,
@@ -147,6 +96,7 @@ export default async function CaseStudyDetailPage({
             "@type": "ListItem",
             position: 3,
             name: cs.client,
+            item: canonicalUrl,
           },
         ],
       },
@@ -266,14 +216,15 @@ export default async function CaseStudyDetailPage({
             </FadeIn>
 
             {/* The Challenge */}
-            {cs.challenge && (
+            {cs.challengeHtml && (
               <FadeIn className="mb-12">
                 <h2 className="text-2xl font-bold text-text font-display mb-4">
                   The Challenge
                 </h2>
-                <div className="prose prose-invert max-w-none prose-p:text-muted">
-                  <PortableText value={cs.challenge as never} />
-                </div>
+                <div
+                  className="prose max-w-none"
+                  dangerouslySetInnerHTML={{ __html: cs.challengeHtml }}
+                />
               </FadeIn>
             )}
 
@@ -362,8 +313,8 @@ export default async function CaseStudyDetailPage({
                 <div className="space-y-4">
                   {related.map((r) => (
                     <Link
-                      key={r._id}
-                      href={`/case-studies/${normalizeSlug(r.slug)}`}
+                      key={r.id}
+                      href={`/case-studies/${r.slug}`}
                       className="group flex items-start gap-4 rounded-xl border border-border bg-white p-4 transition-all hover:border-accent/20 hover:shadow-lg"
                     >
                       <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#d4e4d4] to-[#b8d4b8]">

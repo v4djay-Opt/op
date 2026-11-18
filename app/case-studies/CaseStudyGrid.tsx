@@ -4,24 +4,7 @@ import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-
-interface CaseStudy {
-  _id: string;
-  title: string;
-  slug: { current: string } | string;
-  client: string;
-  industry: string;
-  result: string;
-  metric: string;
-  description: string;
-  image?: string;
-}
-
-const INDUSTRIES = ['All', 'E-Commerce', 'Real Estate', 'Healthcare', 'SaaS', 'Education', 'Retail'];
-
-function normalizeSlug(slug: { current: string } | string): string {
-  return typeof slug === 'string' ? slug : slug.current;
-}
+import type { CaseStudy } from '@/lib/wordpress/content';
 
 function IndustryBadge({ label, absolute = true }: { label: string; absolute?: boolean }) {
   if (absolute) {
@@ -41,7 +24,7 @@ function IndustryBadge({ label, absolute = true }: { label: string; absolute?: b
 function FeaturedHeroCard({ cs }: { cs: CaseStudy }) {
   return (
     <Link
-      href={`/case-studies/${normalizeSlug(cs.slug)}`}
+      href={`/case-studies/${cs.slug}`}
       className="group flex flex-col md:flex-row rounded-2xl bg-white border border-border shadow-card overflow-hidden transition-all hover:shadow-lg md:h-[420px]"
     >
       {/* Left — image 50% */}
@@ -95,7 +78,7 @@ function FeaturedHeroCard({ cs }: { cs: CaseStudy }) {
 function SmallCard({ cs }: { cs: CaseStudy }) {
   return (
     <Link
-      href={`/case-studies/${normalizeSlug(cs.slug)}`}
+      href={`/case-studies/${cs.slug}`}
       className="group flex flex-col h-full rounded-2xl bg-white border border-border shadow-card overflow-hidden transition-all hover:shadow-lg"
     >
       {/* Image */}
@@ -146,6 +129,10 @@ function SmallCard({ cs }: { cs: CaseStudy }) {
 
 export function CaseStudyGrid({ cases }: { cases: CaseStudy[] }) {
   const [activeIndustry, setActiveIndustry] = useState('All');
+  const industries = useMemo(
+    () => ['All', ...new Set(cases.map((c) => c.industry).filter(Boolean))],
+    [cases],
+  );
 
   const filtered = useMemo(() => {
     if (activeIndustry === 'All') return cases;
@@ -170,7 +157,7 @@ export function CaseStudyGrid({ cases }: { cases: CaseStudy[] }) {
 
       {/* Filter tabs */}
       <div className="flex flex-wrap gap-2 mb-8">
-        {INDUSTRIES.map((ind) => (
+        {industries.map((ind) => (
           <button
             key={ind}
             onClick={() => setActiveIndustry(ind)}
@@ -197,7 +184,7 @@ export function CaseStudyGrid({ cases }: { cases: CaseStudy[] }) {
           {rest.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {rest.map((cs) => (
-                <SmallCard key={cs._id} cs={cs} />
+                <SmallCard key={cs.id} cs={cs} />
               ))}
             </div>
           )}

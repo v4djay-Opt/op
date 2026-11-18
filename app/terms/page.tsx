@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Optimax Studio",
+  title: "Terms of Service",
   description:
     "Terms of Service for Optimax Studio — governing the use of our website, services, and products.",
   alternates: {
-    canonical: "https://optimaxstudio.com/terms",
+    canonical: `${SITE_URL}/terms`,
   },
 };
 

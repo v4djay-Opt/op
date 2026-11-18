@@ -15,10 +15,10 @@ import {
 import { Lightbulb, Users, Target, Rocket, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 
-const SITE_URL = "https://optimaxstudio.com";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About Us | Optimaxstudio – Full-Service Digital Agency",
+  title: "About Us – Full-Service Digital Agency",
   description:
     "Optimaxstudio is a full-service digital agency helping startups, e-commerce brands, and businesses worldwide. Web design, SEO, branding & more.",
   keywords:

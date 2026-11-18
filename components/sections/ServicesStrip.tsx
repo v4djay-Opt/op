@@ -105,7 +105,7 @@ const services = [
     ],
     stat: "90%",
     statLabel: "Keyword Rankings",
-    href: "/services/seo",
+    href: "/services/search-engine-optimization",
     color: "#D8DDE8",
     image: "/images/services/seo.png",
   },

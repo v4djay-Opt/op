@@ -9,36 +9,14 @@ import { BlogPreview } from "@/components/sections/BlogPreview";
 import { FAQ } from "@/components/sections/FAQ";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { LocalBusinessSchema } from "@/components/seo/LocalBusinessSchema";
-import { sanityFetch } from "@/lib/sanity/client";
-import { postsQuery, caseStudiesQuery } from "@/lib/sanity/queries";
-import { fallbackPosts } from "@/lib/data/blog-fallback";
+import { SITE_URL } from "@/lib/site";
+import { getCaseStudies, getFaqs, getPosts } from "@/lib/wordpress/content";
 import type { CaseStudyCard } from "@/components/sections/CaseStudies";
+import type { Metadata } from "next";
 
-interface SanityCase {
-  _id: string;
-  slug: { current: string } | string;
-  client: string;
-  industry: string;
-  result: string;
-  metric: string;
-  description: string;
-  image?: string;
-}
-
-interface Post {
-  _id: string;
-  title: string;
-  slug: { current: string } | string;
-  excerpt: string;
-  category?: string;
-  publishedAt: string;
-  estimatedReadTime?: number;
-  image?: string;
-}
-
-function normalizeSlug(slug: { current: string } | string): string {
-  return typeof slug === "string" ? slug : slug.current;
-}
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -46,7 +24,9 @@ const jsonLd = {
     {
       "@type": "Organization",
       name: "Optimax Studio",
-      url: "https://optimax.studio",
+      "@id": `${SITE_URL}/#organization`,
+      url: SITE_URL,
+      logo: `${SITE_URL}/web-app-manifest-512x512.png`,
       description:
         "We build digital machines that generate revenue. Web design, development, marketing, and custom CRM solutions.",
       contactPoint: {
@@ -66,34 +46,23 @@ const jsonLd = {
     {
       "@type": "WebSite",
       name: "Optimax Studio",
-      url: "https://optimax.studio",
-      potentialAction: {
-        "@type": "SearchAction",
-        target: "https://optimax.studio/blog?q={search_term_string}",
-        "query-input": "required name=search_term_string",
-      },
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      publisher: { "@id": `${SITE_URL}/#organization` },
     },
   ],
 };
 
 export default async function Home() {
-  const [sanityPosts, sanityCases] = await Promise.all([
-    sanityFetch<Post[]>(postsQuery),
-    sanityFetch<SanityCase[]>(caseStudiesQuery),
-  ]);
-  const rawPosts: Post[] = sanityPosts || fallbackPosts;
-  const cases: CaseStudyCard[] = (sanityCases || []).map((c) => ({
+  const [posts, caseStudies, faqs] = await Promise.all([getPosts(), getCaseStudies(), getFaqs("home")]);
+  const cases: CaseStudyCard[] = caseStudies.map((c) => ({
     client: c.client,
     industry: c.industry,
     result: c.result,
     metric: c.metric,
     description: c.description,
-    href: `/case-studies/${typeof c.slug === "string" ? c.slug : c.slug.current}`,
+    href: `/case-studies/${c.slug}`,
     image: c.image,
-  }));
-  const posts = rawPosts.map((p) => ({
-    ...p,
-    slug: normalizeSlug(p.slug),
   }));
   return (
     <>
@@ -110,7 +79,7 @@ export default async function Home() {
       <Industries />
       <CaseStudies cases={cases} />
       <Testimonials />
-      <FAQ />
+      <FAQ items={faqs} />
       <IntegrationsGrid />
       <BlogPreview posts={posts} />
       <CTABanner />

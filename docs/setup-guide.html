@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Optimax Studio — Headless WordPress Setup Guide</title>
+<style>
+  :root {
+    --bg: #F5F2EC; --card: #fff; --text: #1A2E1E; --muted: #3D5444;
+    --accent: #2D6A4F; --accent-light: #D8E8D4; --hero: #1a4a3a;
+    --warn-bg: #FFF4E0; --warn: #8A5A00; --danger-bg: #FDECEC; --danger: #9B1C1C;
+    --border: #E2DDD3; --code-bg: #10241A;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
+  header { background: var(--hero); color: #fff; padding: 48px 20px 40px; }
+  header .wrap { max-width: 920px; margin: 0 auto; }
+  header h1 { margin: 0 0 8px; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.2; }
+  header p { margin: 0; color: rgba(255,255,255,.78); max-width: 640px; }
+  .progress { margin-top: 24px; background: rgba(255,255,255,.12); border-radius: 999px; height: 10px; overflow: hidden; }
+  .progress span { display: block; height: 100%; width: 0; background: #8fd3a8; transition: width .3s; }
+  .progress-label { margin-top: 8px; font-size: 14px; color: rgba(255,255,255,.7); }
+  main { max-width: 920px; margin: 0 auto; padding: 32px 20px 80px; }
+  nav.toc { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px 24px; margin-bottom: 28px; }
+  nav.toc h2 { margin: 0 0 8px; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+  nav.toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 32px; }
+  nav.toc a { color: var(--accent); text-decoration: none; }
+  nav.toc a:hover { text-decoration: underline; }
+  section.step { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; margin-bottom: 20px; scroll-margin-top: 16px; }
+  section.step > h2 { margin: 0 0 4px; font-size: 1.35rem; display: flex; align-items: center; gap: 12px; }
+  .num { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 15px; }
+  .meta { font-size: 14px; color: var(--muted); margin: 0 0 14px 46px; }
+  .tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 999px; background: var(--accent-light); color: var(--accent); margin-right: 6px; }
+  .tag.must { background: var(--danger-bg); color: var(--danger); }
+  h3 { font-size: 1.05rem; margin: 22px 0 8px; }
+  ul.check { list-style: none; padding: 0; margin: 8px 0; }
+  ul.check li { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; border-bottom: 1px dashed var(--border); }
+  ul.check li:last-child { border-bottom: 0; }
+  ul.check input { margin-top: 5px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; cursor: pointer; }
+  ul.check label { cursor: pointer; }
+  ul.check input:checked + label { color: var(--muted); text-decoration: line-through; text-decoration-color: rgba(45,106,79,.5); }
+  pre { position: relative; background: var(--code-bg); color: #d7f0df; padding: 16px 18px; border-radius: 12px; overflow-x: auto; font: 13.5px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace; margin: 10px 0; }
+  code { font: 0.9em ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--accent-light); padding: 1px 6px; border-radius: 6px; }
+  pre code { background: none; padding: 0; font-size: inherit; }
+  button.copy { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.2); border-radius: 8px; padding: 4px 10px; font-size: 12px; cursor: pointer; }
+  button.copy:hover { background: rgba(255,255,255,.2); }
+  .note { border-radius: 12px; padding: 12px 16px; margin: 12px 0; font-size: 15px; }
+  .note.info { background: var(--accent-light); }
+  .note.warn { background: var(--warn-bg); color: var(--warn); }
+  .note.danger { background: var(--danger-bg); color: var(--danger); }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; margin: 10px 0; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { background: #FAF8F4; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  footer { text-align: center; color: var(--muted); font-size: 14px; padding: 20px; }
+  .reset { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; cursor: pointer; color: var(--muted); }
+  @media (max-width: 640px) { nav.toc ol { columns: 1; } section.step { padding: 20px; } .meta { margin-left: 0; } }
+  @media print { header { background: none; color: var(--text); } .progress, .copy, .reset { display: none; } section.step { break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Headless WordPress — Your Setup Checklist</h1>
+    <p>Do these steps in order. Tick each box as you go; your progress is saved in this browser.
+       The website code is already done — these are the parts only you can do (hosting, WordPress, Google).</p>
+    <div class="progress"><span id="bar"></span></div>
+    <div class="progress-label" id="barLabel">0 of 0 done</div>
+  </div>
+</header>
+
+<main>
+
+<nav class="toc">
+  <h2>Steps</h2>
+  <ol>
+    <li><a href="#s1">Generate a secret key</a></li>
+    <li><a href="#s2">Install the WordPress plugin</a></li>
+    <li><a href="#s3">Edit wp-config.php</a></li>
+    <li><a href="#s4">Clean up WordPress</a></li>
+    <li><a href="#s5">Deploy the website code</a></li>
+    <li><a href="#s6">Set environment variables</a></li>
+    <li><a href="#s7">Test everything works</a></li>
+    <li><a href="#s8">Add your content</a></li>
+    <li><a href="#s9">Google Search Console</a></li>
+    <li><a href="#s10">Google Business Profile</a></li>
+    <li><a href="#s11">Ongoing SEO routine</a></li>
+    <li><a href="#fields">Field format reference</a></li>
+  </ol>
+</nav>
+
+<!-- 1 -->
+<section class="step" id="s1">
+  <h2><span class="num">1</span> Generate a secret key</h2>
+  <p class="meta"><span class="tag must">Required</span> 2 minutes · On your Mac</p>
+  <p>This password lets WordPress tell the website "content changed, refresh now". Both sides must use the <strong>same</strong> value.</p>
+  <ul class="check">
+    <li><input type="checkbox" id="c1a"><label for="c1a">Open <strong>Terminal</strong> and run the command below. Copy the long text it prints.</label></li>
+    <li><input type="checkbox" id="c1b"><label for="c1b">Save it somewhere private (password manager). <strong>Never</strong> put it in Git, email or chat.</label></li>
+  </ul>
+  <pre><code>openssl rand -hex 32</code></pre>
+</section>
+
+<!-- 2 -->
+<section class="step" id="s2">
+  <h2><span class="num">2</span> Install the WordPress plugin</h2>
+  <p class="meta"><span class="tag must">Required</span> 5 minutes · Hostinger hPanel → File Manager</p>
+  <p>The plugin file is in your project at:</p>
+  <pre><code>opweb26/wordpress/mu-plugins/optimax-headless.php</code></pre>
+  <ul class="check">
+    <li><input type="checkbox" id="c2a"><label for="c2a">In hPanel, open <strong>File Manager</strong> for <code>blog.optimaxstudio.com</code> and go to its <code>public_html/wp-content/</code> folder.</label></li>
+    <li><input type="checkbox" id="c2b"><label for="c2b">If there is no folder called <code>mu-plugins</code>, create it (exact name, lowercase).</label></li>
+    <li><input type="checkbox" id="c2c"><label for="c2c">Upload <code>optimax-headless.php</code> into <code>wp-content/mu-plugins/</code>.</label></li>
+    <li><input type="checkbox" id="c2d"><label for="c2d">Log in to <code>blog.optimaxstudio.com/wp-admin</code> → <strong>Plugins → Must-Use</strong>. You should see “Optimax Headless”.</label></li>
+    <li><input type="checkbox" id="c2e"><label for="c2e">In the left menu you should now see <strong>Services, Industries, Locations, Case Studies, FAQs</strong>.</label></li>
+  </ul>
+  <div class="note info">“Must-use” plugins are always on and can't be disabled by accident from the Plugins screen — that's why we use this folder.</div>
+</section>
+
+<!-- 3 -->
+<section class="step" id="s3">
+  <h2><span class="num">3</span> Edit wp-config.php</h2>
+  <p class="meta"><span class="tag must">Required</span> 5 minutes · File Manager</p>
+  <ul class="check">
+    <li><input type="checkbox" id="c3a"><label for="c3a">Download a <strong>backup copy</strong> of <code>public_html/wp-config.php</code> first.</label></li>
+    <li><input type="checkbox" id="c3b"><label for="c3b">Open <code>wp-config.php</code> → find the line <code>/* That's all, stop editing! */</code>.</label></li>
+    <li><input type="checkbox" id="c3c"><label for="c3c">Paste these two lines <strong>above</strong> it, replacing the placeholder with your secret from Step 1. Save.</label></li>
+  </ul>
+  <pre><code>define( 'OPTIMAX_FRONTEND_URL', 'https://optimaxstudio.com' );
+define( 'OPTIMAX_REVALIDATE_SECRET', 'PASTE-YOUR-SECRET-HERE' );</code></pre>
+  <div class="note warn">From now on, visiting <code>blog.optimaxstudio.com</code> in a browser will redirect to <code>optimaxstudio.com</code>. That's intended — editors use <code>blog.optimaxstudio.com/wp-admin</code>, which still works.</div>
+</section>
+
+<!-- 4 -->
+<section class="step" id="s4">
+  <h2><span class="num">4</span> Clean up WordPress</h2>
+  <p class="meta"><span class="tag must">Required</span> 10 minutes · wp-admin</p>
+  <ul class="check">
+    <li><input type="checkbox" id="c4a"><label for="c4a"><strong>Posts</strong> → delete <em>“Hello world!”</em>, then empty <strong>Trash</strong>. (It currently appears on your live blog and sitemap.)</label></li>
+    <li><input type="checkbox" id="c4b"><label for="c4b"><strong>Pages</strong> → delete <em>“Sample Page”</em> and any other default pages, then empty Trash.</label></li>
+    <li><input type="checkbox" id="c4c"><label for="c4c"><strong>Settings → Permalinks</strong> → choose <strong>Post name</strong> → Save. (Needed for clean slugs.)</label></li>
+    <li><input type="checkbox" id="c4d"><label for="c4d"><strong>Settings → General</strong> → set Timezone to <strong>Kolkata</strong>.</label></li>
+    <li><input type="checkbox" id="c4e"><label for="c4e"><strong>Users</strong> → every editor has a strong password; your admin account uses <strong>two-factor login</strong> (e.g. a 2FA plugin).</label></li>
+    <li><input type="checkbox" id="c4f"><label for="c4f">Optional: <strong>Posts → Categories</strong> → create your blog categories (e.g. Web Design, Lead Generation, Local SEO). These become the filter tabs on <code>/blog</code>.</label></li>
+  </ul>
+  <div class="note info">You do <strong>not</strong> need Yoast, Rank Math or ACF. SEO title, meta description and all custom fields are in the <strong>“Optimax fields”</strong> box under the editor.</div>
+</section>
+
+<!-- 5 -->
+<section class="step" id="s5">
+  <h2><span class="num">5</span> Deploy the website code</h2>
+  <p class="meta"><span class="tag must">Required</span> · Your usual deploy process</p>
+  <p>The code changes are on your Mac but <strong>not committed or deployed yet</strong>.</p>
+  <ul class="check">
+    <li><input type="checkbox" id="c5a"><label for="c5a">Review and commit the changes (or ask Devin to commit them for you).</label></li>
+    <li><input type="checkbox" id="c5b"><label for="c5b">Push to GitHub and deploy to Hostinger the same way you normally do.</label></li>
+    <li><input type="checkbox" id="c5c"><label for="c5c">On the server, run <code>npm install</code> then <code>npm run build</code>, then restart the Node.js app. (Sanity packages were removed, so a fresh install is needed.)</label></li>
+  </ul>
+  <pre><code>git add -A
+git commit -m "Switch CMS to headless WordPress, fix canonical domain and SEO"
+git push</code></pre>
+</section>
+
+<!-- 6 -->
+<section class="step" id="s6">
+  <h2><span class="num">6</span> Set environment variables</h2>
+  <p class="meta"><span class="tag must">Required</span> 5 minutes · hPanel → your Node.js app settings (and your local <code>.env.local</code>)</p>
+  <table>
+    <tr><th>Name</th><th>Value</th></tr>
+    <tr><td><code>NEXT_PUBLIC_SITE_URL</code></td><td><code>https://optimaxstudio.com</code> (no www, no trailing slash)</td></tr>
+    <tr><td><code>WORDPRESS_URL</code></td><td><code>https://blog.optimaxstudio.com</code></td></tr>
+    <tr><td><code>WORDPRESS_REVALIDATE_SECRET</code></td><td>Your secret from Step 1 — identical to wp-config.php</td></tr>
+  </table>
+  <ul class="check">
+    <li><input type="checkbox" id="c6a"><label for="c6a">Add the three variables above on Hostinger.</label></li>
+    <li><input type="checkbox" id="c6b"><label for="c6b"><strong>Delete</strong> the old variables: <code>NEXT_PUBLIC_SANITY_PROJECT_ID</code>, <code>NEXT_PUBLIC_SANITY_DATASET</code>, <code>NEXT_PUBLIC_SANITY_API_VERSION</code>, <code>SANITY_API_TOKEN</code>.</label></li>
+    <li><input type="checkbox" id="c6c"><label for="c6c">Rebuild and restart the app so the new values take effect.</label></li>
+    <li><input type="checkbox" id="c6d"><label for="c6d">On your Mac: copy <code>.env.example</code> to <code>.env.local</code> and fill the same values (for local development).</label></li>
+  </ul>
+</section>
+
+<!-- 7 -->
+<section class="step" id="s7">
+  <h2><span class="num">7</span> Test everything works</h2>
+  <p class="meta"><span class="tag must">Required</span> 10 minutes · Browser + Terminal</p>
+  <ul class="check">
+    <li><input type="checkbox" id="c7a"><label for="c7a">Open <code>https://www.optimaxstudio.com/about</code> → it should land on <code>https://optimaxstudio.com/about</code> (no www).</label></li>
+    <li><input type="checkbox" id="c7b"><label for="c7b">Open <code>https://optimaxstudio.com/robots.txt</code> → the Sitemap line says <code>https://optimaxstudio.com/sitemap.xml</code>.</label></li>
+    <li><input type="checkbox" id="c7c"><label for="c7c">Open <code>https://optimaxstudio.com/sitemap.xml</code> → every URL starts with <code>https://optimaxstudio.com</code>, and “hello-world” is gone.</label></li>
+    <li><input type="checkbox" id="c7d"><label for="c7d">Open <code>https://optimaxstudio.com/services/seo</code> → it redirects to <code>/services/search-engine-optimization</code>.</label></li>
+    <li><input type="checkbox" id="c7e"><label for="c7e">Open <code>https://blog.optimaxstudio.com/</code> → it redirects to <code>optimaxstudio.com</code>.</label></li>
+    <li><input type="checkbox" id="c7f"><label for="c7f"><strong>Live-update test:</strong> publish a test blog post in WordPress → open <code>optimaxstudio.com/blog</code> → it should appear within a minute. Then delete the test post.</label></li>
+  </ul>
+  <p>Quick check from Terminal (each line should show <code>301</code> or <code>308</code>):</p>
+  <pre><code>curl -sI https://www.optimaxstudio.com/ | head -1
+curl -sI https://optimaxstudio.com/services/seo | head -1
+curl -sI https://blog.optimaxstudio.com/ | head -1</code></pre>
+  <div class="note warn">If the live-update test doesn't work: the secret in <code>wp-config.php</code> and <code>WORDPRESS_REVALIDATE_SECRET</code> don't match exactly, or the app wasn't restarted. Content still updates automatically within ~5 minutes either way.</div>
+</section>
+
+<!-- 8 -->
+<section class="step" id="s8">
+  <h2><span class="num">8</span> Add your content</h2>
+  <p class="meta"><span class="tag">Highest SEO impact</span> Ongoing · wp-admin</p>
+
+  <h3>8a. City pages first (Gurgaon &amp; Gorakhpur)</h3>
+  <p>These don't exist on the site until you create them. <strong>Locations → Add New</strong>:</p>
+  <table>
+    <tr><th>Field</th><th>Gurgaon</th><th>Gorakhpur</th></tr>
+    <tr><td>Title</td><td>Website Development &amp; Lead Generation in Gurgaon</td><td>Website Development &amp; Lead Generation in Gorakhpur</td></tr>
+    <tr><td>Slug (URL)</td><td><code>gurgaon</code></td><td><code>gorakhpur</code></td></tr>
+    <tr><td>Excerpt</td><td colspan="2">1–2 sentence intro shown under the heading and used as meta description.</td></tr>
+    <tr><td>Main editor</td><td colspan="2">500+ words of <strong>genuinely local</strong> content: who you work with there, how meetings work, local industries, real project examples. Use H2 headings.</td></tr>
+    <tr><td>City / Region</td><td>Gurugram / Haryana</td><td>Gorakhpur / Uttar Pradesh</td></tr>
+    <tr><td>Office status</td><td>Head office</td><td>Branch office <em>only if</em> it has signage and receives clients; otherwise “No office”</td></tr>
+    <tr><td>Address / PIN</td><td>104, GLS Crown Avenue, Wazirpur Road / 122505</td><td>Only if it's a real customer-facing office</td></tr>
+    <tr><td>Related service slugs</td><td colspan="2"><code>web-design-development</code><br><code>digital-marketing</code><br><code>social-media-management</code></td></tr>
+    <tr><td>Local FAQs</td><td colspan="2">3–5 real questions clients from that city ask.</td></tr>
+  </table>
+  <ul class="check">
+    <li><input type="checkbox" id="c8a"><label for="c8a">Gurgaon location published → check <code>optimaxstudio.com/locations/gurgaon</code></label></li>
+    <li><input type="checkbox" id="c8b"><label for="c8b">Gorakhpur location published → check <code>optimaxstudio.com/locations/gorakhpur</code></label></li>
+    <li><input type="checkbox" id="c8c"><label for="c8c">Later (only with unique content): Lucknow, Basti, Deoria, Kushinagar — Office status “No office”, no address.</label></li>
+  </ul>
+  <div class="note danger"><strong>Don't</strong> copy one city page and just swap the city name. Google treats that as “doorway pages” and can demote the whole site. Never add an address or phone for an office that doesn't really exist.</div>
+
+  <h3>8b. Case studies</h3>
+  <ul class="check">
+    <li><input type="checkbox" id="c8d"><label for="c8d">Add 3+ real projects under <strong>Case Studies</strong>. Use an anonymous client label (e.g. “Gurgaon real-estate developer”) unless the client approved their name in writing.</label></li>
+    <li><input type="checkbox" id="c8e"><label for="c8e">Set the <strong>City</strong> field where the project really happened — it then shows automatically on that city's page.</label></li>
+    <li><input type="checkbox" id="c8f"><label for="c8f">Only use numbers you can prove (screenshots, analytics).</label></li>
+  </ul>
+
+  <h3>8c. Blog</h3>
+  <ul class="check">
+    <li><input type="checkbox" id="c8g"><label for="c8g">Publish 2 articles per month targeting local + industry questions (e.g. “How much does a school website cost in Gorakhpur?”). Link each to a service or city page.</label></li>
+    <li><input type="checkbox" id="c8h"><label for="c8h">Every post: featured image (with alt text), excerpt, category, and the SEO title / meta description fields.</label></li>
+  </ul>
+
+  <h3>8d. Missing service page</h3>
+  <ul class="check">
+    <li><input type="checkbox" id="c8i"><label for="c8i">Your PRD's #2 service, <strong>Meta Ads / Lead Generation</strong>, has no page. Create it under <strong>Services → Add New</strong> with slug <code>meta-ads-lead-generation</code>. It appears at <code>/services/meta-ads-lead-generation</code>.</label></li>
+  </ul>
+
+  <h3>8e. Old Sanity URLs</h3>
+  <ul class="check">
+    <li><input type="checkbox" id="c8j"><label for="c8j">If any blog posts or case studies were live from Sanity, recreate them in WordPress with the <strong>exact same slug</strong> so their old URLs keep working. Check Search Console → Pages for any <code>/blog/…</code> or <code>/case-studies/…</code> URLs that now 404.</label></li>
+  </ul>
+
+  <div class="note info">The 5 existing service pages (Web, Digital Marketing, Social Media, CRM, SEO) keep their current design and text from code to protect current rankings. Creating a WordPress Service with the same slug only changes the card on <code>/services</code>. Industries <em>are</em> fully editable — a WordPress Industry with the same slug (e.g. <code>real-estate</code>) replaces the built-in content field by field.</div>
+</section>
+
+<!-- 9 -->
+<section class="step" id="s9">
+  <h2><span class="num">9</span> Google Search Console</h2>
+  <p class="meta"><span class="tag must">Required</span> 15 minutes · search.google.com/search-console</p>
+  <ul class="check">
+    <li><input type="checkbox" id="c9a"><label for="c9a">Make sure you have a <strong>Domain property</strong> for <code>optimaxstudio.com</code> (covers www and non-www).</label></li>
+    <li><input type="checkbox" id="c9b"><label for="c9b"><strong>Sitemaps</strong> → remove any old sitemap entries (e.g. ones pointing to <code>optimax.studio</code>) → submit <code>https://optimaxstudio.com/sitemap.xml</code>.</label></li>
+    <li><input type="checkbox" id="c9c"><label for="c9c"><strong>URL Inspection</strong> → test your homepage and top 5 service pages → click <strong>Request indexing</strong>.</label></li>
+    <li><input type="checkbox" id="c9d"><label for="c9d">If <code>blog.optimaxstudio.com</code> was ever added or indexed, use <strong>Removals</strong> to hide it temporarily.</label></li>
+    <li><input type="checkbox" id="c9e"><label for="c9e"><strong>Export a baseline</strong> today: Performance → last 3 months → export Queries and Pages. You'll compare against this monthly.</label></li>
+    <li><input type="checkbox" id="c9f"><label for="c9f">After 1–2 weeks: check <strong>Pages</strong> report for new 404s or “Duplicate without canonical” warnings.</label></li>
+  </ul>
+</section>
+
+<!-- 10 -->
+<section class="step" id="s10">
+  <h2><span class="num">10</span> Google Business Profile</h2>
+  <p class="meta"><span class="tag">Big for local ranking</span> 20 minutes · business.google.com</p>
+  <ul class="check">
+    <li><input type="checkbox" id="c10a"><label for="c10a">Gurgaon profile: name, address and phone <strong>exactly match</strong> the website (“Optimax Studio”, 104, GLS Crown Avenue, Wazirpur Road, 122505, +91 89570 79052).</label></li>
+    <li><input type="checkbox" id="c10b"><label for="c10b">Website link on the profile → <code>https://optimaxstudio.com/locations/gurgaon</code> (after Step 8a).</label></li>
+    <li><input type="checkbox" id="c10c"><label for="c10c">Primary category e.g. “Website designer”; add “Internet marketing service” as secondary.</label></li>
+    <li><input type="checkbox" id="c10d"><label for="c10d">Add 10+ real photos (office, team, work) and opening hours.</label></li>
+    <li><input type="checkbox" id="c10e"><label for="c10e">Ask every happy client for a Google review. Reply to every review.</label></li>
+    <li><input type="checkbox" id="c10f"><label for="c10f">Gorakhpur: only create a profile once the office has permanent signage and receives customers.</label></li>
+  </ul>
+</section>
+
+<!-- 11 -->
+<section class="step" id="s11">
+  <h2><span class="num">11</span> Ongoing SEO routine</h2>
+  <p class="meta"><span class="tag">Monthly</span></p>
+  <ul class="check">
+    <li><input type="checkbox" id="c11a"><label for="c11a">List the business on Justdial, Sulekha, IndiaMART, Clutch, GoodFirms with the <strong>same</strong> name/address/phone.</label></li>
+    <li><input type="checkbox" id="c11b"><label for="c11b">Check speed at <code>pagespeed.web.dev</code> for homepage and one service page (target: green Core Web Vitals on mobile).</label></li>
+    <li><input type="checkbox" id="c11c"><label for="c11c">Decide on pricing: your PRD says hide public prices, but <code>/pricing</code> and several service pages still show amounts (code change — ask Devin).</label></li>
+    <li><input type="checkbox" id="c11d"><label for="c11d">Monthly: compare Search Console clicks/impressions for Gurgaon and Gorakhpur queries against your baseline.</label></li>
+  </ul>
+</section>
+
+<!-- Reference -->
+<section class="step" id="fields">
+  <h2><span class="num">i</span> Field format reference</h2>
+  <p class="meta">How to fill the multi-line boxes in “Optimax fields”</p>
+  <table>
+    <tr><th>Format</th><th>Used for</th><th>Example</th></tr>
+    <tr><td><strong>List</strong><br>one item per line</td><td>What we do, Pain points, Gallery image URLs, Related service slugs</td><td><pre><code>Custom UI/UX design
+Mobile-first development
+On-page SEO setup</code></pre></td></tr>
+    <tr><td><strong>Title | Description</strong></td><td>Process steps, Solutions, Approach steps</td><td><pre><code>Discovery | We study your business and competitors.
+Design | Wireframes and mockups for your approval.</code></pre></td></tr>
+    <tr><td><strong>Question | Answer</strong></td><td>FAQs, Local FAQs</td><td><pre><code>Do you meet clients in Gorakhpur? | Yes, at our office or yours.
+How long does a website take? | Usually 4–8 weeks.</code></pre></td></tr>
+    <tr><td><strong>Value | Label</strong></td><td>Headline stat, Hero metrics</td><td><pre><code>3x | More qualified leads</code></pre></td></tr>
+    <tr><td><strong>Value | Label | Description</strong></td><td>Case-study Results</td><td><pre><code>120% | Organic traffic | Measured over 6 months in GA4.</code></pre></td></tr>
+    <tr><td><strong>Quote | Name | Role | Company</strong></td><td>Testimonial (approved only)</td><td><pre><code>Great team to work with. | R. Sharma | Director | Real-estate firm</code></pre></td></tr>
+    <tr><td><strong>Featured case study</strong></td><td>Industry</td><td><pre><code>Gurgaon developer | 2.5x | Faster closings | Custom CRM rollout. | prime-realty</code></pre></td></tr>
+  </table>
+  <h3>Where each content type appears</h3>
+  <table>
+    <tr><th>WordPress</th><th>Website URL</th></tr>
+    <tr><td>Posts</td><td><code>/blog</code> and <code>/blog/&lt;slug&gt;</code></td></tr>
+    <tr><td>Case Studies</td><td><code>/case-studies/&lt;slug&gt;</code>, homepage carousel, city page (if City set)</td></tr>
+    <tr><td>Locations</td><td><code>/locations</code> and <code>/locations/&lt;slug&gt;</code></td></tr>
+    <tr><td>Services</td><td><code>/services/&lt;slug&gt;</code> (new services) and <code>/services</code> list</td></tr>
+    <tr><td>Industries</td><td><code>/industries/&lt;slug&gt;</code></td></tr>
+    <tr><td>FAQs (Group = <code>home</code>)</td><td>Homepage FAQ section (replaces the built-in questions once any exist)</td></tr>
+    <tr><td>Pages</td><td><code>/&lt;slug&gt;</code> — except slugs already used by the site (about, contact, pricing…)</td></tr>
+  </table>
+  <div class="note info"><strong>SEO title</strong>: write it without “| Optimax Studio” — that's added automatically. <strong>Meta description</strong>: 140–160 characters, include the city and service.</div>
+</section>
+
+<footer>
+  <button class="reset" id="reset">Reset checklist</button>
+  <p>Optimax Studio · internal setup guide</p>
+</footer>
+
+</main>
+
+<script>
+  (function () {
+    var KEY = "optimax-setup-guide";
+    var saved = JSON.parse(localStorage.getItem(KEY) || "{}");
+    var boxes = document.querySelectorAll('ul.check input[type="checkbox"]');
+    var bar = document.getElementById("bar");
+    var label = document.getElementById("barLabel");
+
+    function update() {
+      var done = 0;
+      boxes.forEach(function (b) { if (b.checked) done++; });
+      bar.style.width = (boxes.length ? (done / boxes.length) * 100 : 0) + "%";
+      label.textContent = done + " of " + boxes.length + " done";
+    }
+
+    boxes.forEach(function (b) {
+      b.checked = !!saved[b.id];
+      b.addEventListener("change", function () {
+        saved[b.id] = b.checked;
+        localStorage.setItem(KEY, JSON.stringify(saved));
+        update();
+      });
+    });
+
+    document.getElementById("reset").addEventListener("click", function () {
+      if (!confirm("Clear all ticks?")) return;
+      saved = {};
+      localStorage.removeItem(KEY);
+      boxes.forEach(function (b) { b.checked = false; });
+      update();
+    });
+
+    document.querySelectorAll("pre").forEach(function (pre) {
+      var btn = document.createElement("button");
+      btn.className = "copy";
+      btn.type = "button";
+      btn.textContent = "Copy";
+      btn.addEventListener("click", function () {
+        navigator.clipboard.writeText(pre.innerText.replace(/Copy$/, "").trim()).then(function () {
+          btn.textContent = "Copied";
+          setTimeout(function () { btn.textContent = "Copy"; }, 1500);
+        });
+      });
+      pre.appendChild(btn);
+    });
+
+    update();
+  })();
+</script>
+</body>
+</html>

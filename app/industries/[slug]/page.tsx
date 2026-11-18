@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import {
-  getIndustryBySlug,
-  getAllIndustrySlugs,
-  type Industry,
-} from "@/lib/data/industries";
+import { getIndustries, getIndustry } from "@/lib/wordpress/content";
+import { cmsMetadata } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { FAQSection } from "@/components/ui/FAQSection";
 import { BottomCTA } from "@/components/ui/BottomCTA";
@@ -13,14 +10,14 @@ import { XCircle, CheckCircle2, ArrowRight, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const SITE_URL = "https://optimaxstudio.com";
+import { SITE_URL } from "@/lib/site";
 
 const serviceSlugMap: Record<string, string> = {
   "Web Design & Development": "web-design-development",
   "Digital Marketing": "digital-marketing",
   "Social Media Management": "social-media-management",
   "CRM & Custom Portals": "crm-custom-portals",
-  "SEO": "seo",
+  "SEO": "search-engine-optimization",
 };
 
 const serviceDescriptionMap: Record<string, string> = {
@@ -32,7 +29,7 @@ const serviceDescriptionMap: Record<string, string> = {
 };
 
 export async function generateStaticParams() {
-  return getAllIndustrySlugs().map((slug) => ({ slug }));
+  return (await getIndustries()).map((i) => ({ slug: i.slug }));
 }
 
 export async function generateMetadata({
@@ -41,23 +38,16 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const industry = getIndustryBySlug(slug);
+  const industry = await getIndustry(slug);
   if (!industry) return { title: "Not Found" };
 
-  const title = `${industry.name} Digital Solutions | Optimax Studio`;
-  const description = `Optimax Studio builds custom portals, CRMs, and digital tools for ${industry.name.toLowerCase()} businesses. ${industry.tagline} Book a free strategy call.`;
-
-  return {
-    title,
-    description,
-    alternates: { canonical: `${SITE_URL}/industries/${slug}` },
-    openGraph: {
-      title: `${industry.name} Solutions | Optimax Studio`,
-      description: `Custom digital tools for ${industry.name.toLowerCase()}. ${industry.tagline}`,
-      type: "website",
-      url: `${SITE_URL}/industries/${slug}`,
-    },
-  };
+  return cmsMetadata({
+    path: `/industries/${industry.slug}`,
+    title: `${industry.name} Digital Solutions`,
+    description: `Optimax Studio builds custom portals, CRMs, and digital tools for ${industry.name.toLowerCase()} businesses. ${industry.tagline} Book a free strategy call.`,
+    seo: industry.seo,
+    image: industry.images[0],
+  });
 }
 
 export default async function IndustryPage({
@@ -66,7 +56,7 @@ export default async function IndustryPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const industry = getIndustryBySlug(slug);
+  const industry = await getIndustry(slug);
   if (!industry) notFound();
 
   /* FAQPage schema for rich results */

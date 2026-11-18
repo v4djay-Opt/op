@@ -3,6 +3,7 @@ import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { SITE_URL } from "@/lib/site";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -18,10 +19,8 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://optimax.studio";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Optimax Studio — Digital Agency",
     template: "%s | Optimax Studio",
@@ -50,7 +49,7 @@ export const metadata: Metadata = {
     title: "Optimax Studio — Digital Agency",
     description:
       "We build digital machines that generate revenue. Web design, development, marketing, and custom CRM solutions.",
-    url: siteUrl,
+    url: SITE_URL,
     locale: "en_US",
   },
   twitter: {

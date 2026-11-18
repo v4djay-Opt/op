@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Pricing",
   description:
     "Simple, transparent pricing for web design, development, digital marketing, and CRM solutions. No hidden fees.",
+  alternates: { canonical: "/pricing" },
 };
 
 /* ── Plans ── */

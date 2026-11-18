@@ -4,6 +4,7 @@ import { PageHero } from "@/components/ui/PageHero";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "Privacy Policy for Optimax Studio — how we collect, use, and protect your data.",
+  alternates: { canonical: "/privacy-policy" },
 };
 
 export default function PrivacyPolicyPage() {
@@ -52,7 +53,7 @@ export default function PrivacyPolicyPage() {
           <p>
             You may request access to, correction of, or deletion of your personal data by
             contacting us at{" "}
-            <a href="mailto:hello@optimax.studio">hello@optimax.studio</a>.
+            <a href="mailto:hello@optimaxstudio.com">hello@optimaxstudio.com</a>.
           </p>
 
           <h2>7. Changes to This Policy</h2>
@@ -64,7 +65,7 @@ export default function PrivacyPolicyPage() {
           <h2>8. Contact</h2>
           <p>
             If you have questions about this Privacy Policy, please contact us at{" "}
-            <a href="mailto:hello@optimax.studio">hello@optimax.studio</a>.
+            <a href="mailto:hello@optimaxstudio.com">hello@optimaxstudio.com</a>.
           </p>
         </div>
       </section>

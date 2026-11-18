@@ -1,49 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { PortableText } from "@portabletext/react";
-import { sanityFetch } from "@/lib/sanity/client";
-import {
-  postBySlugQuery,
-  relatedPostsQuery,
-  postSlugsQuery,
-} from "@/lib/sanity/queries";
-import {
-  getFallbackPostBySlug,
-  getAllFallbackPostSlugs,
-  fallbackPosts,
-  type FallbackPost,
-} from "@/lib/data/blog-fallback";
+import { getPost, getPosts } from "@/lib/wordpress/content";
+import { withHeadingIds } from "@/lib/wordpress/html";
+import { cmsMetadata } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { BottomCTA } from "@/components/ui/BottomCTA";
 import { ReadingProgress } from "@/components/ui/ReadingProgress";
 import { ArrowRight, Clock } from "lucide-react";
 import Link from "next/link";
-
-const SITE_URL = "https://optimaxstudio.com";
-
-interface Post {
-  _id: string;
-  title: string;
-  slug: { current: string } | string;
-  excerpt: string;
-  category?: string;
-  publishedAt: string;
-  estimatedReadTime?: number;
-  body?: unknown[];
-  image?: string;
-  ogImage?: string;
-  author?: string;
-  authorRole?: string;
-  authorBio?: string;
-  authorLinkedIn?: string;
-  authorTwitter?: string;
-}
-
-function normalizeSlug(slug: { current: string } | string): string {
-  return typeof slug === "string" ? slug : slug.current;
-}
 
 function formatDate(dateString: string): string {
   return new Date(dateString).toLocaleDateString("en-US", {
@@ -53,32 +20,8 @@ function formatDate(dateString: string): string {
   });
 }
 
-/* Extract h2 headings from PortableText blocks for TOC */
-function extractHeadings(body: unknown[]): { text: string; id: string }[] {
-  return body
-    .filter(
-      (b): b is { style: string; children: { text: string }[] } =>
-        typeof b === "object" &&
-        b !== null &&
-        "style" in b &&
-        (b as { style: string }).style === "h2" &&
-        "children" in b
-    )
-    .map((b) => ({
-      text: b.children.map((c) => c.text).join(""),
-      id: b.children
-        .map((c) => c.text)
-        .join("")
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, ""),
-    }));
-}
-
 export async function generateStaticParams() {
-  const sanitySlugs = await sanityFetch<string[]>(postSlugsQuery);
-  const slugs = sanitySlugs || getAllFallbackPostSlugs();
-  return slugs.map((slug) => ({ slug }));
+  return (await getPosts()).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -87,36 +30,21 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post =
-    (await sanityFetch<Post>(postBySlugQuery, { slug })) ||
-    getFallbackPostBySlug(slug);
+  const post = await getPost(slug);
   if (!post) return { title: "Not Found" };
 
-  const title = `${post.title} | Optimax Studio Blog`;
-  const description =
-    post.excerpt.length > 155 ? post.excerpt.slice(0, 152) + "..." : post.excerpt;
-  const canonical = `${SITE_URL}/blog/${normalizeSlug(post.slug)}`;
-
-  return {
-    title,
-    description,
-    alternates: { canonical },
-    openGraph: {
-      title: `${post.title} | Optimax Studio`,
-      description,
-      url: canonical,
-      type: "article",
+  return cmsMetadata({
+    path: `/blog/${post.slug}`,
+    title: post.title,
+    description: post.excerpt,
+    seo: post.seo,
+    image: post.image,
+    article: {
       publishedTime: post.publishedAt,
-      modifiedTime: post.publishedAt,
-      images: [{ url: post.ogImage || `${SITE_URL}/og/blog/${normalizeSlug(post.slug)}.jpg` }],
+      modifiedTime: post.modifiedAt,
+      ...(post.author ? { authors: [post.author] } : {}),
     },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description,
-      images: [post.ogImage || `${SITE_URL}/og/blog/${normalizeSlug(post.slug)}.jpg`],
-    },
-  };
+  });
 }
 
 export default async function BlogPostPage({
@@ -125,20 +53,15 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post =
-    (await sanityFetch<Post>(postBySlugQuery, { slug })) ||
-    getFallbackPostBySlug(slug);
+  const posts = await getPosts();
+  const post = posts.find((p) => p.slug === slug);
   if (!post) notFound();
 
-  const related =
-    (await sanityFetch<Post[]>(relatedPostsQuery, { slug })) ||
-    fallbackPosts
-      .filter((p) => p.slug.current !== slug)
-      .slice(0, 3);
+  const sameCategory = posts.filter((p) => p.slug !== slug && post.category && p.category === post.category);
+  const related = [...sameCategory, ...posts.filter((p) => p.slug !== slug && !sameCategory.includes(p))].slice(0, 3);
 
-  const headings = post.body ? extractHeadings(post.body) : [];
-  const datePublished = post.publishedAt ? post.publishedAt.split("T")[0] : "";
-  const canonicalUrl = `${SITE_URL}/blog/${normalizeSlug(post.slug)}`;
+  const { html: bodyHtml, headings } = withHeadingIds(post.bodyHtml);
+  const canonicalUrl = `${SITE_URL}/blog/${post.slug}`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -146,10 +69,7 @@ export default async function BlogPostPage({
       {
         "@type": "BlogPosting",
         headline: post.title,
-        description:
-          post.excerpt.length > 155
-            ? post.excerpt.slice(0, 152) + "..."
-            : post.excerpt,
+        description: post.seo.description || post.excerpt,
         author: {
           "@type": "Person",
           name: post.author || "Optimax Studio",
@@ -162,13 +82,13 @@ export default async function BlogPostPage({
             url: `${SITE_URL}/logo.png`,
           },
         },
-        datePublished,
-        dateModified: datePublished,
+        datePublished: post.publishedAt,
+        dateModified: post.modifiedAt,
         mainEntityOfPage: {
           "@type": "WebPage",
           "@id": canonicalUrl,
         },
-        image: `${SITE_URL}/og/blog/${normalizeSlug(post.slug)}.jpg`,
+        ...(post.image ? { image: post.image } : {}),
       },
       {
         "@type": "BreadcrumbList",
@@ -189,6 +109,7 @@ export default async function BlogPostPage({
             "@type": "ListItem",
             position: 3,
             name: post.title,
+            item: canonicalUrl,
           },
         ],
       },
@@ -262,8 +183,10 @@ export default async function BlogPostPage({
               {post.image ? (
                 <Image
                   src={post.image}
-                  alt={post.title}
+                  alt={post.imageAlt || post.title}
                   fill
+                  priority
+                  sizes="(min-width: 1152px) 1152px, 100vw"
                   className="object-cover"
                 />
               ) : (
@@ -323,34 +246,12 @@ export default async function BlogPostPage({
             )}
 
             {/* Article body */}
-            {post.body && (
+            {bodyHtml && (
               <FadeIn>
-                <article className="prose prose-invert max-w-none prose-headings:font-display prose-headings:text-text prose-p:text-muted prose-a:text-accent prose-strong:text-text prose-li:text-muted">
-                  <PortableText
-                    value={post.body as never}
-                    components={{
-                      block: {
-                        h2: ({ children }: { children?: React.ReactNode }) => {
-                          const text = Array.isArray(children)
-                            ? children.join("")
-                            : String(children ?? "");
-                          const id = text
-                            .toLowerCase()
-                            .replace(/[^a-z0-9]+/g, "-")
-                            .replace(/^-+|-+$/g, "");
-                          return (
-                            <h2
-                              id={id}
-                              className="text-2xl font-bold text-text font-display mb-4 mt-10 scroll-mt-24"
-                            >
-                              {children}
-                            </h2>
-                          );
-                        },
-                      },
-                    }}
-                  />
-                </article>
+                <article
+                  className="prose max-w-none [&_h2]:scroll-mt-24"
+                  dangerouslySetInnerHTML={{ __html: bodyHtml }}
+                />
               </FadeIn>
             )}
 
@@ -402,8 +303,8 @@ export default async function BlogPostPage({
                 <div className="space-y-4">
                   {related.map((r) => (
                     <Link
-                      key={r._id}
-                      href={`/blog/${normalizeSlug(r.slug)}`}
+                      key={r.id}
+                      href={`/blog/${r.slug}`}
                       className="group flex items-start gap-4 rounded-xl border border-border bg-white p-4 transition-all hover:border-accent/20 hover:shadow-lg"
                     >
                       {/* Thumbnail placeholder */}
@@ -469,8 +370,8 @@ export default async function BlogPostPage({
                     <div className="space-y-3">
                       {related.slice(0, 2).map((r) => (
                         <Link
-                          key={r._id}
-                          href={`/blog/${normalizeSlug(r.slug)}`}
+                          key={r.id}
+                          href={`/blog/${r.slug}`}
                           className="block text-sm text-muted hover:text-accent transition-colors leading-snug"
                         >
                           {r.title}

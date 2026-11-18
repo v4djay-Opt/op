@@ -16,7 +16,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
-const SITE_URL = "https://optimaxstudio.com";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Digital Marketing Agency in Gurgaon, India",

@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const wordpressHost = new URL(process.env.WORDPRESS_URL || "https://blog.optimaxstudio.com").hostname;
+
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1", "localhost"],
   transpilePackages: ["simple-icons"],
@@ -8,9 +10,30 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.sanity.io",
+        hostname: wordpressHost,
       },
     ],
+  },
+
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.optimaxstudio.com" }],
+        destination: "https://optimaxstudio.com/:path*",
+        permanent: true,
+      },
+      {
+        source: "/services/seo",
+        destination: "/services/search-engine-optimization",
+        permanent: true,
+      },
+      {
+        source: "/studio/:path*",
+        destination: "/",
+        permanent: true,
+      },
+    ];
   },
 
   async headers() {
@@ -30,7 +53,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/((?!studio).*)",
+        source: "/:path*",
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
@@ -47,28 +70,9 @@ const nextConfig: NextConfig = {
               "img-src 'self' data: https:",
               "font-src 'self' data:",
               "frame-src https://cal.com https://www.google.com https://checkout.razorpay.com",
-              "connect-src 'self' https://api.razorpay.com https://*.sanity.io",
+              "connect-src 'self' https://api.razorpay.com",
               "frame-ancestors 'self'",
             ].join("; "),
-          },
-        ],
-      },
-      // Studio: allow framing from Sanity origins
-      {
-        source: "/studio",
-        headers: [
-          {
-            key: "Content-Security-Policy",
-            value: "frame-ancestors 'self' https://sanity.io https://*.sanity.io",
-          },
-        ],
-      },
-      {
-        source: "/studio/:path*",
-        headers: [
-          {
-            key: "Content-Security-Policy",
-            value: "frame-ancestors 'self' https://sanity.io https://*.sanity.io",
           },
         ],
       },

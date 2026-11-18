@@ -81,7 +81,7 @@ const services = [
   { label: "Digital Marketing", href: "/services/digital-marketing" },
   { label: "Social Media Management", href: "/services/social-media-management" },
   { label: "CRM & Custom Portals", href: "/services/crm-custom-portals" },
-  { label: "Search Engine Optimization", href: "/services/seo" },
+  { label: "Search Engine Optimization", href: "/services/search-engine-optimization" },
 ];
 
 const socials = [

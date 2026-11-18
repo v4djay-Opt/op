@@ -4,25 +4,7 @@ import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Clock, ArrowUpRight } from 'lucide-react';
-
-interface Post {
-  _id: string;
-  title: string;
-  slug: { current: string } | string;
-  excerpt: string;
-  category?: string;
-  publishedAt: string;
-  estimatedReadTime?: number;
-  image?: string;
-  author?: string;
-  authorRole?: string;
-}
-
-const CATEGORIES = ['All', 'Web Design', 'SEO', 'Branding', 'Marketing', 'E-Commerce'];
-
-function normalizeSlug(slug: { current: string } | string): string {
-  return typeof slug === 'string' ? slug : slug.current;
-}
+import type { Post } from '@/lib/wordpress/content';
 
 function formatDate(dateString: string): string {
   return new Date(dateString).toLocaleDateString('en-US', {
@@ -65,7 +47,7 @@ function MetaLine({ post }: { post: Post }) {
 function FeaturedHeroCard({ post }: { post: Post }) {
   return (
     <Link
-      href={`/blog/${normalizeSlug(post.slug)}`}
+      href={`/blog/${post.slug}`}
       className="group flex flex-col md:flex-row rounded-2xl bg-white border border-border shadow-card overflow-hidden transition-all hover:shadow-lg md:h-[420px]"
     >
       {/* Left — image 50% */}
@@ -73,7 +55,7 @@ function FeaturedHeroCard({ post }: { post: Post }) {
         {post.image ? (
           <Image
             src={post.image}
-            alt={post.title}
+            alt={post.imageAlt || post.title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
@@ -119,7 +101,7 @@ function FeaturedHeroCard({ post }: { post: Post }) {
 function SmallCard({ post }: { post: Post }) {
   return (
     <Link
-      href={`/blog/${normalizeSlug(post.slug)}`}
+      href={`/blog/${post.slug}`}
       className="group flex flex-col h-full rounded-2xl bg-white border border-border shadow-card overflow-hidden transition-all hover:shadow-lg"
     >
       {/* Image area */}
@@ -127,7 +109,7 @@ function SmallCard({ post }: { post: Post }) {
         {post.image ? (
           <Image
             src={post.image}
-            alt={post.title}
+            alt={post.imageAlt || post.title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
@@ -171,6 +153,10 @@ function SmallCard({ post }: { post: Post }) {
 
 export function BlogGrid({ posts }: { posts: Post[] }) {
   const [activeCategory, setActiveCategory] = useState('All');
+  const categories = useMemo(
+    () => ['All', ...new Set(posts.map((p) => p.category).filter((c): c is string => Boolean(c)))],
+    [posts],
+  );
 
   const filteredPosts = useMemo(() => {
     if (activeCategory === 'All') return posts;
@@ -195,7 +181,7 @@ export function BlogGrid({ posts }: { posts: Post[] }) {
 
       {/* Filter tabs */}
       <div className="flex flex-wrap gap-2 mb-8">
-        {CATEGORIES.map((cat) => (
+        {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
@@ -222,7 +208,7 @@ export function BlogGrid({ posts }: { posts: Post[] }) {
           {rest.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {rest.map((post) => (
-                <SmallCard key={post._id} post={post} />
+                <SmallCard key={post.id} post={post} />
               ))}
             </div>
           )}

@@ -16,10 +16,10 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
-const SITE_URL = "https://optimaxstudio.com";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "CRM & Custom Portal Development in Gurgaon | Optimax Studio",
+  title: "CRM & Custom Portal Development in Gurgaon",
   description:
     "Custom CRM and business portal development in Gurgaon. Automate workflows, track leads, and give your team real-time visibility. Built for your exact process.",
   alternates: {

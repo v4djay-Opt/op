@@ -5,20 +5,10 @@ import Image from "next/image";
 import { ArrowRight, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { useState, useEffect, useCallback } from "react";
-
-interface BlogPost {
-  _id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  category?: string;
-  publishedAt: string;
-  estimatedReadTime?: number;
-  image?: string;
-}
+import type { Post } from "@/lib/wordpress/content";
 
 interface BlogPreviewProps {
-  posts: BlogPost[];
+  posts: Post[];
 }
 
 function formatDate(dateString: string): string {
@@ -81,7 +71,7 @@ export function BlogPreview({ posts }: BlogPreviewProps) {
             >
               {posts.map((post) => (
                 <div
-                  key={post._id}
+                  key={post.id}
                   className="w-full sm:w-1/2 lg:w-1/3 flex-shrink-0 px-3"
                 >
                   <Link
@@ -93,7 +83,7 @@ export function BlogPreview({ posts }: BlogPreviewProps) {
                       {post.image ? (
                         <Image
                           src={post.image}
-                          alt={post.title}
+                          alt={post.imageAlt || post.title}
                           fill
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />

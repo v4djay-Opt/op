@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
+import { SITE_URL } from "@/lib/site";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { BottomCTA } from "@/components/ui/BottomCTA";
 import { Mail } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Careers | Optimax Studio",
+  title: "Careers",
   description:
     "Join Optimax Studio. We're always looking for talented designers, developers, and marketers who want to build digital products that matter.",
   alternates: {
-    canonical: "https://optimaxstudio.com/careers",
+    canonical: `${SITE_URL}/careers`,
   },
 };
 

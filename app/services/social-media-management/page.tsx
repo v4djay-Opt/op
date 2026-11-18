@@ -7,10 +7,10 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-const SITE_URL = "https://optimaxstudio.com";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Social Media Management Service in Gurgaon & India | Optimax Studio",
+  title: "Social Media Management Service in Gurgaon & India",
   description:
     "Looking for a social media management agency in India? Optimax Studio offers complete services for social media management — content, Reels, community handling & packages. Book a free call.",
   keywords:

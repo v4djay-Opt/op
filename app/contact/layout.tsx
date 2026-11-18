@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Contact Us",
   description:
     "Get in touch with Optimax Studio. Book a free strategy call, send a message, or chat on WhatsApp.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactLayout({

@@ -5,7 +5,7 @@ import { Plus, X } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
-const faqs = [
+const defaultFaqs = [
   {
     question: "What industries do you specialize in?",
     answer:
@@ -43,7 +43,7 @@ function FAQItem({
   isOpen,
   onToggle,
 }: {
-  faq: (typeof faqs)[0];
+  faq: { question: string; answer: string };
   isOpen: boolean;
   onToggle: () => void;
 }) {
@@ -106,7 +106,8 @@ function FAQItem({
   );
 }
 
-export function FAQ() {
+export function FAQ({ items }: { items?: { question: string; answer: string }[] }) {
+  const faqs = items?.length ? items : defaultFaqs;
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const handleToggle = (index: number) => {

@@ -1,15 +1,14 @@
-"use client";
+import { SITE_URL } from "@/lib/site";
 
 export function LocalBusinessSchema() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": "https://www.optimaxstudio.com/#localbusiness",
+    "@id": `${SITE_URL}/#localbusiness`,
     name: "Optimax Studio",
-    url: "https://www.optimaxstudio.com",
+    url: SITE_URL,
     telephone: "+91-8957079052",
-    email: "Hello@optimaxstudio.com",
-    priceRange: "₹₹",
+    email: "hello@optimaxstudio.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: "104, GLS Crown Avenue, Wazirpur Road",
@@ -23,10 +22,15 @@ export function LocalBusinessSchema() {
       latitude: "28.4595",
       longitude: "77.0266",
     },
-    areaServed: {
-      "@type": "Place",
-      name: "Gurgaon, Haryana, India",
-    },
+    areaServed: [
+      { "@type": "City", name: "Gurugram, Haryana" },
+      { "@type": "City", name: "Gorakhpur, Uttar Pradesh" },
+      { "@type": "City", name: "Lucknow, Uttar Pradesh" },
+      { "@type": "City", name: "Basti, Uttar Pradesh" },
+      { "@type": "City", name: "Deoria, Uttar Pradesh" },
+      { "@type": "City", name: "Kushinagar, Uttar Pradesh" },
+      { "@type": "Country", name: "India" },
+    ],
     sameAs: [
       "https://www.instagram.com/optimaxstudioin/",
       "https://www.linkedin.com/company/optimaxstudio/",

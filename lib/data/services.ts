@@ -247,7 +247,7 @@ export const services: Service[] = [
     ],
   },
   {
-    slug: "seo",
+    slug: "search-engine-optimization",
     name: "Search Engine Optimization",
     tagline: "Rank Higher, Get Found, Drive Organic Revenue",
     icon: "Search",

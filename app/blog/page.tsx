@@ -1,32 +1,17 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
-import { sanityFetch } from "@/lib/sanity/client";
-import { postsQuery } from "@/lib/sanity/queries";
-import { fallbackPosts } from "@/lib/data/blog-fallback";
+import { getPosts } from "@/lib/wordpress/content";
 import { BlogGrid } from "./BlogGrid";
 
 export const metadata: Metadata = {
-  title: "Blog — Optimax Studio",
+  title: "Blog",
   description:
     "Insights on digital marketing, web design, CRM, and growth strategies from the Optimax team.",
+  alternates: { canonical: "/blog" },
 };
 
-interface Post {
-  _id: string;
-  title: string;
-  slug: { current: string } | string;
-  excerpt: string;
-  category?: string;
-  publishedAt: string;
-  estimatedReadTime?: number;
-  image?: string;
-  author?: string;
-  authorRole?: string;
-}
-
 export default async function BlogPage() {
-  const sanityPosts = await sanityFetch<Post[]>(postsQuery);
-  const posts: Post[] = sanityPosts || (fallbackPosts as Post[]);
+  const posts = await getPosts();
 
   return (
     <>
