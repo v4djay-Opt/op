@@ -1,3 +1,4 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 
 const wordpressHost = new URL(process.env.WORDPRESS_URL || "https://blog.optimaxstudio.com").hostname;
@@ -5,6 +6,12 @@ const wordpressHost = new URL(process.env.WORDPRESS_URL || "https://blog.optimax
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1", "localhost"],
   transpilePackages: ["simple-icons"],
+
+  // Resolve "@/..." without relying on tsconfig paths (Hostinger builds failed to resolve the alias).
+  webpack(config) {
+    config.resolve.alias = { ...config.resolve.alias, "@": path.resolve(__dirname) };
+    return config;
+  },
 
   images: {
     remotePatterns: [
